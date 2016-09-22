@@ -1,6 +1,6 @@
 module.exports = {
   port: {
-  	production: 8080,
+  	production: 80,
   	development: 8080,
   	test: 80
   },
