@@ -219,7 +219,9 @@
       $imagesInput = $imagesWrapper.find('input:text');
       imageObject = {
         id: object._id,
-        path: object.path,
+        original: object.original,
+        medium: object.medium,
+        small: object.small,
         caption: object.caption
       };
       if ($imagesInput.val()) {

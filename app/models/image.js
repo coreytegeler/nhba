@@ -3,7 +3,9 @@ var mongoose = require('mongoose')
 
 var imageSchema = mongoose.Schema({
 	filename: String,
-	path: String,
+	original: String,
+	medium: String,
+	small: String,
 	caption: String
 }, { 
 	timestamps: true

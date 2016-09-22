@@ -13,6 +13,7 @@ var slugify = require('slug')
 var path  = require('path')
 var fs  = require('fs')
 var multer  = require('multer')
+var gm  = require('gm')
 var NodeGeocoder = require('node-geocoder');
 var geocoder = NodeGeocoder({
   provider: 'google',
@@ -290,23 +291,53 @@ module.exports = function(app) {
 
   var upload = multer({
     storage: storage
-  })
+  }).single('image')
 
-  app.post('/admin/image/quicky/', upload.single('image'), tools.isLoggedIn, function(req, res) {
+  app.post('/admin/image/quicky/', tools.isLoggedIn, function(req, res) {
     var data = req.body
-    var imageData = req.file
-    var path = '/uploads/'+imageData.filename
-    data['path'] = path
-    var image = new Image(data)
-    image.save(function(err) {
-      if(!err) {
-        console.log('Added:')
-        console.log(image)
-        return res.json(image)
-      } else {
-        console.log(err)
+
+    upload(req, res, function(err) {
+      if(err) {
+        console.log('Failed image upload:', err)
         return res.json(err)
       }
+
+      var imageData = req.file
+      var filename = imageData.filename
+      data.filename = filename
+      data.original = '/uploads/'+filename
+      data.medium = '/uploads/medium/'+filename
+      data.small = '/uploads/small/'+filename
+
+      gm(appRoot+'/public'+data.original).resize(500, 500).write(appRoot+'/public/'+data.medium, function (err) {
+        if(err) {
+          console.log('Failed medium resize:', err)
+          return res.json(err)
+        } else {
+          console.log('Medium resize:', this)
+        }
+      })
+
+      gm(appRoot+'/public'+data.original).resize(250, 250).write(appRoot+'/public/'+data.small, function (err) {
+        if(err) {
+          console.log('Failed small resize:', err)
+          return res.json(err)
+        } else {
+          console.log('Small resize:', this)
+        }
+      })
+
+      var image = new Image(data)
+      image.save(function(err) {
+        if(!err) {
+          console.log('Added:')
+          console.log(image)
+          return res.json(image)
+        } else {
+          console.log(err)
+          return res.json(err)
+        }
+      })
     })
   })
 

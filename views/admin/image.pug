@@ -5,7 +5,7 @@ include ../mixins
 		form(method='post', action='/admin/image/quicky/'+(object ? object.id : ''), enctype='multipart/form-data')
 			.row
 				if(object)
-					img(src=object.path)
+					img(src=object.medium)
 				else
 					+image('image', 'Image')
 			.row

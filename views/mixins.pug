@@ -1,17 +1,17 @@
 //- PUBLIC
 
 mixin thumb(building)
-	-var thumbUrl = null
+	-var imageUrl = null
 	if(building.images)
 		-var images = building.images
 		if(images.length)
-			-var thumb = images[0]
-			-var thumbUrl = thumb.path
+			-var image = images[0]
+			-var imageUrl = image.small
 	else
 		-var images = undefined
 
-	if(thumbUrl)
-		img(src=thumbUrl)
+	if(imageUrl)
+		img(src=imageUrl)
 	else
 		.img
 
@@ -35,7 +35,7 @@ mixin images(name, images, required)
 		if(images)
 			each image, index in images
 				.image.edit(data-id=image.id)
-					img(src=image.path)
+					img(src=image.small)
 	.add.button(data-model='image') Add Image
 
 mixin image(name)
