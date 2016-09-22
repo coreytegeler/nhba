@@ -1,0 +1,93 @@
+include  ./mixins
+.buildingWrap(data-tour=object.tour, data-coords=object.coords)
+	.group.header
+		h1.name
+			span= object.name
+			.arrows
+				.arrow(data-direction='left')
+				.arrow(data-direction='right')
+
+	.group.toggle
+		if(object.images)
+			.toggler(data-group='photos', class='selected')= 'Photos'
+			.toggler= ' / '
+			.toggler(data-group='map')= 'Map'
+
+	.group.togglables
+		-var hasImages = false
+		if(object.images)
+			if(object.images.length)
+				-var hasImages = true
+				.sliderWrap.togglable(data-group='photos', class='show')
+					.slider
+						.slideWrap
+							each image, i in object.images
+								.slide(data-index=i, data-id=image.id, class=(i == 0 ? 'show' : ''))
+									.imageWrap
+										.vert
+											.horz
+												img(src=image.path)
+									.caption= image.caption
+		.mapWrap.togglable(data-group='map', class=(!hasImages ? 'show' : ''))
+			.map
+			.loader
+
+	.group.meta
+		ul
+			if(object.address)
+				li.address
+					span.label= 'Address: '
+					span.value= object.address
+			if(object.style)
+				li.style
+						span.style= object.style.name
+			if(object.dateConstructed)	
+				li.dateConstructed
+					span.label= 'Constructed: '
+					span.value= object.dateConstructed
+			if(object.architect)	
+				li.architect
+					span.label= 'Architect: '
+					span.value= object.architect
+			if(object.use.name)	
+				li.use
+					span.label= 'Use: '
+					span.value= object.use.name
+			if(object.originalUse)	
+				li.use
+					span.label= 'Original Use: '
+					span.value= object.originalUse
+			if(object.tour && object.tour.name)	
+				li.tour
+					span.label= 'Tour: '
+					span.value= object.tour.name
+			if(object.neighborhood && object.neighborhood.name)	
+				li.neighborhood
+					span.label= 'Neighborhood: '
+					span.value= object.neighborhood.name
+			if(object.researchBy)
+				li.research
+					span.label= 'Researched by: '
+					span.value= object.researchBy+(object.researchYear ? ', '+object.researchYear : '')
+	.group.paragraphs !{object.research}
+	if(object.tour && tourBuildings)
+		if(tourBuildings.length)
+			.group.tour
+				h4
+					span= 'Other Buildings on '
+					a.tour(href='/tour/'+object.tour.slug, data-slug=object.tour.slug, data-id=object.tour.id, data-type='tour')= object.tour.name + ' Tour'
+				ul.buildings
+					-var i = 0
+					for building in tourBuildings
+						-i++
+						li.building(data-slug=building.slug, data-id=building.id)
+							a(href='/building/'+building.slug)
+								.image
+									+thumb(building)
+								.meta
+									.name= building.name
+									.address= building.address
+									if(building.style)
+										.style= building.style.name
+									.era= building.era
+									.researchBy= 'Contributed by ' + building.researchBy

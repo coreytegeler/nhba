@@ -1,0 +1,53 @@
+aside
+	.shadow
+		header
+			.tabs
+				.tab.filter(data-section='filter')= 'Filters'
+				.tab.glossary(data-section='glossary')= 'Glossary'
+				.tab.search
+					form
+						input(name='search', type='text', placeholder='Search')
+				.buttons
+					.tab.info.button(data-section='info')
+					.tab.close.button(data-section='close')
+		.inner
+			section#info
+				h1= 'New Haven Building Archive'
+				.group.mapGroup
+					.mapWrap.show
+						.map
+						.loader
+				.group.about
+					p= 'Cras blandit porttitor hendrerit. Integer auctor est nisl, quis consectetur dui sagittis vel. Nullam mollis turpis in nisi ornare vehicula. Nullam a enim tortor. Cras non pellentesque lorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
+					p= 'Wuis consectetur dui sagittis vel. Nullam mollis turpis in nisilorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesua- da mauris a, consequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
+			section#filter
+				.clear= 'Clear Filter'
+				ul.group.filters.nested
+					if models
+						each model, name in models
+							if(name != 'buildings' && name != 'glossary' &&  name != 'term')
+								li(class='name')
+									.title(data-slug=name)= uppercase(name)
+									ul(class=name)
+										for item in model
+											li(class=item.type)
+												a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
+
+					li(class='eras')
+						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
+						.title(data-slug='eras')= 'Era'
+						ul(class='eras')
+							for era in eras
+								li(class='era')
+									a.filter(href='/?era='+era, data-slug=era, data-id=era, data-type='era') #{era}
+			section#glossary
+				-var currentAlpha
+				each term in models['glossary']
+					-var termAlpha = term.name.charAt(0)
+					if(termAlpha != currentAlpha)
+						-currentAlpha = termAlpha
+						.alpha= termAlpha
+					.term
+						.name= term.name
+						.definition= term.definition
+			section#single

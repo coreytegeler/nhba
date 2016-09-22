@@ -1,0 +1,25 @@
+include ./mixins
+doctype html
+html(lang='en')
+	head
+		script(type='text/javascript' src='/js/jquery-3.0.0.min.js')
+		script(type='text/javascript' src='/js/jquery-ui.min.js')
+		script(type='text/javascript' src='/js/ThrowPropsPlugin.min.js')
+		script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js')
+		script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/utils/Draggable.min.js')
+		script(type='text/javascript' src='https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js')
+		script(type='text/javascript' src='/js/masonry.pkgd.min.js')
+		script(type='text/javascript' src='/js/jquery.transit.min.js')
+		script(type='text/javascript').
+			var allBuildings = !{JSON.stringify((models ? models.buildings : []))}
+		script(type='text/javascript').
+			var loadedSlug = '#{(loadedSlug ? loadedSlug : undefined)}'
+			var loadedType = '#{(loadedType ? loadedType.s : undefined)}'
+		script(type='text/javascript' src='/js/main.js')
+		script(type='text/javascript' src='/js/public.js')
+		script(type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDlRpU-AULr-wX_Gafw-m2GfWgbFE-pQpY&callback=initPublic' async defer)
+		link(rel='stylesheet' href='/css/style.css')
+	body
+		include ./side
+		main
+			block body

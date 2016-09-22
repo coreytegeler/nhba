@@ -1,0 +1,296 @@
+body.admin {
+	main {
+		width: calc(100% - #{$sideWidth});
+		padding-left: $sideWidth;
+	}
+	form {
+		width: calc(100% - 2em);
+		max-width: 600px;
+		padding: 0 1em 1em 1em;
+		margin: auto;
+		display: table;
+		label {
+			font-size: 1em;
+			line-height: 1.5em;
+			display: table;
+		}
+		input, textarea, select {
+			font-size: $mediumFont;
+			line-height: 1.1em;
+			font-weight: 700;
+			&:-webkit-autofill {
+				background: none;
+			}
+		}
+		input {
+			-webkit-appearance: none;
+			border: 1px solid black;
+			outline: none;
+			font-family: Arial;
+			font-weight: 400;
+			background: transparent;
+			&[type="text"],
+			&[type="email"], 
+			&[type="password"],
+			&[type="file"] {
+				background: white;
+				width: calc(100% - 1em - 2px);
+				padding: 0.5em;
+			}
+		}
+		textarea, .editable {
+			width: calc(100% - 1em - 2px);
+			padding: 0.5em;
+			line-height: 1.5em;
+			border: 1px solid black;
+			resize: none;
+			outline: none;
+			background: white;
+			vertical-align: bottom;
+			min-height: 3.4em;
+			font-size: $mediumFont;
+			font-weight: 400;
+			p {
+				margin-top: 0;
+			}
+		}
+		.research .editable {
+			min-height: 11em;
+		}
+		.group {
+			padding: 0 0 20px 0;
+		}
+		.sample {
+			display: none;
+		}
+		.row {
+			width: 100%;
+			display: table;
+			margin: 0 0 1em 0;
+			clear: both;
+			position: relative;
+			.cell {
+				float: left;
+				&:first-child {
+					margin-right: 1em;
+				}
+			}
+			&.two {
+				.cell {
+					width: calc(50% - .5em)
+				}
+			}
+			.button {
+				margin-top: 0.5em;
+			}
+		}
+		[required] {
+			
+		}
+		[data-template] {
+			display: none;
+		}
+		.button {
+			display: block;
+			padding: 0.3em 0.35em;
+			margin: 0 1em 0 0;
+			float: left;
+			vertical-align: middle;
+			font: {
+				size: 0.8em;
+				weight: bold;
+			}
+			line-height: 1em;
+			color: black;
+			text-decoration: none;
+			border: 0;
+			border: 1px solid black;
+			background: transparent;
+			text-transform: capitalize;
+			&:hover {
+				cursor: pointer;
+				background: black;
+				color: white;
+			}
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.checkboxes, .options {
+		overflow: auto;
+		font-size: 1em;
+		line-height: 1em;
+		border: 1px solid black;
+		background: white;
+		&.populate {
+			.item {
+				opacity: 0;
+			}
+			&.loaded .item {
+				opacity: 1;
+			}
+		}
+		.checkbox {
+			label {
+				width: calc(100% - 1em);
+				font-family: inherit;
+				font-size: inherit;
+				line-height: 1.1em;
+				display: table;
+				padding: 0.5em;
+				&:active, &:hover {
+					cursor: pointer;
+				}
+			}
+			input[type="checkbox"], input[type="radio"] {
+				display: none;
+				&:checked~label {
+					&::before {
+						background: black;
+					}
+				}
+			}
+		}
+	}	
+
+	.checkboxes {
+		max-height: 8em;
+		.checkbox {
+			label::before {
+				width: 0.55em;
+				height: 0.55em;
+				margin-right: 0.5em;
+				border-radius: 50%;
+				border: solid black 0.1em;
+				font-size: inherit;
+				display: inline-block;
+				content: '';
+			}
+			&:first-child {
+				// padding-top: .2em;
+			}
+			&:last-child {
+				// padding-bottom: .2em;
+			}
+		}
+	}
+
+	.selects {
+		display: flex;
+		border-bottom: solid black 0.1em;
+		padding: 0.15em 0;
+		.select {
+			background: transparent;
+			position: relative;
+			.display {
+				display: inline-block;
+				padding: 0 1.1em 0 0.6em;
+				cursor: pointer;
+			}
+			.options {
+				max-height: calc(1.8em * 10);
+				position: absolute;
+				left: 0;
+				top: calc(100% + 0.15em);
+				padding: 0 0.5em;
+				display: none;
+				&.open {
+					display: block;
+				}
+			}
+		}
+	}
+
+	.selects.date {
+		.select {
+			position: relative;
+			&.month {
+				.display {
+					width: 6em;
+				}
+			}
+			&.day {
+				.display {
+					width: 1.5em;
+				}
+			}
+			&.year {
+				.display {
+					width: 2.5em;
+				}
+			}
+			&:not(:last-child) .display:after {
+				content: '/';
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+
+	form .images {
+		display: block;
+		clear: both;
+		input[type="text"] {
+			display: none;
+		}
+		.image {
+			width: 100px;
+			display: inline-block;
+			margin-right: 0.2em;
+			cursor: pointer;
+			&.sample {
+				display: none;
+			}
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	.quicky {
+		width: calc(100% - #{$sideWidth});
+		height: 100%;
+		padding: 0;
+		position: fixed;
+		left: $sideWidth;
+		top: 0;
+		overflow: auto;
+		display: none;
+		background: rgba(255,255,255,0.95);
+		.inner {
+			width: calc(100% - 6em);
+			max-width: 900px;
+	    margin: auto;
+	    display: table;
+	    form {
+	    	padding: 0;
+	    	img {
+	    		max-width: 100%;
+	    		display: table;
+	    		margin: auto;
+	    	}
+	    }
+		}
+		&.open {
+			display: block;
+		}
+		.close {
+			width: 1.5em;
+	    height: 1.5em;
+	    padding: 1px;
+			position: absolute;
+			right: 1em;
+			top: 1em;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-image: url(/img/x.svg);
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}

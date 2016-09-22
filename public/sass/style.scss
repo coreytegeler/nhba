@@ -1,0 +1,75 @@
+@import 'fonts';
+@import 'vars';
+@import 'side';
+@import 'admin';
+
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background: white;
+	overflow: hidden;
+	font: {
+		family: Arial;
+		weight: bold;
+		size: 18px;
+	}
+	line-height: 1.8em;
+	* {
+		-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+	}
+	body {
+		width: 100%;
+		height: 100%;
+    overflow: auto;
+		margin: 0;
+		font-size: $mediumFont;
+	}
+}
+h1 {
+	font-size: $xlargeFont;
+	padding: 0 0 20px 0;
+	margin: 0;
+}
+h1, h2, h3, h4 {
+	margin: 0;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	li {
+		list-style: none;
+	}
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+main {
+	width: 100%;
+	height: 100%;
+	&.noscroll {
+		overflow: hidden;
+	}
+	.inner {
+		padding: 20px;
+	}
+}
+.square {
+	width: 0.65em;
+	height: 0.65em;
+	display: inline-block;
+}
+.vert {
+	display: table-cell;
+	vertical-align: middle;
+}
+.horz {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+@import 'public';

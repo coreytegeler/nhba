@@ -1,0 +1,11 @@
+.row
+	+input('name', 'Name', 'text', (object ? object.name : ''))
+.row
+	+textarea('brief', 'Brief', (object ? object.brief : ''))
+.row
+	label= 'Color'
+	.module.checkboxes(data-type='checkboxes', data-model='color', class='color', data-checked=(object ? object.color : ''))
+		-var colors = ['#FF8000','#6699CC','#CCCC66','#66CC99','#FF99FF','#FF6633','#33CCFF','#FF99CC','#CC9933','#FFCC33','#FF6666','#6666CC','#CC99FF','#CCFFCC']
+		for color in colors
+			+checkbox('color', color, color, false, (object && object.color == color ? true : false))
+		

@@ -1,0 +1,34 @@
+extends layout.pug
+block body
+	if(errors)
+		pre #{errors}
+	form(method='post' action='/admin/'+loadedType.s+'/'+action+'/'+(object ? object.id : ''))
+		script(type='text/javascript').
+			var checked = {};
+		case loadedType.s
+			when 'user'
+				include ../admin/forms/user.pug
+			when 'building'
+				include ../admin/forms/building.pug
+			when 'tour'
+				include ../admin/forms/tour.pug
+			when 'neighborhood'
+				include ../admin/forms/neighborhood.pug
+			when 'style'
+				include ../admin/forms/style.pug
+			when 'use'
+				include ../admin/forms/use.pug
+			when 'term'
+				include ../admin/forms/term.pug
+			default
+				- var noForm = true
+				| No form for "#{loadedType.s}"
+		.buttons
+			if(!noForm)
+				input(type='submit' value=action).button
+			if(object)
+				if(loadedType.s == 'building' || loadedType.s == 'tour')
+					a.button(href='/'+loadedType.s+'/'+object.slug, target='_blank') Preview
+			if(object)
+				a.button.delete(href='/admin/'+loadedType.p+'/remove/'+object.id) Delete
+	.quickies

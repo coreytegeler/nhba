@@ -1,0 +1,11 @@
+extends layout.pug
+block body
+	h1 #{uppercase(loadedType.p)}
+	-var objects = models[loadedType.p]
+	if objects
+		ul.list
+			for object in objects
+				li.item
+					a(href='/admin/'+loadedType.s+'/edit/'+object.slug) #{object.name}
+					a(href='/admin/'+loadedType.s+'/remove/'+object._id).sprite.square.remove
+	a(href='/admin/'+loadedType.s+'/new') Add new #{loadedType.s}

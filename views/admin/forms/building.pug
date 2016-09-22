@@ -1,0 +1,41 @@
+.row
+	+input('address', 'Street Address', 'text', (object ? object.address : ''), true)
+.row
+	+input('name', 'Name', 'text', (object ? object.name : ''), true)
+.row
+	+images('images', (object ? object.images : ''), false)
+.row.two
+	.cell
+		+input('researchBy', 'Researched By', 'text', (object ? object.researchBy : ''), true)
+	.cell
+		+input('researchYear', 'Research Year', 'text', (object ? object.researchYear : ''), true)
+.row
+	+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
+.row
+	+input('client', 'Client', 'text', (object ? object.client : ''), true)
+.row
+	+input('dateConstructed', 'Date Constructed', 'text', (object ? object.dateConstructed : ''), true)
+.row
+	+checkboxes('use', 'Current Use', false, true)
+.row
+	+input('originalUse', 'Original Use', 'text', (object ? object.originalUse : ''), true)
+.row
+	+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
+.row
+	label= 'Era'
+	.module.checkboxes(data-type='checkboxes', data-model='era', class='era', data-checked=(object ? object.era : ''))
+		+checkbox('era', '1638-1860', '1638-1860', false, (object && object.era == '1638-1860' ? true : false))
+		+checkbox('era', '1860-1910', '1860-1910', false, (object && object.era == '1860-1910' ? true : false))
+		+checkbox('era', '1910-1950', '1910-1950', false, (object && object.era == '1910-1950' ? true : false))
+		+checkbox('era', '1950-1980', '1950-1980', false, (object && object.era == '1950-1980' ? true : false))
+		+checkbox('era', '1980-Today', '1980-Today', false, (object && object.era == '1980-Today' ? true : false))
+.row
+	+checkboxes('tour', 'Tour', false, true)
+.row
+	+checkboxes('neighborhood', 'Neighborhood', false, true)
+.row
+	+checkboxes('style', 'Style', false, true)
+.row.research
+	+textarea('research', 'Research', (object ? object.research : ''), true)
+.row.citations
+	+textarea('citations', 'Citations', (object ? object.citations : ''), true)

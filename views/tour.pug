@@ -1,0 +1,28 @@
+include  ./mixins
+if(tour)
+	script(type='text/javascript').
+		buildingsInTour = !{JSON.stringify(buildings)}
+		tourColor = '!{tour.color}'
+	h1= tour.name
+	.group.brief= tour.brief
+	.group.mapGroup
+		.mapWrap.show(data-color=tour.color)
+			.map
+			.loader
+	ul.buildings.group
+		-var i = 0
+		for building in buildings
+			-i++
+			li.building(data-slug=building.slug, data-id=building.id)
+				a(href='/building/'+building.slug)
+					.index
+						.circle= i
+					.image
+						+thumb(building)
+					.meta
+						if(building.name != building.address)
+							.name= building.name
+						.address= building.address
+						.style= building.style.name
+						.era= building.era
+						.researchBy= 'Contributed by ' + building.researchBy

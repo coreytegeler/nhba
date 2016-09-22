@@ -1,0 +1,12 @@
+.row.two
+	.cell
+		+input('firstName', 'First Name', 'text', (object ? object.firstName : ''))
+	.cell
+		+input('lastName', 'Last Name', 'text', (object ? object.lastName : ''))
+.row
+	+input('email', 'Email', 'email', (object ? object.email : ''))
+.row.two
+	.cell
+		+input('password', 'Password', 'password')
+	.cell
+		+input('confirmPassword', 'Confirm Password', 'password')

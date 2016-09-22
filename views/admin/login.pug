@@ -1,0 +1,12 @@
+extends layout.pug
+block body
+	h1 Login
+	if (message)
+		h1 #{message}
+	form(action='/admin/login' method='post')
+		.row
+			+input('email', 'Email', 'email')
+		.row
+			+input('password', 'Password', 'password')
+		.row
+			input.button(type='submit' value='Login')

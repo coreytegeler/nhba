@@ -1,0 +1,329 @@
+main {
+	position: relative;
+}
+aside {
+	section {
+		&.loading {
+			opacity: 0;
+		}
+		&#single {
+			.togglables {
+				width: 100%;
+				height: 20em;
+				position: relative;
+			}
+			.sliderWrap {
+				.slider {
+					&.slippery .slide img,
+					&.slippery .slide img:hover {
+						cursor: pointer;
+					}
+					.slideWrap {
+						width: 100%;
+				    height: 100%;
+						position: absolute;
+						left: 0;
+						top: 0;
+						.slide {
+							width: 100%;
+							height: 100%;
+							position: absolute;
+							left: -99999%;
+							top: 0;
+							@include loader;
+							&.loaded {
+								background: none;
+								.imageWrap img {
+									opacity: 1;
+								}
+							}
+							&.show {
+								left: 0;
+							}
+							.imageWrap {
+								width: 100%;
+								display: table;
+								img {
+									opacity: 0;
+									vertical-align: bottom;
+								}
+							}
+							// .image {
+							// 	width: 100%;
+							// 	height: 100%;
+							// 	background-position: center;
+							// 	background-size: contain;
+							// 	background-repeat: no-repeat;
+							// 	opacity: 0;
+							// }
+							.caption {
+								padding-top: 0.5em;
+								font-size: 0.8em;
+							}
+						}
+					}
+				}
+			}
+			.paragraphs {
+				white-space: pre-line;
+			}
+			.header {
+				h1 {
+					margin-bottom: 0;
+					span {
+						padding-right: 0.5em;
+					}
+					.arrows {
+						display: inline-block;
+						.arrow {
+							height: 1em;
+							width: 23px;
+							margin-right: 0.3em;
+							display: inline-block;
+							vertical-align: bottom;
+							background-position: center;
+					    background-size: contain;
+					    background-repeat: no-repeat;
+					    cursor: pointer;
+					    &[data-direction='left'] {
+					    	background-image: url(/img/longArrowLeft.svg);
+					    }
+					    &[data-direction='right'] {
+					    	background-image: url(/img/longArrowRight.svg);
+					    }
+						}
+					}
+				}
+				margin-bottom: 0.3em;
+			}
+			.tour {
+				h4 {
+					margin-bottom: 1.5em;
+					a {
+						border-bottom: black 2px dashed;
+					}
+				}
+			}
+			.buildings {
+				.building {
+					width: 100%;
+					margin-bottom: 1em;
+					a {
+						display: flex;
+					}
+					.index {
+						display: table;
+						margin-right: 0.5em;
+				    align-self: center;
+						.circle {
+							width: 1.3em;
+							height: 1.3em;
+							border: 1px solid black;
+							border-radius: 50%;
+							display: table-cell;
+							vertical-align: middle;
+							line-height: 1;
+							text-align: center;
+						}
+					}
+					.image {
+						width: 160px;
+						margin-right: 0.5em;
+						img, .img {
+							max-width: 100%;
+							max-height: 100%;
+							display: table;
+							margin: auto;
+						}
+						.img {
+							width: 100%;
+							height: 100%;
+							background: rgba(0, 0, 0, 0.06);
+						}
+					}
+					.meta {
+						width: 50%;
+						font-size: inherit;
+						line-height: 1.2em;
+					}
+				}
+			}
+		}
+	}
+	.mapGroup {
+		height: 20em;
+		position: relative;
+	}
+	.mapWrap, .sliderWrap  {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		left: -99999%;
+		top: 0;
+		padding: 0;
+		.map, .slider {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			pointer-events: none;
+		}
+		.map {
+			opacity: 0;
+		}
+		.loader {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			left: calc(50% - 10px);
+			top: calc(50% - 10px);
+		}
+		&.show {
+			left: 0;
+			.map, .slider {
+				pointer-events: all;
+			}
+		}
+		.loaded {
+			opacity: 1;
+			.loader {
+				opacity: 0;
+			}
+		}
+	}
+	.mapWrap {
+		@include loader;
+		&.loaded {
+			background: none;
+			.map {
+				opacity: 1;
+			}
+		}
+		.map {
+			opacity: 0;
+		}
+	}
+}
+.loader {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 1;
+	transition: all 500ms ease;
+	pointer-events: none;
+	z-index: 100;
+	background-image: url(/img/ajax.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.apologies {
+	width: calc(100% - #{$sideWidth});
+	height: 100%;
+	position: absolute;
+	left: $sideWidth;
+	top: 0;
+	display: none;
+	opacity: .25;
+	.horz {
+		height: 100%;
+		font-size: 2em;
+	}
+}
+.empty {
+	.apologies {
+		display: block;
+	}
+	.grid {
+		pointer-events: none;
+	}
+	.close {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+.gridWrap {
+	width: 100%;
+	height: 100%;
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	overflow: hidden;
+	.grid {
+		min-width: 100%;
+		min-height: 100%;
+		display: table;
+		position: absolute;
+		z-index: 9;
+		display: table;
+		margin: auto;
+		// opacity: 0;
+		padding-left: $sideWidth;
+		&.show {
+			opacity: 1;
+		}
+		$gridCell: 160px;
+		.building, .sizer {
+			width: calc(#{$gridCell} + 4em);
+			height: calc(#{$gridCell} + 4em);
+			padding: 2em;
+			display: table;
+			float: left;
+			&:nth-child(odd) {
+				// width: calc(#{$gridCell} + 8em);
+				// padding-left: 2em;
+				// padding-right: 0em;
+			}
+			&:nth-child(even) {
+				// padding-left: 2em;
+			}
+			a {
+				width: 100%;
+				display: table;
+				font-size: 1em;
+		    line-height: 1.1em;
+		    text-align: center;
+			}
+			.image {
+				margin-bottom: .5em;
+				border: 1px solid transparent;
+				@include loader;
+			}
+			.img, img {
+				max-width: $gridCell;
+				max-height: $gridCell;
+				display: table;
+				margin: auto;
+				opacity: 0;
+			}
+			.img {
+				width: calc(#{$gridCell} - 2em);
+				height: calc(#{$gridCell} - 2em);
+			}
+			&.loaded {
+				.image {
+					background: transparent;
+				}
+				.img, img {
+					opacity: 1;
+				}
+			}
+			&.selected {
+				background: transparent;
+				img, .img {
+					opacity: 0;
+				}
+				.image {
+					background: transparent !important;
+					border-color: black;
+				}
+			}
+			&.hidden {
+				display: none;
+			}
+		}
+	}
+}

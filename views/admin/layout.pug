@@ -1,0 +1,20 @@
+include ../mixins
+doctype html
+html(lang='en')
+	head
+		script(type='text/javascript' src='/js/jquery-3.0.0.min.js')
+		script(type='text/javascript' src='/js/jquery-ui.min.js')
+		script(type='text/javascript' src='/js/jquery.transit.min.js')
+		script(type='text/javascript' src='//cdn.jsdelivr.net/medium-editor/4.11.1/js/medium-editor.min.js')
+		script(type='text/javascript').
+			var loadedSlug = '#{(loadedSlug ? loadedSlug : undefined)}'
+			var loadedType = '#{(loadedType ? loadedType.s : undefined)}'
+		script(type='text/javascript' src='/js/main.js')
+		script(type='text/javascript' src='/js/admin.js')
+		link(rel='stylesheet' href='//cdn.jsdelivr.net/medium-editor/4.11.1/css/medium-editor.min.css')
+		link(rel='stylesheet' href='/css/style.css')
+	body.admin
+		include ./side
+		main
+			.inner
+				block body
