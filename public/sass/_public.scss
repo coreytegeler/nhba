@@ -102,6 +102,24 @@ aside {
 				}
 				margin-bottom: 0.3em;
 			}
+			.contribute {
+				display: flex;
+				.index {
+					display: table;
+					margin-right: 0.5em;
+			    align-self: center;
+					.circle {
+						width: 1.3em;
+						height: 1.3em;
+						border: 1px solid black;
+						border-radius: 50%;
+						display: table-cell;
+						vertical-align: middle;
+						line-height: 1;
+						text-align: center;
+					}
+				}
+			}
 			.tour {
 				h4 {
 					margin-bottom: 1.5em;

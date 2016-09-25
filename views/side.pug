@@ -20,6 +20,26 @@ aside
 				.group.about
 					p= 'Cras blandit porttitor hendrerit. Integer auctor est nisl, quis consectetur dui sagittis vel. Nullam mollis turpis in nisi ornare vehicula. Nullam a enim tortor. Cras non pellentesque lorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
 					p= 'Wuis consectetur dui sagittis vel. Nullam mollis turpis in nisilorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesua- da mauris a, consequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
+					ul
+						li Project Manager: Elihu Rubin 
+						li Design:&nbsp;
+							a(href='http://benfehrmanlee.info' target='_blank')= 'Ben Fehrman-Lee'
+							| &nbsp;&amp;&nbsp;
+							a(href='http://www.sashaportis.com/' target='_blank')= 'Sasha Portis'
+						li Development:&nbsp;
+							a(href='http://coreytegeler.com' target='_blank')= 'Corey Tegeler'
+						li Sponsored by:&nbsp;
+							a(href='http://web.library.yale.edu/dhlab' target='_blank')= 'Yale Digital Humanities Lab'
+							| &nbsp;&amp;&nbsp;
+							a(href='http://architecture.yale.edu/' target='_blank')= 'Yale School of Architecture'
+						li Contributors: 
+							for building, i in models.buildings
+								if(building.researchBy)
+									| #{building.researchBy}
+									if(i == (models.buildings.length - 2))
+										| &nbsp;&amp;&nbsp;
+									else if(i != (models.buildings.length - 1))
+										| &#44;&nbsp;
 			section#filter
 				.clear= 'Clear Filter'
 				ul.group.filters.nested

@@ -592,6 +592,21 @@ aside section#single .header {
           background-image: url(/img/longArrowLeft.svg); }
         aside section#single .header h1 .arrows .arrow[data-direction='right'] {
           background-image: url(/img/longArrowRight.svg); }
+aside section#single .contribute {
+  display: flex; }
+  aside section#single .contribute .index {
+    display: table;
+    margin-right: 0.5em;
+    align-self: center; }
+    aside section#single .contribute .index .circle {
+      width: 1.3em;
+      height: 1.3em;
+      border: 1px solid black;
+      border-radius: 50%;
+      display: table-cell;
+      vertical-align: middle;
+      line-height: 1;
+      text-align: center; }
 aside section#single .tour h4 {
   margin-bottom: 1.5em; }
   aside section#single .tour h4 a {

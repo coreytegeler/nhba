@@ -73,6 +73,13 @@ include  ./mixins
 					span.label= 'Researched by: '
 					span.value= object.researchBy+(object.researchYear ? ', '+object.researchYear : '')
 	.group.paragraphs !{object.research}
+
+	.group.contribute
+		.index
+			.circle= '+'
+		.text
+			a(href='mailto:email@email.com')= 'We want your contributions. Email email@email.com with any photos or audio you\'d like to add to this building entry.'
+
 	if(object.tour && tourBuildings)
 		if(tourBuildings.length)
 			.group.tour
