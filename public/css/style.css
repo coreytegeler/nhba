@@ -210,6 +210,11 @@ aside {
             text-indent: -1em; }
             aside #filter ul.nested li ul li a, aside #index ul.nested li ul li a {
               display: inline; }
+            aside #filter ul.nested li ul li.withSub, aside #index ul.nested li ul li.withSub {
+              padding-left: 0;
+              text-indent: 0; }
+              aside #filter ul.nested li ul li.withSub ul.sub, aside #index ul.nested li ul li.withSub ul.sub {
+                padding-left: 3em; }
           aside #filter ul.nested li ul.open, aside #index ul.nested li ul.open {
             display: block; }
     aside #filter .clear, aside #index .clear {

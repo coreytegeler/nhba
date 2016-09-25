@@ -172,6 +172,7 @@
       id = $quicky.data('id');
       type = $quicky.data('model');
       data = new FormData();
+      console.log(type);
       if (type === 'image' && !id.length) {
         image = $form.find('input:file')[0].files[0];
         caption = $form.find('input.caption').val();
@@ -188,6 +189,7 @@
       if (!data) {
         return;
       }
+      console.log(postUrl);
       $.ajax({
         type: 'POST',
         data: data,
@@ -200,6 +202,7 @@
         },
         success: function(object, status, jqXHR) {
           var checkboxes;
+          console.log(object);
           type = $quicky.data('model');
           checkboxes = $('.checkboxes.' + type);
           $quicky.removeClass('open');

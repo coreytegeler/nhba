@@ -22,6 +22,7 @@ var buildingSchema = mongoose.Schema({
 	tour: Mixed,
 	style: Mixed,
 	use: Mixed,
+	material: Mixed,
 	originalUse: String,
 	research: String,
 	citations: String,

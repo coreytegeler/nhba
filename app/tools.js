@@ -5,6 +5,7 @@ var Neighborhood = require('./models/neighborhood')
 var Tour = require('./models/tour')
 var Style = require('./models/style')
 var Use = require('./models/use')
+var Material = require('./models/material')
 var Term = require('./models/term')
 var Image = require('./models/image')
 var slugify = require('slug')
@@ -44,6 +45,26 @@ var async = function(func, req, res) {
       Use.find({}, function(err, data) {
         if(err)
           callback(err)
+        uses = {}
+        for(var i = 0; i < data.length; i++) {
+          useType = data[i].useType
+          if(useType) {
+            if(!uses[useType])
+              uses[useType] = {
+                name: useType,
+                uses: {}
+              }
+            uses[useType].uses[data[i].slug] = data[i]
+            
+          }
+        }
+        callback(null, uses)
+      }).sort({'name':1})
+    },
+    function(callback) {
+      Material.find({}, function(err, data) {
+        if(err)
+          callback(err)
         callback(null, data)
       }).sort({'name':1})
     },
@@ -56,14 +77,15 @@ var async = function(func, req, res) {
     }
   ],
   function(err, results) { 
-    var glossary = alphaSort(results[3].concat(results[5]))
+    var glossary = alphaSort(results[3].concat(results[6]))
     var models = {
       'buildings': results[0],
       'neighborhood': results[1],
       'tour': results[2],
       'style': results[3],
       'use': results[4],
-      'term': results[5],
+      'material': results[5],
+      'term': results[6],
       'glossary': glossary
     }
     func(results, err, models)
@@ -126,6 +148,8 @@ var getModel = function(type) {
       return Style
     case 'use':
       return Use
+    case 'material':
+      return Material
     case 'term':
       return Term
     case 'image':
@@ -137,7 +161,7 @@ var getSideSection = function(type) {
   type = singularize(type)
   if(type == 'building') {
     return 'archive'
-  } else if(type == 'tour' || type == 'neighborhood' || type == 'style') {
+  } else if(type == 'tour' || type == 'neighborhood' || type == 'style' || type == 'use' || type == 'material') {
     return 'filter'
   } else if(type == 'term') {
     return 'glossary'

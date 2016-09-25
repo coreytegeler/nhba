@@ -5,6 +5,7 @@ var Tour = require('../models/tour')
 var Neighborhood = require('../models/neighborhood')
 var Style = require('../models/style')
 var Use = require('../models/use')
+var Material = require('../models/material')
 var Term = require('../models/term')
 var Image = require('../models/image')
 var tools = require('../tools')
@@ -47,7 +48,6 @@ module.exports = function(app) {
       if(tools.singularize(type) == 'user' && req.user.admin != 1) {
         return res.redirect('/admin/')
       }
-      console.log(models)
       res.render('admin/model.pug', {
         errors: err,
         loadedType: {
@@ -373,6 +373,8 @@ module.exports = function(app) {
         break
       case 'use':
         var object = new Use(data)
+      case 'material':
+        var object = new Material(data)
         break
       default:
         return

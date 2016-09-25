@@ -221,14 +221,16 @@ window.initPublic = ->
 			'neighborhood': getParam('neighborhood', false),
 			'era': getParam('era', false),
 			'style': getParam('style', false),
-			'use': getParam('use', false)
+			'use': getParam('use', false),
+			'material': getParam('material', false)
 		}
 		filterQuery = {
 			'tour': [],
 			'neighborhood': [],
 			'era': [],
 			'style': [],
-			'use': []
+			'use': [],
+			'material': []
 		}
 
 		$.each urlQuery, (key, param) -> 
@@ -236,8 +238,11 @@ window.initPublic = ->
 				$filter = $('.'+key+' .filter[data-slug="'+value+'"]')
 				$filterList = $('.filters ul.'+key)
 				value = $filter.data('id')
-				$filterTitle = $('.filters .title[data-slug="'+key+'s"]')
+				$filterTitle = $('.filters .title[data-slug="'+key+'"]')
 				$filter.addClass('selected')
+				if($filter.is('.subfilter'))
+					$filter.parents('.sub').addClass('open')
+					$filter.parents('.sub').prev().addClass('toggled')
 				$filterList.addClass('open')
 				$filterTitle.addClass('toggled')
 				filterQuery[key].push(value)

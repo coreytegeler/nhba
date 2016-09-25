@@ -25,21 +25,34 @@ aside
 				ul.group.filters.nested
 					if models
 						each model, name in models
-							if(name != 'buildings' && name != 'glossary' &&  name != 'term')
-								li(class='name')
+							if(name != 'buildings' && name != 'glossary' &&  name != 'term' && name != 'use')
+								li(class=name)
 									.title(data-slug=name)= uppercase(name)
 									ul(class=name)
 										for item in model
 											li(class=item.type)
 												a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
 
-					li(class='eras')
+					li.era
 						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
-						.title(data-slug='eras')= 'Era'
-						ul(class='eras')
+						.title(data-slug='era')= 'Era'
+						ul.eras
 							for era in eras
 								li(class='era')
 									a.filter(href='/?era='+era, data-slug=era, data-id=era, data-type='era') #{era}
+
+					li.use
+						.title(data-slug='use') Use
+						ul.use
+							-var uses = models['use']
+							for use, useType in uses
+								li.useType.withSub
+									.title(data-slug=useType)= uses[useType].name
+									ul.sub(class=useType)
+										for use in uses[useType].uses
+											li(class=use.slug)
+												a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+
 			section#glossary
 				-var currentAlpha
 				each term in models['glossary']

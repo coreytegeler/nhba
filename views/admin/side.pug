@@ -76,9 +76,22 @@ aside
 							li.add
 								a(href='/admin/use/new')= 'Add Use'
 							-var uses = models['use']
-							for use in uses
-								li(class=use.slug)
-									a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+							for use, useType in uses
+								li.useType.withSub
+									.title(data-slug=useType)= uses[useType].name
+									ul.sub(class=useType)
+										for use in uses[useType].uses
+											li(class=use.slug)
+												a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+					li.materials
+						.title(data-slug='materials' class=(loadedType.p == 'materials' ? 'toggled' : '')) Material
+						ul.materials(class=(loadedType.p == 'materials' ? 'open' : ''))
+							li.add
+								a(href='/admin/material/new')= 'Add Material'
+							-var materials = models['material']
+							for material in materials
+								li(class=material.slug)
+									a(href='/admin/material/edit/'+material.slug, class=(loadedSlug == material.slug ? 'selected' : ''))= material.name
 	else
 		.inner
 			section#login.show

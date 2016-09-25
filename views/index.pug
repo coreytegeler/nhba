@@ -10,7 +10,7 @@ block body
 				.sizer
 				-var buildings = models.buildings
 				for building in buildings
-					.building(data-slug=building.slug, data-id=building.id, data-type='building', data-tour=building.tour, data-neighborhood=building.neighborhood, data-style=building.style, data-use=building.use, data-era=building.era)
+					.building(data-slug=building.slug, data-id=building.id, data-type='building', data-tour=building.tour, data-neighborhood=building.neighborhood, data-style=building.style, data-use=building.use, data-era=building.era, data-material=building.material)
 						.vert
 							.horz
 								a.image(href='/building/'+building.slug)

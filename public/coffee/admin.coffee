@@ -146,6 +146,7 @@ $ ->
 		id = $quicky.data('id')
 		type = $quicky.data('model')
 		data = new FormData()
+		console.log(type)
 		if(type == 'image' && !id.length)
 			image = $form.find('input:file')[0].files[0]
 			caption = $form.find('input.caption').val()
@@ -161,6 +162,7 @@ $ ->
 		postUrl = $form.attr('action')
 		if(!data)
 			return
+		console.log(postUrl)
 		$.ajax
 			type: 'POST',
 			data: data,
@@ -171,6 +173,7 @@ $ ->
 				console.log(jqXHR, status, error)
 				alert('Error, check browser console logs')
 			success: (object, status, jqXHR) ->
+				console.log(object)
 				type = $quicky.data('model')
 				checkboxes = $('.checkboxes.'+type)
 				$quicky.removeClass('open')
