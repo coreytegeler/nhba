@@ -363,7 +363,7 @@
         color = tour.color;
       }
       if (!color) {
-        color = 'black';
+        color = '#C0C0AD';
       }
       coords = $buildingWrap.data('coords');
       $(container).find('show').removeClass('show');
@@ -402,7 +402,7 @@
         if (building.tour && building.tour.color) {
           color = building.tour.color;
         } else {
-          color = 'black';
+          color = '#C0C0AD';
         }
         if (typeof coords === 'object') {
           marker = new google.maps.Marker({

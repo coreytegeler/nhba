@@ -164,7 +164,7 @@ aside {
     display: table;
     margin-bottom: 2em; }
     aside .group.paragraphs {
-      line-height: 1.5em; }
+      line-height: 1.3em; }
   aside #filter, aside #index {
     line-height: 1.1em;
     position: relative; }
@@ -233,13 +233,17 @@ aside {
   aside #glossary .alpha, aside #glossary .add {
     font-size: 1.5em;
     line-height: 1.25em; }
+  aside #login form {
+    width: 100%;
+    padding: 0;
+    margin: 0; }
   .full aside {
     left: calc(-15em - 20vw); }
   aside .toggle {
     margin-bottom: 1em; }
     aside .toggle .toggler {
       display: table;
-      float: right; }
+      float: left; }
       aside .toggle .toggler.selected {
         border-bottom: 2px dashed black; }
       aside .toggle .toggler:hover {
@@ -356,6 +360,7 @@ body.admin .checkboxes, body.admin .options {
     body.admin .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body.admin .options .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .options .checkbox input[type="radio"]:checked ~ label::before {
       background: black; }
 body.admin .checkboxes {
+  min-height: 4em;
   max-height: 8em; }
   body.admin .checkboxes .checkbox label::before {
     width: 0.55em;
@@ -405,14 +410,14 @@ body.admin form .images {
   body.admin form .images input[type="text"] {
     display: none; }
   body.admin form .images .image {
-    width: 100px;
+    height: 100px;
     display: inline-block;
     margin-right: 0.2em;
     cursor: pointer; }
     body.admin form .images .image.sample {
       display: none; }
     body.admin form .images .image img {
-      width: 100%; }
+      height: 100%; }
 body.admin .quicky {
   width: calc(100% - calc(15em + 20vw));
   height: 100%;
@@ -425,10 +430,13 @@ body.admin .quicky {
   background: rgba(255, 255, 255, 0.95); }
   body.admin .quicky .inner {
     width: calc(100% - 6em);
-    max-width: 900px;
+    max-width: 600px;
+    height: 100%;
     margin: auto;
     display: table; }
     body.admin .quicky .inner form {
+      display: table-cell;
+      vertical-align: middle;
       padding: 0; }
       body.admin .quicky .inner form img {
         max-width: 100%;
@@ -551,6 +559,10 @@ aside section#single .sliderWrap .slider .slideWrap {
     aside section#single .sliderWrap .slider .slideWrap .slide .caption {
       padding-top: 0.5em;
       font-size: 0.8em; }
+      aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom {
+        opacity: .25; }
+        aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom::before {
+          content: ' '; }
 aside section#single .paragraphs {
   white-space: pre-line; }
 aside section#single .header {

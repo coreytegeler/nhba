@@ -156,6 +156,7 @@ body.admin {
 	}	
 
 	.checkboxes {
+		min-height: 4em;
 		max-height: 8em;
 		.checkbox {
 			label::before {
@@ -237,7 +238,7 @@ body.admin {
 			display: none;
 		}
 		.image {
-			width: 100px;
+			height: 100px;
 			display: inline-block;
 			margin-right: 0.2em;
 			cursor: pointer;
@@ -245,7 +246,7 @@ body.admin {
 				display: none;
 			}
 			img {
-				width: 100%;
+				height: 100%;
 			}
 		}
 	}
@@ -262,10 +263,13 @@ body.admin {
 		background: rgba(255,255,255,0.95);
 		.inner {
 			width: calc(100% - 6em);
-			max-width: 900px;
+			max-width: 600px;
+			height: 100%;
 	    margin: auto;
 	    display: table;
 	    form {
+	    	display: table-cell;
+	    	vertical-align: middle;
 	    	padding: 0;
 	    	img {
 	    		max-width: 100%;

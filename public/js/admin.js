@@ -100,8 +100,7 @@
               $input.attr('checked', true);
             }
           }
-        }
-        if (valueObject.id === checked.id) {
+        } else if (valueObject.id === checked || valueObject.id === checked.id) {
           $input.attr('checked', true);
         }
       }

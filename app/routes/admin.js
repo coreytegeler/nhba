@@ -7,7 +7,6 @@ var Style = require('../models/style')
 var Use = require('../models/use')
 var Term = require('../models/term')
 var Image = require('../models/image')
-var User = require('../models/user')
 var tools = require('../tools')
 var slugify = require('slug')
 var path  = require('path')
@@ -48,6 +47,7 @@ module.exports = function(app) {
       if(tools.singularize(type) == 'user' && req.user.admin != 1) {
         return res.redirect('/admin/')
       }
+      console.log(models)
       res.render('admin/model.pug', {
         errors: err,
         loadedType: {
@@ -122,7 +122,7 @@ module.exports = function(app) {
           console.log(res)
           object.coords = { lat:location[0].latitude, lng: location[0].longitude }
           console.log(object)
-          saveNewObject(object, type)
+          saveNewObject(object, type, res)
         }
       })
     } else {

@@ -79,7 +79,7 @@ $ ->
 				for checkedValue in checked
 					if valueObject.id == checkedValue.id
 						$input.attr('checked', true)
-			if valueObject.id == checked.id
+			else if (valueObject.id == checked || valueObject.id == checked.id) 
 				$input.attr('checked', true)
 		$clone
 			.attr('data-slug', object.slug)

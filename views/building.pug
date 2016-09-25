@@ -27,7 +27,9 @@ include  ./mixins
 										.vert
 											.horz
 												img(src=image.medium)
-									.caption= image.caption
+									.caption
+										| #{image.caption}
+										a.zoom(href=image.original, target='_blank')='Full Image'
 		.mapWrap.togglable(data-group='map', class=(!hasImages ? 'show' : ''))
 			.map
 			.loader
@@ -40,6 +42,7 @@ include  ./mixins
 					span.value= object.address
 			if(object.style)
 				li.style
+						span.label= 'Style: '
 						span.style= object.style.name
 			if(object.dateConstructed)	
 				li.dateConstructed
@@ -49,7 +52,7 @@ include  ./mixins
 				li.architect
 					span.label= 'Architect: '
 					span.value= object.architect
-			if(object.use.name)	
+			if(object.use)	
 				li.use
 					span.label= 'Use: '
 					span.value= object.use.name

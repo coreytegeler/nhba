@@ -79,4 +79,17 @@ aside
 							for use in uses
 								li(class=use.slug)
 									a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
-					
+	else
+		.inner
+			section#login.show
+				h1 Login
+				if (message)
+					h1 #{message}
+				form(action='/admin/login' method='post')
+					.row
+						+input('email', 'Email', 'email')
+					.row
+						+input('password', 'Password', 'password')
+					.row
+						input.button(type='submit' value='Login')
+							

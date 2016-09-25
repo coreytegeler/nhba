@@ -2,8 +2,13 @@ include ../mixins
 .quicky(data-model=type, data-id=(object ? object._id : ''), class=(object ? 'edit' : 'create'))
 	.close.button.x
 	.inner
-		h1 Create New #{name}
 		form(method='post' action='/admin/'+type+'/quicky/')
 			.row
 				+input('name', 'Name', 'text')
+			if(type == 'use')
+				.row
+					label= 'Use Type'
+					.module.checkboxes(data-type='checkboxes', data-model='useType', class='useType', data-checked=(object ? object.useType : ''))
+						+checkbox('useType', 'Commercial', 'Commercial', false, (object && object.useType == 'Commercial' ? true : false))
+						+checkbox('useType', 'Residential', 'Residential', false, (object && object.useType == 'Residential' ? true : false))
 			input(type='submit' value='Create').button

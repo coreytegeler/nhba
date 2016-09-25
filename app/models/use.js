@@ -8,10 +8,8 @@ var useSchema = mongoose.Schema({
 		required: true
 	},
 	slug: String,
-	brief: String,
-	buildings: Mixed,
-	color: String,
-	type: String
+	useType: String,
+	type: String,
 }, { 
 	timestamps: true
 });
