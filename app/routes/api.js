@@ -63,7 +63,7 @@ module.exports = function(app) {
   var getTourSection = function(id, format, res)  {
     Async.parallel([
       function(callback) {
-        Tour.findOne({_id:id}, function(err, tour) {
+        Tour.findOne({_id: id}, function(err, tour) {
           if(err)
             callback(err)
           callback(null, tour);
@@ -77,6 +77,9 @@ module.exports = function(app) {
         })
       }
     ], function (err, results) {
+      if(err)
+        console.log(err)
+        return callback(err)
       data = {
         tour: results[0],
         buildings: results[1]
