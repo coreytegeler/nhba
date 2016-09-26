@@ -31,7 +31,7 @@ aside {
 	}
 	a.selected {
 		display: table;
-		border-bottom: 2px dashed black;
+		border-bottom: 2px dotted black;
 	}
 	header {
 		width: calc(#{$sideWidth} - #{$sidePad}*2);
@@ -64,7 +64,7 @@ aside {
 				&:not(.button) {
 					padding-bottom: 2px; 
 					&.selected {
-						border-bottom: 2px dashed black;
+						border-bottom: 2px dotted black;
 						padding-bottom: 0;
 					}
 				}
@@ -321,7 +321,7 @@ aside {
 			display: table;
 			float: left;
 			&.selected {
-				border-bottom: 2px dashed black;
+				border-bottom: 2px dotted black;
 			}
 			&:hover {
 				cursor: pointer;

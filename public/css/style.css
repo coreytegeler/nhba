@@ -25,7 +25,7 @@ aside {
     margin-top: 0; }
   aside a.selected {
     display: table;
-    border-bottom: 2px dashed black; }
+    border-bottom: 2px dotted black; }
   aside header {
     width: calc(calc(15em + 20vw) - 1em*2);
     position: absolute;
@@ -54,7 +54,7 @@ aside {
         aside header .tabs .tab:not(.button), aside header .tabs .tabDown:not(.button) {
           padding-bottom: 2px; }
           aside header .tabs .tab:not(.button).selected, aside header .tabs .tabDown:not(.button).selected {
-            border-bottom: 2px dashed black;
+            border-bottom: 2px dotted black;
             padding-bottom: 0; }
       aside header .tabs .tabDown {
         width: 7em;
@@ -250,7 +250,7 @@ aside {
       display: table;
       float: left; }
       aside .toggle .toggler.selected {
-        border-bottom: 2px dashed black; }
+        border-bottom: 2px dotted black; }
       aside .toggle .toggler:hover {
         cursor: pointer; }
 
@@ -610,7 +610,7 @@ aside section#single .contribute {
 aside section#single .tour h4 {
   margin-bottom: 1.5em; }
   aside section#single .tour h4 a {
-    border-bottom: black 2px dashed; }
+    border-bottom: black 2px dotted; }
 aside section#single .buildings .building {
   width: 100%;
   margin-bottom: 1em; }

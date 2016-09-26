@@ -32,12 +32,12 @@ aside
 							a(href='http://web.library.yale.edu/dhlab' target='_blank')= 'Yale Digital Humanities Lab'
 							| &nbsp;&amp;&nbsp;
 							a(href='http://architecture.yale.edu/' target='_blank')= 'Yale School of Architecture'
-						li Contributors: 
-							br
-							for building, i in models.buildings
-								if(building.researchBy)
-									| #{building.researchBy}
-									br
+						//- li Contributors: 
+						//- 	br
+						//- 	for building, i in models.buildings
+						//- 		if(building.researchBy)
+						//- 			| #{building.researchBy}
+						//- 			br
 									//- if(i == (models.buildings.length - 2))
 									//- 	| &nbsp;&amp;&nbsp;
 									//- else if(i != (models.buildings.length - 1))
