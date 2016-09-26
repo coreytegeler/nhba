@@ -33,13 +33,15 @@ aside
 							| &nbsp;&amp;&nbsp;
 							a(href='http://architecture.yale.edu/' target='_blank')= 'Yale School of Architecture'
 						li Contributors: 
+							br
 							for building, i in models.buildings
 								if(building.researchBy)
 									| #{building.researchBy}
-									if(i == (models.buildings.length - 2))
-										| &nbsp;&amp;&nbsp;
-									else if(i != (models.buildings.length - 1))
-										| &#44;&nbsp;
+									br
+									//- if(i == (models.buildings.length - 2))
+									//- 	| &nbsp;&amp;&nbsp;
+									//- else if(i != (models.buildings.length - 1))
+									//- 	| &#44;&nbsp;
 			section#filter
 				.clear= 'Clear Filter'
 				ul.group.filters.nested
