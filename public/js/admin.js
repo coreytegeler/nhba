@@ -12,9 +12,13 @@
       $body.on('click', '.quicky .close', closeQuicky);
       $body.on('submit', '.quicky form', quickySave);
       $body.on('click', 'a.delete', deleteObject);
-      $('.select .display').click(openSelect);
-      $('.select .options input').change(updateSelectValue);
-      $('.updateTemplate input').change(updateTemplate);
+      $body.on('click', '.select .display', openSelect);
+      $body.on('change', '.select .options input', updateSelectValue);
+      $body.on('change', '.updateTemplate input', updateTemplate);
+      $body.on('click', '.button.clear', function() {
+        $('.images input:text').val('[]');
+        return $('.images .image:not(.sample)').remove();
+      });
       editor = new MediumEditor('textarea', {
         buttons: ['italic', 'underline'],
         placeholder: false,
@@ -172,7 +176,6 @@
       id = $quicky.data('id');
       type = $quicky.data('model');
       data = new FormData();
-      console.log(type);
       if (type === 'image' && !id.length) {
         image = $form.find('input:file')[0].files[0];
         caption = $form.find('input.caption').val();
@@ -189,7 +192,6 @@
       if (!data) {
         return;
       }
-      console.log(postUrl);
       $.ajax({
         type: 'POST',
         data: data,
@@ -202,7 +204,6 @@
         },
         success: function(object, status, jqXHR) {
           var checkboxes;
-          console.log(object);
           type = $quicky.data('model');
           checkboxes = $('.checkboxes.' + type);
           $quicky.removeClass('open');
@@ -216,7 +217,8 @@
       });
     };
     addImage = function(object) {
-      var $clone, $cloneCaption, $cloneImg, $imagesInput, $imagesWrapper, i, imageObject, imagesInputVal, thisObject, updating;
+      var $clone, $imagesInput, $imagesWrapper, i, imageObject, imagesInputVal, newImg, thisObject, updating;
+      console.log(object);
       $imagesWrapper = $('.images');
       $imagesInput = $imagesWrapper.find('input:text');
       imageObject = {
@@ -249,13 +251,16 @@
       $imagesInput.val(JSON.stringify(imagesInputVal));
       if (!$imagesWrapper.find('.image[data-id="' + object._id + '"]').length) {
         $clone = $imagesWrapper.find('.sample').clone();
-        $cloneImg = $clone.find('img');
-        $cloneCaption = $clone.find('.caption');
         $clone.removeClass('sample');
         $clone.attr('data-id', imageObject._id);
-        $cloneImg.attr('src', imageObject.path);
-        $cloneCaption.text(imageObject.caption);
-        return $imagesWrapper.append($clone);
+        newImg = new Image();
+        newImg.onload = function() {
+          $clone.find('img').remove();
+          $clone.append(this);
+          $clone.find('.caption').text(imageObject.caption);
+          return $imagesWrapper.append($clone);
+        };
+        return newImg.src = imageObject.original;
       }
     };
     updateTemplate = function(event) {

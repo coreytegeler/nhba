@@ -740,6 +740,8 @@ aside .mapWrap {
     padding-left: calc(15em + 20vw); }
     .gridWrap .grid.show {
       opacity: 1; }
+    .gridWrap .grid .sizer {
+      position: absolute; }
     .gridWrap .grid .building, .gridWrap .grid .sizer {
       width: calc(160px + 4em);
       height: calc(160px + 4em);

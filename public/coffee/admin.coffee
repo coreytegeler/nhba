@@ -9,9 +9,12 @@ $ ->
 		$body.on 'click',  '.quicky .close', closeQuicky
 		$body.on 'submit', '.quicky form', quickySave
 		$body.on 'click',  'a.delete', deleteObject
-		$('.select .display').click openSelect
-		$('.select .options input').change updateSelectValue
-		$('.updateTemplate input').change updateTemplate
+		$body.on 'click', '.select .display', openSelect
+		$body.on 'change', '.select .options input', updateSelectValue
+		$body.on 'change', '.updateTemplate input', updateTemplate
+		$body.on 'click',  '.button.clear', () ->
+			$('.images input:text').val('[]')
+			$('.images .image:not(.sample)').remove()
 
 		editor = new MediumEditor('textarea', {
 			buttons: ['italic', 'underline'],
@@ -146,7 +149,6 @@ $ ->
 		id = $quicky.data('id')
 		type = $quicky.data('model')
 		data = new FormData()
-		console.log(type)
 		if(type == 'image' && !id.length)
 			image = $form.find('input:file')[0].files[0]
 			caption = $form.find('input.caption').val()
@@ -162,7 +164,6 @@ $ ->
 		postUrl = $form.attr('action')
 		if(!data)
 			return
-		console.log(postUrl)
 		$.ajax
 			type: 'POST',
 			data: data,
@@ -173,7 +174,6 @@ $ ->
 				console.log(jqXHR, status, error)
 				alert('Error, check browser console logs')
 			success: (object, status, jqXHR) ->
-				console.log(object)
 				type = $quicky.data('model')
 				checkboxes = $('.checkboxes.'+type)
 				$quicky.removeClass('open')
@@ -185,6 +185,7 @@ $ ->
 		return
 
 	addImage = (object) ->
+		console.log(object)
 		$imagesWrapper = $('.images')
 		$imagesInput = $imagesWrapper.find('input:text')
 		imageObject = {
@@ -199,7 +200,6 @@ $ ->
 			imagesInputVal = JSON.parse($imagesInput.val())
 		else
 			imagesInputVal = []
-
 		updating = false
 		if(imagesInputVal.length)
 			for i, thisObject of imagesInputVal
@@ -210,18 +210,20 @@ $ ->
 				imagesInputVal.push(imageObject)
 		else
 			imagesInputVal = [imageObject]
+		
 		$imagesInput.val(JSON.stringify(imagesInputVal))
 
 		if(!$imagesWrapper.find('.image[data-id="'+object._id+'"]').length)
 			$clone = $imagesWrapper.find('.sample').clone()
-			$cloneImg = $clone.find('img')
-			$cloneCaption = $clone.find('.caption')
 			$clone.removeClass('sample')
-
 			$clone.attr('data-id', imageObject._id)
-			$cloneImg.attr('src', imageObject.path)
-			$cloneCaption.text(imageObject.caption)
-			$imagesWrapper.append($clone)
+			newImg = new Image()
+			newImg.onload = () ->
+				$clone.find('img').remove()
+				$clone.append(this)
+				$clone.find('.caption').text(imageObject.caption)
+				$imagesWrapper.append($clone)
+			newImg.src = imageObject.original;
 
 	updateTemplate = (event) ->
 		$input = $(event.target)
