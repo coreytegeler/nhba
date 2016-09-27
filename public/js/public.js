@@ -29,13 +29,6 @@
       $body.on('click', '.slide', nextSlide);
       $body.on('click', '.toggler', clickToggle);
       $body.on('click', '.header .arrow', paginate);
-      $grid.masonry({
-        itemSelector: '.building',
-        columnWidth: '.sizer',
-        transitionDuration: 0,
-        fixedWidth: true,
-        isFitWidth: true
-      });
       $(window).resize(function() {
         resizeGrid();
         return setUpSlider();
@@ -55,12 +48,11 @@
             orientation = 'portait';
           }
           status = 'loaded';
-          $(image.img).parents('.building').addClass(status).addClass(orientation);
+          return $(image.img).parents('.building').addClass(status).addClass(orientation);
         } else {
           status = 'broken';
-          $(image.img).parents('.building').addClass(status);
+          return $(image.img).parents('.building').addClass(status);
         }
-        return $grid.masonry();
       });
       if (loadedSlug && loadedType) {
         if (loadedType === 'building') {
@@ -473,7 +465,6 @@
       var id, marker;
       marker = this;
       id = marker.id;
-      console.log(id);
       return selectBuilding('id', id);
     };
     setUpSlider = function() {
@@ -565,16 +556,20 @@
       $window = $(window);
       $visibleTiles = $buildingTiles.filter(':not(.hidden)');
       length = $visibleTiles.length;
-      smaller = Math.sqrt(length);
-      larger = Math.sqrt(length);
-      console.log(length, smaller, larger);
+      smaller = Math.ceil(Math.sqrt(length));
+      larger = Math.ceil(Math.sqrt(length));
       edge = $visibleTiles.eq(0).innerWidth();
-      console.log(edge);
       gridWidth = larger * edge;
       gridHeight = smaller * edge;
+      if (gridWidth < parseInt($window.innerWidth())) {
+        gridWidth = parseInt($window.innerWidth());
+      }
+      if (gridHeight < parseInt($window.innerHeight())) {
+        gridHeight = parseInt($window.innerHeight());
+      }
       return $grid.css({
-        width: gridWidth + 'px',
-        height: gridHeight + 'px'
+        minWidth: gridWidth + 'px',
+        mineight: gridHeight + 'px'
       });
     };
     centerGrid = function() {
