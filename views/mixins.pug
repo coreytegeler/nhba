@@ -56,7 +56,7 @@ mixin checkbox(type, name, value, multiple, checked)
 		-var style = 'background-color:'+value
 	else
 		-var style = ''
-	.item.checkbox(class=(value ? value : 'sample'), style=style)
+	.item.checkbox(class=(value || value == null ? value : 'sample'), style=style)
 		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : ''), name=type, id=(value ? value+'Checkbox' : ''), checked=checked)
 		label(class=type, data-pop='name', for=(value ? value+'Checkbox' : '')) #{(name ? name : '')}
 

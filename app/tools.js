@@ -55,7 +55,6 @@ var async = function(func, req, res) {
                 uses: {}
               }
             uses[useType].uses[data[i].slug] = data[i]
-            
           }
         }
         callback(null, uses)
@@ -100,7 +99,8 @@ var isLoggedIn = function(req, res, next) {
 
 var isAdmin = function(req, res, next) {
   if(req.isAuthenticated())
-    if(req.user && req.user.admin) {
+    if(req.user) {
+       // && req.user.admin
       return next()
     } else {
       return res.redirect('/admin/')
