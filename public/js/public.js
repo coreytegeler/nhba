@@ -380,7 +380,7 @@
           fillColor: color,
           fillOpacity: 1,
           strokeWeight: 0,
-          scale: 7
+          scale: 5
         }
       });
       $mapWrap.addClass('loaded');
@@ -412,7 +412,7 @@
               fillColor: color,
               fillOpacity: 1,
               strokeWeight: 0,
-              scale: 7
+              scale: 5
             }
           });
           bounds.extend(marker.getPosition());
@@ -450,7 +450,7 @@
               fillColor: tourColor,
               fillOpacity: 1,
               strokeWeight: 0,
-              scale: 7
+              scale: 5
             }
           });
           bounds.extend(coords);

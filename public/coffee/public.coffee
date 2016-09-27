@@ -316,7 +316,7 @@ window.initPublic = ->
         fillColor: color,
         fillOpacity: 1,
         strokeWeight: 0,
-        scale: 7
+        scale: 5
       }
 		$mapWrap.addClass('loaded')
 		return
@@ -347,7 +347,7 @@ window.initPublic = ->
 	          fillOpacity: 1,
 	          # strokeColor: '#fff',
 	          strokeWeight: 0,
-	          scale: 7
+	          scale: 5
 	        }
 				bounds.extend(marker.getPosition())
 				marker.addListener 'click', clickMarker
@@ -379,7 +379,7 @@ window.initPublic = ->
 	          fillColor: tourColor,
 	          fillOpacity: 1,
 	          strokeWeight: 0,
-	          scale: 7
+	          scale: 5
 	        }
 				bounds.extend(coords)
 				marker.addListener 'click', clickMarker

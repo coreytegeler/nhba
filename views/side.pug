@@ -58,7 +58,7 @@ aside
 					li.era
 						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
 						.title(data-slug='era')= 'Era'
-						ul.eras
+						ul.era
 							for era in eras
 								li(class='era')
 									a.filter(href='/?era='+era, data-slug=era, data-id=era, data-type='era') #{era}
