@@ -561,18 +561,21 @@
       return resizeGrid();
     };
     resizeGrid = function() {
-      var $window, edge, gridHeight, gridWidth, larger, length, smaller;
+      var $visibleTiles, $window, edge, gridHeight, gridWidth, larger, length, smaller;
       $window = $(window);
-      length = $buildingTiles.filter(':not(.hidden)').length;
+      $visibleTiles = $buildingTiles.filter(':not(.hidden)');
+      length = $visibleTiles.length;
       smaller = Math.floor(Math.sqrt(length));
       larger = Math.round(Math.sqrt(length));
-      edge = $buildingTiles.eq(0).innerWidth();
+      console.log(length, smaller, larger);
+      edge = $visibleTiles.eq(0).innerWidth();
+      console.log(edge);
       gridWidth = larger * edge;
       gridHeight = smaller * edge;
       return $grid.css({
         width: gridWidth + 'px',
         height: gridHeight + 'px'
-      }).masonry();
+      });
     };
     centerGrid = function() {
       var centerMatrix, centerX, centerY, gridHeight, gridWidth, matrix, wrapHeight, wrapWidth;

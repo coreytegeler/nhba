@@ -182,7 +182,6 @@ window.initPublic = ->
 				$body.addClass('empty')
 			else
 				$body.removeClass('empty')
-
 		resizeGrid()
 
 	filterUrl = () ->
@@ -479,10 +478,13 @@ window.initPublic = ->
 
 	resizeGrid = () -> 
 		$window = $(window)
-		length = $buildingTiles.filter(':not(.hidden)').length
+		$visibleTiles = $buildingTiles.filter(':not(.hidden)')
+		length = $visibleTiles.length
 		smaller = Math.floor(Math.sqrt(length))
 		larger = Math.round(Math.sqrt(length))
-		edge = $buildingTiles.eq(0).innerWidth()
+		console.log(length, smaller, larger)
+		edge = $visibleTiles.eq(0).innerWidth()
+		console.log(edge)
 		gridWidth = larger * edge
 		gridHeight = smaller * edge
 		# if(gridWidth < parseInt($window.innerWidth()))
@@ -492,7 +494,7 @@ window.initPublic = ->
 		$grid.css({
 			width: gridWidth+'px',
 			height: gridHeight+'px'
-		}).masonry()
+		})
 
 	centerGrid = () ->
 		wrapWidth = $gridWrap.innerWidth()
