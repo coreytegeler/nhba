@@ -740,45 +740,43 @@ aside .mapWrap {
     padding-left: calc(15em + 20vw); }
     .gridWrap .grid.show {
       opacity: 1; }
-    .gridWrap .grid .sizer {
-      position: absolute; }
-    .gridWrap .grid .building, .gridWrap .grid .sizer {
+    .gridWrap .grid .building {
       width: calc(160px + 4em);
       height: calc(160px + 4em);
       padding: 2em;
       display: table;
       float: left; }
-      .gridWrap .grid .building a, .gridWrap .grid .sizer a {
+      .gridWrap .grid .building a {
         width: 100%;
         display: table;
         font-size: 1em;
         line-height: 1.1em;
         text-align: center; }
-      .gridWrap .grid .building .image, .gridWrap .grid .sizer .image {
+      .gridWrap .grid .building .image {
         margin-bottom: .5em;
         border: 1px solid transparent;
         background-color: rgba(0, 0, 0, 0.06); }
-      .gridWrap .grid .building .img, .gridWrap .grid .building img, .gridWrap .grid .sizer .img, .gridWrap .grid .sizer img {
+      .gridWrap .grid .building .img, .gridWrap .grid .building img {
         max-width: 160px;
         max-height: 160px;
         display: table;
         margin: auto;
         opacity: 0; }
-      .gridWrap .grid .building .img, .gridWrap .grid .sizer .img {
+      .gridWrap .grid .building .img {
         width: calc(160px - 2em);
         height: calc(160px - 2em); }
-      .gridWrap .grid .building.loaded .image, .gridWrap .grid .sizer.loaded .image {
+      .gridWrap .grid .building.loaded .image {
         background: transparent; }
-      .gridWrap .grid .building.loaded .img, .gridWrap .grid .building.loaded img, .gridWrap .grid .sizer.loaded .img, .gridWrap .grid .sizer.loaded img {
+      .gridWrap .grid .building.loaded .img, .gridWrap .grid .building.loaded img {
         opacity: 1; }
-      .gridWrap .grid .building.selected, .gridWrap .grid .sizer.selected {
+      .gridWrap .grid .building.selected {
         background: transparent; }
-        .gridWrap .grid .building.selected img, .gridWrap .grid .building.selected .img, .gridWrap .grid .sizer.selected img, .gridWrap .grid .sizer.selected .img {
+        .gridWrap .grid .building.selected img, .gridWrap .grid .building.selected .img {
           opacity: 0; }
-        .gridWrap .grid .building.selected .image, .gridWrap .grid .sizer.selected .image {
+        .gridWrap .grid .building.selected .image {
           background: transparent !important;
           border-color: black; }
-      .gridWrap .grid .building.hidden, .gridWrap .grid .sizer.hidden {
+      .gridWrap .grid .building.hidden {
         display: none; }
 
 /*# sourceMappingURL=style.css.map */
