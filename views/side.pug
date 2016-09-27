@@ -71,7 +71,11 @@ aside
 								li.useType.withSub
 									.title(data-slug=useType)= uses[useType].name
 									ul.sub(class=useType)
-										for use in uses[useType].uses
+										if(uses[useType].uses)
+											for use in uses[useType].uses
+												li(class=use.slug)
+													a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+										else
 											li(class=use.slug)
 												a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
 

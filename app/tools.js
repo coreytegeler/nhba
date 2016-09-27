@@ -55,8 +55,11 @@ var async = function(func, req, res) {
                 uses: {}
               }
             uses[useType].uses[data[i].slug] = data[i]
+          } else {
+            uses['Zzz'] = data[i] 
           }
         }
+        uses = alphaSortObject(uses)
         callback(null, uses)
       }).sort({'name':1})
     },
@@ -117,6 +120,21 @@ var alphaSort = function(object) {
   return object
 }
 
+var alphaSortObject = function(o) {
+  var sorted = {},
+  key, a = []
+  for (key in o) {
+    if (o.hasOwnProperty(key)) {
+      a.push(key)
+    }
+  }
+  a.sort()
+  for (key = 0; key < a.length; key++) {
+      sorted[a[key]] = o[a[key]]
+  }
+  return sorted
+}
+
 var singularize = function(string) {
   if(string)
     return string.replace(/s$/, '');
@@ -174,6 +192,7 @@ var preSave = function(item) {
   if(!item.slug)
     item.slug = slugify(item.name, {lower: true})
 }
+
 exports.slugify = slugify;
 exports.isLoggedIn = isLoggedIn;
 exports.isAdmin = isAdmin;

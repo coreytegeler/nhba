@@ -78,11 +78,15 @@ aside
 							-var uses = models['use']
 							for use, useType in uses
 								li.useType.withSub
-									.title(data-slug=useType)= uses[useType].name
-									ul.sub(class=useType)
-										for use in uses[useType].uses
-											li(class=use.slug)
-												a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+									if(uses[useType].uses)
+										.title(data-slug=useType)= uses[useType].name
+										ul.sub(class=useType+' '+(uses[useType].uses[loadedSlug] ? 'open' : ''))
+											for use in uses[useType].uses
+												li(class=use.slug)
+													a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+									else
+										li(class=use.slug)
+											a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
 					li.materials
 						.title(data-slug='materials' class=(loadedType.p == 'materials' ? 'toggled' : '')) Material
 						ul.materials(class=(loadedType.p == 'materials' ? 'open' : ''))
