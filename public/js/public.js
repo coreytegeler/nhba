@@ -565,8 +565,8 @@
       $window = $(window);
       $visibleTiles = $buildingTiles.filter(':not(.hidden)');
       length = $visibleTiles.length;
-      smaller = Math.floor(Math.sqrt(length));
-      larger = Math.round(Math.sqrt(length));
+      smaller = Math.sqrt(length);
+      larger = Math.sqrt(length);
       console.log(length, smaller, larger);
       edge = $visibleTiles.eq(0).innerWidth();
       console.log(edge);
