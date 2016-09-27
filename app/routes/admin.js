@@ -111,6 +111,9 @@ module.exports = function(app) {
       case 'term':
         var object = new Term(data)
         break 
+      case 'material':
+        var object = new Material(data)
+        break 
     }
     if(type == 'building') {
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
