@@ -31,15 +31,6 @@ aside {
 							left: -99999%;
 							top: 0;
 							@include loader;
-							&.loaded {
-								background: none;
-								.imageWrap img {
-									opacity: 1;
-								}
-							}
-							&.show {
-								left: 0;
-							}
 							.imageWrap {
 								width: 100%;
 								display: table;
@@ -48,23 +39,28 @@ aside {
 									vertical-align: bottom;
 								}
 							}
-							// .image {
-							// 	width: 100%;
-							// 	height: 100%;
-							// 	background-position: center;
-							// 	background-size: contain;
-							// 	background-repeat: no-repeat;
-							// 	opacity: 0;
-							// }
 							.caption {
 								padding-top: 0.5em;
 								font-size: 0.8em;
+								opacity: 0;
 								.zoom {
 									opacity: .25;
 									&::before {
 										content: ' ';
 									}
 								}
+							}
+							&.loaded {
+								background: none;
+								.imageWrap img {
+									opacity: 1;
+								}
+								.caption {
+									opacity: 1;
+								}
+							}
+							&.show {
+								left: 0;
 							}
 						}
 					}
