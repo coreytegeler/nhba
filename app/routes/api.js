@@ -73,6 +73,7 @@ module.exports = function(app) {
         Building.find({'tour.id': id}, function(err, buildings) {
           if(err)
             callback(err)
+          console.log(buildings)
           callback(null, buildings);
         })
       }
