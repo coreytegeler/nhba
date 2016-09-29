@@ -19,6 +19,7 @@ window.initPublic = ->
 		$body.on 'mouseenter', '.building a', hoverBuilding
 		$body.on 'mouseleave', '.building a', unhoverBuilding
 		$body.on 'click', '.building a', clickBuilding
+		$body.on 'click', '.group.tour a.tour', clickTour
 		$body.on 'click', 'a.filter', clickFilter
 		$body.on 'click', '#filter .clear', clearFilter
 		$body.on 'click', '#closedHeader', openSide
@@ -108,6 +109,13 @@ window.initPublic = ->
 		if(url)
 			window.history.pushState('', document.title, url)
 		openSide()
+
+	clickTour = (event) ->
+		event.preventDefault()
+		tour = this
+		id = tour.dataset.id
+		url = tour.href
+		getContent(id, 'tour', 'html')
 
 	clickFilter = () ->
 		event.preventDefault()
@@ -501,7 +509,7 @@ window.initPublic = ->
 		matrix = $grid.css('transform')	
 		centerX = wrapWidth/2 - gridWidth/2
 		centerY = wrapHeight/2 - gridHeight/2
-		if(!isNaN(centerX) && !isNaN(centerY)) {
+		if(!isNaN(centerX) || !isNaN(centerY))
 			centerMatrix = [1,0,0,1,centerX,centerY].join(',')
 			console.log('center matrix: ' + centerMatrix)
 			$grid.css({transform: 'matrix('+centerMatrix+')'}).addClass('show')
