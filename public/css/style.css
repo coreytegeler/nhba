@@ -24,7 +24,7 @@ aside {
   aside p {
     margin-top: 0; }
   aside a.selected {
-    display: table;
+    display: inline;
     border-bottom: 2px dotted black; }
   aside header {
     width: calc(calc(15em + 20vw) - 1em*2);
@@ -431,7 +431,8 @@ body.admin form .images {
   body.admin form .images .image {
     height: 100px;
     display: inline-block;
-    margin-right: 0.2em;
+    margin: 0 0.2em 0 0;
+    padding: 0;
     cursor: pointer; }
     body.admin form .images .image.sample {
       display: none; }

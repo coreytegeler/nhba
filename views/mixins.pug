@@ -25,14 +25,15 @@ mixin input(name, label, type, value, required)
 
 mixin images(name, images, required)
 	label(name=name) Images
-	.images
+	.images.sortable
 		input(name='images', type='text', value=images)
 		.image.edit.sample
 			img
-		if(images)
-			each image, index in images
-				.image.edit(data-id=image.id)
-					img(src=image.small)
+		ul
+			if(images)
+				each image, index in images
+					li.image.edit(data-id=image.id)
+						img(src=image.small)
 	.add.button(data-model='image') Add Image
 	.clear.button Clear All
 

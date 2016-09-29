@@ -20,10 +20,18 @@ $ ->
 		sortable = $( '.sortable ul' ).sortable
 			update: (e, elem) ->
 				newOrder = []
+				$sortableInput = $sortable.find('input')
 				$(this).find('li').each () ->
 					id = $(this).data('id')
 					newOrder.push(id)
-				$sortable.find('input').val(JSON.stringify(newOrder))
+				if($sortable.is('.images'))
+					imagesData = JSON.parse($sortableInput.val())
+					newOrderClone = newOrder
+					$(imagesData).each () ->
+						index = newOrder.indexOf(this.id)
+						newOrder[index] = this
+				newOrderJson = JSON.stringify(newOrder)
+				$sortable.find('input').val(newOrderJson)
 		sortable.disableSelection()
 
 		editor = new MediumEditor('textarea', {
@@ -81,6 +89,8 @@ $ ->
 		valueObject = {name: object.name, slug: object.slug, id: object._id}
 		if(object.color)
 			valueObject['color'] = object.color
+		if(object.buildings)
+			valueObject['buildings'] = object.buildings
 		value = JSON.stringify(valueObject)
 		$input.attr('value', value).attr('id', object.slug+'Checkbox')
 		$label.text(object.name).attr('for', object.slug+'Checkbox')
@@ -195,7 +205,6 @@ $ ->
 		return
 
 	addImage = (object) ->
-		console.log(object)
 		$imagesWrapper = $('.images')
 		$imagesInput = $imagesWrapper.find('input:text')
 		imageObject = {

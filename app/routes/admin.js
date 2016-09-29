@@ -116,13 +116,15 @@ module.exports = function(app) {
         break 
     }
     if(type == 'building') {
+      if(data.tour)
+        console.log(data.tour.length)
+
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
           console.log('Failed:')
           console.log(err)
         } else {
           console.log('Geocoded address:')
-          console.log(res)
           object.coords = { lat:location[0].latitude, lng: location[0].longitude }
           console.log(object)
           saveNewObject(object, type, res)
@@ -200,7 +202,6 @@ module.exports = function(app) {
     if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
     if(data.style) { data.style = JSON.parse(data.style) }
     if(data.use) { data.use = JSON.parse(data.use) }
-    if(data.buildings) { data.buildings = JSON.parse(data.buildings) }
     if(type == 'building') {
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
@@ -217,7 +218,6 @@ module.exports = function(app) {
         }
       })
     } else if(type == 'tour') {
-      console.log(data.buildings)
       for(var i = 0; i < data.buildings.length; i++) {
         var buildingId = data.buildings[i]
         Building.findOneAndUpdate({_id: buildingId}, {$set: {number: i}}, {new: true, runValidators: true}, function(err, object) {

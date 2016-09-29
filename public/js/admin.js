@@ -22,14 +22,25 @@
       $sortable = $('.sortable');
       sortable = $('.sortable ul').sortable({
         update: function(e, elem) {
-          var newOrder;
+          var $sortableInput, imagesData, newOrder, newOrderClone, newOrderJson;
           newOrder = [];
+          $sortableInput = $sortable.find('input');
           $(this).find('li').each(function() {
             var id;
             id = $(this).data('id');
             return newOrder.push(id);
           });
-          return $sortable.find('input').val(JSON.stringify(newOrder));
+          if ($sortable.is('.images')) {
+            imagesData = JSON.parse($sortableInput.val());
+            newOrderClone = newOrder;
+            $(imagesData).each(function() {
+              var index;
+              index = newOrder.indexOf(this.id);
+              return newOrder[index] = this;
+            });
+          }
+          newOrderJson = JSON.stringify(newOrder);
+          return $sortable.find('input').val(newOrderJson);
         }
       });
       sortable.disableSelection();
@@ -102,6 +113,9 @@
       };
       if (object.color) {
         valueObject['color'] = object.color;
+      }
+      if (object.buildings) {
+        valueObject['buildings'] = object.buildings;
       }
       value = JSON.stringify(valueObject);
       $input.attr('value', value).attr('id', object.slug + 'Checkbox');
@@ -232,7 +246,6 @@
     };
     addImage = function(object) {
       var $clone, $imagesInput, $imagesWrapper, i, imageObject, imagesInputVal, newImg, thisObject, updating;
-      console.log(object);
       $imagesWrapper = $('.images');
       $imagesInput = $imagesWrapper.find('input:text');
       imageObject = {

@@ -10,7 +10,7 @@
 			+checkbox('color', color, color, false, (object && object.color == color ? true : false))
 -var buildings = models['buildings']
 if(buildings && object)
-	.row.sortable
+	.row.sortable.buildings
 		label= 'Buildings'
 		ul
 			for building in buildings
