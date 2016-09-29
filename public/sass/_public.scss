@@ -286,20 +286,24 @@ aside {
 			opacity: 1;
 		}
 		$gridCell: 160px;
+		&.odd {
+			.building:nth-child(odd) {
+			}
+			.building:nth-child(even) {
+			}
+		}
+		&.even {
+			.building:nth-child(odd) {
+			}
+			.building:nth-child(even) {
+			}
+		}
 		.building {
 			width: calc(#{$gridCell} + 4em);
 			height: calc(#{$gridCell} + 4em);
 			padding: 2em;
 			display: table;
 			float: left;
-			&:nth-child(odd) {
-				// width: calc(#{$gridCell} + 8em);
-				// padding-left: 2em;
-				// padding-right: 0em;
-			}
-			&:nth-child(even) {
-				// padding-left: 2em;
-			}
 			a {
 				width: 100%;
 				display: table;

@@ -29,12 +29,12 @@
       $body.on('click', '.slide', nextSlide);
       $body.on('click', '.toggler', clickToggle);
       $body.on('click', '.header .arrow', paginate);
+      $(window).on('popstate', popState);
       $(window).resize(function() {
         resizeGrid();
         return setUpSlider();
       });
-      $(window).on('popstate', popState);
-      resizeGrid();
+      $(window).resize();
       makeDraggable();
       getParams();
       filter();
@@ -558,7 +558,7 @@
       $window = $(window);
       $visibleTiles = $buildingTiles.filter(':not(.hidden)');
       length = $visibleTiles.length;
-      smaller = Math.ceil(Math.sqrt(length));
+      smaller = Math.floor(Math.sqrt(length));
       larger = Math.ceil(Math.sqrt(length));
       edge = $visibleTiles.eq(0).innerWidth();
       gridWidth = larger * edge;
@@ -568,6 +568,11 @@
       }
       if (gridHeight < parseInt($window.innerHeight())) {
         gridHeight = parseInt($window.innerHeight());
+      }
+      if (Math.floor(gridWidth / edge) % 2 === 0) {
+        $grid.addClass('even');
+      } else {
+        $grid.addClass('odd');
       }
       $grid.css({
         minWidth: gridWidth + 'px',
@@ -585,6 +590,7 @@
       centerX = wrapWidth / 2 - gridWidth / 2;
       centerY = wrapHeight / 2 - gridHeight / 2;
       centerMatrix = [1, 0, 0, 1, centerX, centerY].join(',');
+      console.log('center matrix: ' + centerMatrix);
       return $grid.css({
         transform: 'matrix(' + centerMatrix + ')'
       }).addClass('show');
