@@ -27,7 +27,8 @@ var buildingSchema = mongoose.Schema({
 	research: String,
 	citations: String,
 	images: Mixed,
-	type: String
+	type: String,
+	number: String
 }, { 
 	timestamps: true
 })

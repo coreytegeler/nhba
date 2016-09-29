@@ -11,6 +11,7 @@ var tourSchema = mongoose.Schema({
 	brief: String,
 	buildings: Mixed,
 	color: String,
+	buildings: String,
 	type: String
 }, { 
 	timestamps: true

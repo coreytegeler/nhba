@@ -67,14 +67,14 @@ module.exports = function(app) {
           if(err)
             callback(err)
           callback(null, tour);
-        })
+        }).sort({'name':1})
       },
       function(callback) {
         Building.find({'tour.id': id}, function(err, buildings) {
           if(err)
             callback(err)
           callback(null, buildings);
-        })
+        }).sort({'number':1})
       }
     ], function (err, results) {
       if(err) {

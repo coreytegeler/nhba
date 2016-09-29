@@ -200,6 +200,7 @@ module.exports = function(app) {
     if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
     if(data.style) { data.style = JSON.parse(data.style) }
     if(data.use) { data.use = JSON.parse(data.use) }
+    if(data.buildings) { data.buildings = JSON.parse(data.buildings) }
     if(type == 'building') {
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
@@ -215,6 +216,18 @@ module.exports = function(app) {
           updateObject(model, data, type, id, res)
         }
       })
+    } else if(type == 'tour') {
+      console.log(data.buildings)
+      for(var i = 0; i < data.buildings.length; i++) {
+        var buildingId = data.buildings[i]
+        Building.findOneAndUpdate({_id: buildingId}, {$set: {number: i}}, {new: true, runValidators: true}, function(err, object) {
+          if(err) {
+            console.log('Error updaing number for building '+buildingId)
+            console.log(err)
+          }
+        })
+      }
+      updateObject(model, data, type, id, res)
     } else {
       updateObject(model, data, type, id, res)
     }

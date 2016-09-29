@@ -5,7 +5,7 @@
     $body = $('body');
     $main = $('main');
     initAdmin = function() {
-      var editor;
+      var $sortable, editor, sortable;
       getData();
       $body.on('click', 'form .add', openQuicky);
       $body.on('click', 'form .images .edit', openQuicky);
@@ -19,6 +19,20 @@
         $('.images input:text').val('[]');
         return $('.images .image:not(.sample)').remove();
       });
+      $sortable = $('.sortable');
+      sortable = $('.sortable ul').sortable({
+        update: function(e, elem) {
+          var newOrder;
+          newOrder = [];
+          $(this).find('li').each(function() {
+            var id;
+            id = $(this).data('id');
+            return newOrder.push(id);
+          });
+          return $sortable.find('input').val(JSON.stringify(newOrder));
+        }
+      });
+      sortable.disableSelection();
       editor = new MediumEditor('textarea', {
         buttons: ['italic', 'underline'],
         placeholder: false,

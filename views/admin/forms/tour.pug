@@ -8,4 +8,17 @@
 		-var colors = ['#FF8000','#6699CC','#CCCC66','#66CC99','#FF99FF','#FF6633','#33CCFF','#FF99CC','#CC9933','#FFCC33','#FF6666','#6666CC','#CC99FF','#CCFFCC']
 		for color in colors
 			+checkbox('color', color, color, false, (object && object.color == color ? true : false))
+-var buildings = models['buildings']
+if(buildings && object)
+	.row.sortable
+		label= 'Buildings'
+		ul
+			for building in buildings
+				if(building.tour && building.tour.slug == object.slug)
+					li(class=building.slug, data-id=building.id)
+						if(building.name)
+							| #{building.name}
+						if(building.name != building.address)
+							| , #{building.address}
+		+input('buildings', '', 'text', null)
 		

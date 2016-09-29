@@ -15,6 +15,16 @@ $ ->
 		$body.on 'click',  '.button.clear', () ->
 			$('.images input:text').val('[]')
 			$('.images .image:not(.sample)').remove()
+		
+		$sortable = $('.sortable')
+		sortable = $( '.sortable ul' ).sortable
+			update: (e, elem) ->
+				newOrder = []
+				$(this).find('li').each () ->
+					id = $(this).data('id')
+					newOrder.push(id)
+				$sortable.find('input').val(JSON.stringify(newOrder))
+		sortable.disableSelection()
 
 		editor = new MediumEditor('textarea', {
 			buttons: ['italic', 'underline'],

@@ -96,7 +96,7 @@ module.exports = function(app, passport) {
 		      sideSection: 'profile'
 		    })
 		 else
-		 	redirect('/admin/login')
+		 	res.redirect('/admin/login')
 	  }, req, res)
   })
 
