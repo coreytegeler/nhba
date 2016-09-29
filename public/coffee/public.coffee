@@ -485,6 +485,7 @@ window.initPublic = ->
 			minWidth: gridWidth+'px',
 			mineight: gridHeight+'px'
 		})
+		centerGrid()
 
 	centerGrid = () ->
 		wrapWidth = $gridWrap.innerWidth()

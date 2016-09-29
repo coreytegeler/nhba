@@ -569,10 +569,11 @@
       if (gridHeight < parseInt($window.innerHeight())) {
         gridHeight = parseInt($window.innerHeight());
       }
-      return $grid.css({
+      $grid.css({
         minWidth: gridWidth + 'px',
         mineight: gridHeight + 'px'
       });
+      return centerGrid();
     };
     centerGrid = function() {
       var centerMatrix, centerX, centerY, gridHeight, gridWidth, matrix, wrapHeight, wrapWidth;
