@@ -765,11 +765,10 @@ aside .mapWrap {
       display: table;
       float: left; }
       .gridWrap .grid .building a {
-        width: 100%;
         display: table;
+        margin: auto;
         font-size: 1em;
-        line-height: 1.1em;
-        text-align: center; }
+        line-height: 1.1em; }
       .gridWrap .grid .building .image {
         margin-bottom: .5em;
         border: 1px solid transparent;

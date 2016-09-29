@@ -501,9 +501,12 @@ window.initPublic = ->
 		matrix = $grid.css('transform')	
 		centerX = wrapWidth/2 - gridWidth/2
 		centerY = wrapHeight/2 - gridHeight/2
-		centerMatrix = [1,0,0,1,centerX,centerY].join(',')
-		console.log('center matrix: ' + centerMatrix)
-		$grid.css({transform: 'matrix('+centerMatrix+')'}).addClass('show')
+		if(!isNaN(centerX) && !isNaN(centerY)) {
+			centerMatrix = [1,0,0,1,centerX,centerY].join(',')
+			console.log('center matrix: ' + centerMatrix)
+			$grid.css({transform: 'matrix('+centerMatrix+')'}).addClass('show')
+		else
+			console.log($grid, $gridWrap)
 
 	paginate = () ->
 		id = $(this).parents('section')[0].dataset.id
