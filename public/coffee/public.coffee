@@ -361,31 +361,31 @@ window.initPublic = ->
 		$mapWrap = $section.find('.mapWrap')
 		$map = $mapWrap.find('.map')
 		color = $mapWrap.data('color')
-
-		mapObj = new google.maps.Map $map[0], {
-			scrollwheel: false,
-			zoom: 12
-		}
-		google.maps.event.addListenerOnce mapObj, 'idle', () ->
-			bounds = new google.maps.LatLngBounds()
-			$(buildingsInTour).each (i, building) ->
-				coords = building.coords
-				marker = new google.maps.Marker
-					map: mapObj,
-					position: coords,
-					id: building._id,
-					icon: {
-	          path: google.maps.SymbolPath.CIRCLE,
-	          fillColor: tourColor,
-	          fillOpacity: 1,
-	          strokeWeight: 0,
-	          scale: 5
-	        }
-				bounds.extend(coords)
-				marker.addListener 'click', clickMarker
-			mapObj.fitBounds(bounds)
-			mapObj.setCenter(bounds.getCenter())
-			$mapWrap.addClass('loaded')
+		if($map.length)
+			mapObj = new google.maps.Map $map[0], {
+				scrollwheel: false,
+				zoom: 12
+			}
+			google.maps.event.addListenerOnce mapObj, 'idle', () ->
+				bounds = new google.maps.LatLngBounds()
+				$(buildingsInTour).each (i, building) ->
+					coords = building.coords
+					marker = new google.maps.Marker
+						map: mapObj,
+						position: coords,
+						id: building._id,
+						icon: {
+		          path: google.maps.SymbolPath.CIRCLE,
+		          fillColor: tourColor,
+		          fillOpacity: 1,
+		          strokeWeight: 0,
+		          scale: 5
+		        }
+					bounds.extend(coords)
+					marker.addListener 'click', clickMarker
+				mapObj.fitBounds(bounds)
+				mapObj.setCenter(bounds.getCenter())
+				$mapWrap.addClass('loaded')
 
 	clickMarker = () ->
 		marker = this

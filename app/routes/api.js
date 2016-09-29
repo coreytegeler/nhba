@@ -77,9 +77,10 @@ module.exports = function(app) {
         })
       }
     ], function (err, results) {
-      if(err)
+      if(err) {
         console.log(err)
         return res.json(err)
+      }
       data = {
         tour: results[0],
         buildings: results[1]

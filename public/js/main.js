@@ -32,6 +32,7 @@
       sectionId = $tab.attr('data-section');
       if (sectionId) {
         $section = $side.find('section#' + sectionId);
+        $side.find('section.show').scrollTop(0);
         $side.find('section.show').removeClass('show');
         $side.find('.tab.selected').removeClass('selected');
         $tab.addClass('selected');

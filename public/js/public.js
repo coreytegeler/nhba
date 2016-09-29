@@ -431,35 +431,37 @@
       $mapWrap = $section.find('.mapWrap');
       $map = $mapWrap.find('.map');
       color = $mapWrap.data('color');
-      mapObj = new google.maps.Map($map[0], {
-        scrollwheel: false,
-        zoom: 12
-      });
-      return google.maps.event.addListenerOnce(mapObj, 'idle', function() {
-        var bounds;
-        bounds = new google.maps.LatLngBounds();
-        $(buildingsInTour).each(function(i, building) {
-          var coords, marker;
-          coords = building.coords;
-          marker = new google.maps.Marker({
-            map: mapObj,
-            position: coords,
-            id: building._id,
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              fillColor: tourColor,
-              fillOpacity: 1,
-              strokeWeight: 0,
-              scale: 5
-            }
-          });
-          bounds.extend(coords);
-          return marker.addListener('click', clickMarker);
+      if ($map.length) {
+        mapObj = new google.maps.Map($map[0], {
+          scrollwheel: false,
+          zoom: 12
         });
-        mapObj.fitBounds(bounds);
-        mapObj.setCenter(bounds.getCenter());
-        return $mapWrap.addClass('loaded');
-      });
+        return google.maps.event.addListenerOnce(mapObj, 'idle', function() {
+          var bounds;
+          bounds = new google.maps.LatLngBounds();
+          $(buildingsInTour).each(function(i, building) {
+            var coords, marker;
+            coords = building.coords;
+            marker = new google.maps.Marker({
+              map: mapObj,
+              position: coords,
+              id: building._id,
+              icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: tourColor,
+                fillOpacity: 1,
+                strokeWeight: 0,
+                scale: 5
+              }
+            });
+            bounds.extend(coords);
+            return marker.addListener('click', clickMarker);
+          });
+          mapObj.fitBounds(bounds);
+          mapObj.setCenter(bounds.getCenter());
+          return $mapWrap.addClass('loaded');
+        });
+      }
     };
     clickMarker = function() {
       var id, marker;
