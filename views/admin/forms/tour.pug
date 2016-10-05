@@ -11,7 +11,9 @@
 -var buildings = models['buildings']
 if(buildings && object)
 	.row.sortable.buildings
-		label= 'Buildings'
+		label
+			| Buildings 
+			span.instruct Drag to reorder
 		ul
 			for building in buildings
 				if(building.tour && building.tour.slug == object.slug)

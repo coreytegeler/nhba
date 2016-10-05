@@ -13,6 +13,9 @@ body.admin {
 			font-size: 1em;
 			line-height: 1.5em;
 			display: table;
+			.instruct {
+				opacity: .25;
+			}
 		}
 		input, textarea, select {
 			font-size: $mediumFont;

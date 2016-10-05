@@ -24,7 +24,9 @@ mixin input(name, label, type, value, required)
 	input(name=name, class=name, type=type, value=(value ? value : ''), required=(required ? true : false))
 
 mixin images(name, images, required)
-	label(name=name) Images
+	label(name=name)
+		| Images 
+		span.instruct Drag to reorder
 	.images.sortable
 		input(name='images', type='text', value=images)
 		.image.edit.sample
