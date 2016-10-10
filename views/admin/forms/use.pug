@@ -3,5 +3,8 @@
 .row
 	label= 'Use Type'
 	.module.checkboxes(data-type='checkboxes', data-model='useType', class='useType', data-checked=(object ? object.useType : ''))
-		+checkbox('useType', 'None', '', false, ((object && object.useType == '') || !object ? true : false))
+		+checkbox('useType', 'Commercial', 'Commercial', false, (object && object.useType == 'Commercial' ? true : false))
+		+checkbox('useType', 'Institutional', 'Institutional', false, (object && object.useType == 'Institutional' ? true : false))
+		+checkbox('useType', 'Industrial', 'Industrial', false, (object && object.useType == 'Industrial' ? true : false))
 		+checkbox('useType', 'Residential', 'Residential', false, (object && object.useType == 'Residential' ? true : false))
+		+checkbox('useType', 'Mixed Use', 'Mixed Use', false, (object && object.useType == 'Mixed Use' ? true : false))

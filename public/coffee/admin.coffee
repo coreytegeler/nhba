@@ -9,9 +9,9 @@ $ ->
 		$body.on 'click',  '.quicky .close', closeQuicky
 		$body.on 'submit', '.quicky form', quickySave
 		$body.on 'click',  'a.delete', deleteObject
-		$body.on 'click', '.select .display', openSelect
-		$body.on 'change', '.select .options input', updateSelectValue
-		$body.on 'change', '.updateTemplate input', updateTemplate
+		# $body.on 'click', '.select .display', openSelect
+		# $body.on 'change', '.select .options input', updateSelectValue
+		# $body.on 'change', '.updateTemplate input', updateTemplate
 		$body.on 'click',  '.button.clear', () ->
 			$('.images input:text').val('[]')
 			$('.images .image:not(.sample)').remove()
@@ -62,7 +62,10 @@ $ ->
 		$('form .populate').each (i, container) ->
 			modelType = $(container).data('model')
 			containerType = $(container).data('type')
-			addQuicky(modelType)
+			label = $(container).prev('label').text()
+			addQuicky(modelType, null, label)
+			if(modelType == 'historicUse')
+				modelType = 'use'
 			$.ajax
 				url: '/api/?type='+modelType+'&format=json',
 				error:  (jqXHR, status, error) ->
@@ -92,42 +95,45 @@ $ ->
 		if(object.buildings)
 			valueObject['buildings'] = object.buildings
 		value = JSON.stringify(valueObject)
-		$input.attr('value', value).attr('id', object.slug+'Checkbox')
-		$label.text(object.name).attr('for', object.slug+'Checkbox')
 		model = $(container).data('model')
+		$input.attr('value', value).attr('id', model+'-'+object.slug)
+		$label.text(object.name).attr('for', model+'-'+object.slug)
 		if !checked
 			checked = $(container).data('checked')
 		if checked
 			if $.isArray(checked)
 				for checkedValue in checked
-					if valueObject.id == checkedValue.id
+					console.log valueObject.id, JSON.parse(checkedValue).id
+					if valueObject.id == JSON.parse(checkedValue).id
 						$input.attr('checked', true)
 			else if (valueObject.id == checked || valueObject.id == checked.id) 
 				$input.attr('checked', true)
 		$clone
 			.attr('data-slug', object.slug)
 			.appendTo(container)
+		$(container).addClass('loaded')
 		return
 
-	openSelect = (event) ->
-		$select = $(event.target).parents('.select')
-		datetype = $select.attr('data-datetype')
-		$options = $select.find('.options')
-		$select.siblings('.select').find('.options').removeClass('open')
-		$options.toggleClass('open')
-		return
+	# openSelect = (event) ->
+	# 	$select = $(event.target).parents('.select')
+	# 	datetype = $select.attr('data-datetype')
+	# 	$options = $select.find('.options')
+	# 	$select.siblings('.select').find('.options').removeClass('open')
+	# 	$options.toggleClass('open')
+	# 	return
 
-	updateSelectValue = (event) ->
-		option = event.target 
-		value = option.value
-		$select = $(option).parents('.select')
-		$options = $select.find('.options')
-		$display = $select.find('.display')
-		$display.html(value)
-		$options.removeClass('open')
-		return
+	# updateSelectValue = (event) ->
+	# 	option = event.target 
+	# 	value = option.value
+	# 	console.log(value)
+	# 	$select = $(option).parents('.select')
+	# 	$options = $select.find('.options')
+	# 	$display = $select.find('.display')
+	# 	$display.html(value)
+	# 	$options.removeClass('open')
+	# 	return
 
-	addQuicky = (type, id) ->
+	addQuicky = (type, id, label) ->
 		url = '/admin/'+type+'/quicky/'
 		if(id)
 			url += id
@@ -139,7 +145,7 @@ $ ->
 			success: (html, status, jqXHR) ->
 				if(!html)
 					return
-				return $('.quickies').append(html)
+				$('.quickies').append(html)
 		return
 
 	openQuicky = () ->
@@ -152,13 +158,12 @@ $ ->
 		else
 			$quicky = $('.quicky.edit[data-id="'+id+'"]')
 		$quicky.addClass('open')
-		$main.addClass('noscroll')
+		$quicky.find('input[name="name"]').focus()
 		return
 
 	closeQuicky = () ->
 		$quicky = $(this).parents('.quicky')
 		$quicky.removeClass('open')
-		$main.removeClass('noscroll')
 		return
 
 	quickySave = (event) ->
@@ -191,17 +196,16 @@ $ ->
 			processData: processData,
 			contentType: contentType,
 			error: (jqXHR, status, error) ->
-				console.log(jqXHR, status, error)
+				console.log(postUrl, jqXHR, status, error)
 				alert('Error, check browser console logs')
 			success: (object, status, jqXHR) ->
 				type = $quicky.data('model')
 				checkboxes = $('.checkboxes.'+type)
-				$quicky.removeClass('open')
-				$main.removeClass('noscroll')
 				if(checkboxes.length)
 					addCheckbox(checkboxes, object, object._id)
 				else if(type == 'image')
 					addImage(object)
+				$quicky.removeClass('open')
 		return
 
 	addImage = (object) ->
@@ -244,11 +248,11 @@ $ ->
 				$imagesWrapper.append($clone)
 			newImg.src = imageObject.original;
 
-	updateTemplate = (event) ->
-		$input = $(event.target)
-		value = $input.val()
-		$('[data-template]').removeClass('show')
-		$('[data-template="'+value+'"]').addClass('show')
+	# updateTemplate = (event) ->
+	# 	$input = $(event.target)
+	# 	value = $input.val()
+	# 	$('[data-template]').removeClass('show')
+	# 	$('[data-template="'+value+'"]').addClass('show')
 
 	deleteObject = (event) ->
 		if(!confirm('Are you sure you want to delete this?'))

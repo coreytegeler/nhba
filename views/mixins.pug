@@ -21,7 +21,7 @@ mixin input(name, label, type, value, required)
 	//- DELETE THIS WHEN SITE IS READY
 	if(label)
 		label(name=name) #{label}
-	input(name=name, class=name, type=type, value=(value ? value : ''), required=(required ? true : false))
+	input(name=name, class=name, type=type, value=(value ? value : ''), required=(required ? true : false), autocomplete=false)
 
 mixin images(name, images, required)
 	label(name=name)
@@ -52,7 +52,7 @@ mixin checkboxes(type, name, multiple, addable)
 	.module.checkboxes.populate(data-type='checkboxes', data-model=type, class=type, data-checked=(object ? object[type] : ''))
 		+checkbox(type, null, null, multiple, false)
 	if(addable)
-		.add.button(data-model=type) Add #{name}
+		.add.button(data-model=type) New
 
 mixin checkbox(type, name, value, multiple, checked)
 	if(type == 'color')
@@ -60,8 +60,8 @@ mixin checkbox(type, name, value, multiple, checked)
 	else
 		-var style = ''
 	.item.checkbox(class=(value || value != null ? value : 'sample'), style=style)
-		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : ''), name=type, id=(value ? value+'Checkbox' : ''), checked=checked)
-		label(class=type, data-pop='name', for=(value ? value+'Checkbox' : '')) #{(name ? name : '')}
+		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : ''), name=type, id=(value ? type+'-'+value : ''), checked=checked)
+		label(class=type, data-pop='name', for=(value ? type+'-'+value : '')) #{(name ? name : '')}
 
 mixin dateselect(months, days)
 	.input

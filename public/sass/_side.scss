@@ -155,9 +155,12 @@ aside {
 						-webkit-appearance: none;
 						border: 1px solid black;
 						outline: none;
-						font-family: Arial;
+						font-family: Arial Narrow, Arial;
 						background: transparent;
 						@include placeholder(black);
+						&:focus {
+							@include placeholder(transparent);
+						}
 					}
 				}
 			}
@@ -204,9 +207,6 @@ aside {
 		width: 100%;
 		display: table;
 		margin-bottom: 2em;
-		&.paragraphs {
-			line-height: 1.3em;
-		}
 	}
 	#filter, #index {
 		line-height: 1.1em;
@@ -320,6 +320,7 @@ aside {
 		.toggler {
 			display: table;
 			float: left;
+			margin-right: .5em;
 			&.selected {
 				border-bottom: 2px dotted black;
 			}

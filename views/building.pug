@@ -10,7 +10,7 @@ include  ./mixins
 	.group.toggle
 		if(object.images)
 			.toggler(data-group='photos', class='selected')= 'Photos'
-			.toggler= ' / '
+			.toggler= '/'
 			.toggler(data-group='map')= 'Map'
 
 	.group.togglables
@@ -40,37 +40,37 @@ include  ./mixins
 				li.address
 					span.label= 'Address: '
 					span.value= object.address
-			if(object.style)
-				li.style
-						span.label= 'Style: '
-						span.style= object.style.name
 			if(object.dateConstructed)	
 				li.dateConstructed
-					span.label= 'Constructed: '
+					span.label= 'Year Built: '
 					span.value= object.dateConstructed
 			if(object.architect)	
 				li.architect
 					span.label= 'Architect: '
 					span.value= object.architect
-			if(object.use)	
+			if(object.style)
+				li.style
+						span.label= 'Style: '
+						span.style= object.style.name
+			if(object.client)	
+				li.client
+					span.label= 'Client: '
+					span.value= object.client
+			if(object.use && object.use.name)	
 				li.use
-					span.label= 'Use: '
+					span.label= 'Use (present): '
 					span.value= object.use.name
-			if(object.originalUse)	
-				li.use
-					span.label= 'Original Use: '
-					span.value= object.originalUse
-			if(object.tour && object.tour.name)	
-				li.tour
-					span.label= 'Tour: '
-					span.value= object.tour.name
+			//- if(object.historicUse)	
+			//- 	li.use
+			//- 		span.label= 'Original Use: '
+			//- 		span.value= object.historicUse
 			if(object.neighborhood && object.neighborhood.name)	
 				li.neighborhood
 					span.label= 'Neighborhood: '
 					span.value= object.neighborhood.name
 			if(object.researchBy)
 				li.research
-					span.label= 'Researched by: '
+					span.label= 'Researcher: '
 					span.value= object.researchBy+(object.researchYear ? ', '+object.researchYear : '')
 	.group.paragraphs !{object.research}
 
@@ -95,9 +95,14 @@ include  ./mixins
 								.image
 									+thumb(building)
 								.meta
-									.name= building.name
-									.address= building.address
+									if(building.name != building.address)
+										.name= building.name
+									.address= 'Address: ' + building.address
+									if(building.dateConstructed)
+										.dateConstructed= 'Year Built: ' + building.dateConstructed
 									if(building.style)
-										.style= building.style.name
-									.era= building.era
-									.researchBy= 'Contributed by ' + building.researchBy
+										.style= 'Style: ' + building.style.name
+									if(building.currentUse && building.currentUse.name)
+										.currentUse= 'Use (current): ' + building.currentUse.name
+									if(building.neighborhood && building.neighborhood.name)
+										.style= 'Neighborhood: ' + building.neighborhood.name

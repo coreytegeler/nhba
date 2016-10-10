@@ -6,6 +6,11 @@ var Tour = require('./models/tour')
 var Style = require('./models/style')
 var Use = require('./models/use')
 var Material = require('./models/material')
+var Structure = require('./models/structure')
+var RoofType = require('./models/rooftype')
+var RoofMaterial = require('./models/roofmaterial')
+var Threat = require('./models/threat')
+var Environment = require('./models/environment')
 var Term = require('./models/term')
 var Image = require('./models/image')
 var slugify = require('slug')
@@ -18,7 +23,7 @@ var async = function(func, req, res) {
         if(err)
           callback(err)
         callback(null, data)
-      }).sort({'number':1})
+      }).sort({'address':1})
     },
     function(callback) {
       Neighborhood.find({}, function(err, data) {
@@ -64,13 +69,6 @@ var async = function(func, req, res) {
       }).sort({'name':1})
     },
     function(callback) {
-      Material.find({}, function(err, data) {
-        if(err)
-          callback(err)
-        callback(null, data)
-      }).sort({'name':1})
-    },
-    function(callback) {
       Term.find({}, function(err, data) {
         if(err)
           callback(err)
@@ -79,15 +77,14 @@ var async = function(func, req, res) {
     }
   ],
   function(err, results) { 
-    var glossary = alphaSort(results[3].concat(results[6]))
+    var glossary = alphaSort(results[3].concat(results[5]))
     var models = {
       'buildings': results[0],
       'neighborhood': results[1],
       'tour': results[2],
       'style': results[3],
       'use': results[4],
-      'material': results[5],
-      'term': results[6],
+      'term': results[5],
       'glossary': glossary
     }
     func(results, err, models)
@@ -170,10 +167,20 @@ var getModel = function(type) {
       return Use
     case 'material':
       return Material
+    case 'structure':
+      return Structure
     case 'term':
       return Term
     case 'image':
       return Image
+    case 'roofType':
+      return RoofType
+    case 'roofMaterial':
+      return RoofMaterial
+    case 'threat':
+      return Threat
+    case 'environment':
+      return Environment
   }
 }
 

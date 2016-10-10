@@ -29,8 +29,9 @@ body.admin {
 			-webkit-appearance: none;
 			border: 1px solid black;
 			outline: none;
-			font-family: Arial;
+			font-family: inherit;
 			font-weight: 400;
+			line-height: 1.2em;
 			background: transparent;
 			&[type="text"],
 			&[type="email"], 
@@ -92,6 +93,10 @@ body.admin {
 		}
 		[data-template] {
 			display: none;
+		}
+		.buttons {
+			display: table;
+	    margin-top: 3em;
 		}
 		.button {
 			display: block;
@@ -164,10 +169,13 @@ body.admin {
 				font-size: inherit;
 				line-height: 1.1em;
 				display: table;
-				padding: 0.5em;
+				padding: 0.5em 0.5em 0 0.5em;
 				&:active, &:hover {
 					cursor: pointer;
 				}
+			}
+			&:last-child label {
+				padding: 0.5em;
 			}
 			input[type="checkbox"], input[type="radio"] {
 				display: none;
@@ -265,9 +273,10 @@ body.admin {
 		.image {
 			height: 100px;
 			display: inline-block;
-			margin: 0 0.2em 0 0;
+			margin: 0 .5em 0 0;
 			padding: 0;
 			cursor: pointer;
+			vertical-align: bottom;
 			&.sample {
 				display: none;
 			}
@@ -288,15 +297,18 @@ body.admin {
 		display: none;
 		background: rgba(255,255,255,0.95);
 		.inner {
-			width: calc(100% - 6em);
+			width: 100%;
 			max-width: 600px;
 			height: 100%;
 	    margin: auto;
 	    display: table;
 	    form {
-	    	display: table-cell;
-	    	vertical-align: middle;
+	    	width: 100%;
 	    	padding: 0;
+	    	margin: 0;
+	    	label {
+	    		text-transform: capitalize;
+	    	}
 	    	img {
 	    		max-width: 100%;
 	    		display: table;
@@ -314,6 +326,7 @@ body.admin {
 			position: absolute;
 			right: 1em;
 			top: 1em;
+			z-index: 100;
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: contain;

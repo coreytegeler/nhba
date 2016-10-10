@@ -335,18 +335,23 @@ aside {
 				}
 			}
 			&.selected {
-				background: transparent;
-				img, .img {
-					opacity: 0;
-				}
-				.image {
-					background: transparent !important;
-					border-color: black;
-				}
+				
 			}
 			&.hidden {
 				display: none;
 			}
+		}
+	}
+}
+body:not(.full) {
+	.building.selected {
+		background: transparent;
+		img, .img {
+			opacity: 0;
+		}
+		.image {
+			background: transparent !important;
+			border-color: black;
 		}
 	}
 }

@@ -17,8 +17,9 @@ module.exports = function(app) {
       getTourSection(id, format, res) 
     else if(type == 'building' && format == 'html')
       getBuildingSection(id, format, res)  
-    else
+    else if(model)
       model.find(query, function(err, response) {
+        // console.log(response)
         if(err)
           callback(err)
         return res.json(response)

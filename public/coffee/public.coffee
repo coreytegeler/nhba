@@ -91,7 +91,7 @@ window.initPublic = ->
 		if($grid.is('.dragging'))
 			return
 		building = $(self).parents('.building')[0]
-		if($(building).is('.selected'))
+		if($(building).is('.selected') && !$body.is('.full'))
 			return
 		id = building.dataset.id
 		url = self.href

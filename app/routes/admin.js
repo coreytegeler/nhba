@@ -6,6 +6,11 @@ var Neighborhood = require('../models/neighborhood')
 var Style = require('../models/style')
 var Use = require('../models/use')
 var Material = require('../models/material')
+var Structure = require('../models/structure')
+var RoofType = require('../models/rooftype')
+var RoofMaterial = require('../models/roofmaterial')
+var Threat = require('../models/threat')
+var Environment = require('../models/environment')
 var Term = require('../models/term')
 var Image = require('../models/image')
 var tools = require('../tools')
@@ -114,11 +119,11 @@ module.exports = function(app) {
       case 'material':
         var object = new Material(data)
         break 
+      case 'structure':
+        var object = new Structure(data)
+        break 
     }
     if(type == 'building') {
-      if(data.tour)
-        console.log(data.tour.length)
-
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
           console.log('Failed:')
@@ -285,6 +290,57 @@ module.exports = function(app) {
       return
   })
 
+  app.post('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
+    var data = req.body
+    var type = tools.singularize(req.params.type)
+    var errors    
+    switch(type) {
+      case 'neighborhood':
+        var object = new Neighborhood(data)
+        break
+      case 'tour':
+        var object = new Tour(data)
+        break
+      case 'style':
+        var object = new Style(data)
+        break
+      case 'use':
+        var object = new Use(data)
+        break
+      case 'material':
+        var object = new Material(data)
+        break
+      case 'structure':
+        var object = new Structure(data)
+        break
+      case 'roofType':
+        var object = new RoofType(data)
+        break
+      case 'roofMaterial':
+        var object = new RoofMaterial(data)
+        break
+      case 'threat':
+        var object = new Threat(data)
+        break
+      case 'environment':
+        var object = new Environment(data)
+        break
+      default:
+        return
+    }
+    object.save(function(err) {
+      if(!err) {
+        console.log('Created:')
+        console.log(object)
+        return res.json(object)
+      } else {
+        console.log('Failed:')
+        console.log(err)
+        return res.json(err)
+      }
+    })
+  })
+
   app.get('/admin/image/quicky/:id', tools.isLoggedIn, function(req, res) {
     var id = req.params.id
     Image.findById(id, function(err, image) {
@@ -365,41 +421,6 @@ module.exports = function(app) {
         console.log('Updated:')
         console.log(image)
         res.json(image)
-      } else {
-        console.log('Failed:')
-        console.log(err)
-        return res.json(err)
-      }
-    })
-  })
-
-  app.post('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
-    var data = req.body
-    var type = tools.singularize(req.params.type)
-    var errors    
-    switch(type) {
-      case 'neighborhood':
-        var object = new Neighborhood(data)
-        break
-      case 'tour':
-        var object = new Tour(data)
-        break
-      case 'style':
-        var object = new Style(data)
-        break
-      case 'use':
-        var object = new Use(data)
-      case 'material':
-        var object = new Material(data)
-        break
-      default:
-        return
-    }
-    object.save(function(err) {
-      if(!err) {
-        console.log('Updated:')
-        console.log(object)
-        return res.json(object)
       } else {
         console.log('Failed:')
         console.log(err)
