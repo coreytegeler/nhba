@@ -263,7 +263,10 @@ module.exports = function(app) {
   app.get('/admin/:type/remove/:id', tools.isLoggedIn, function(req, res) {
     var type = req.params.type
     var id = req.params.id
-    var model = tools.getModel(type)
+    if(type == 'user' || type == 'users')
+      var model = User
+    else
+      var model = tools.getModel(type)
     model.findByIdAndRemove(id, function(err, object) {
       if(err)
         return console.log(err)
