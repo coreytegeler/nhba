@@ -140,7 +140,7 @@ module.exports = function(app, passport) {
       var slug = slugify(data.name, {lower: true})
       data.slug = slug
     }
-    User.findOne({_id: id}, function(err, object) {
+    User.findOneAndUpdate({_id: id}, data, {new: true, runValidators: true}, function(err, object) {
       if(err) {
         console.log('Error on user update', err)
         res.render('admin/edit.pug', {
@@ -155,22 +155,24 @@ module.exports = function(app, passport) {
 	        return res.redirect('/admin/profile')
 	      }
     		object.setPassword(data.password, function(err) {
-          if (err) {
+          if(err) {
           	console.log('Error on password update', err)
-          	return res.redirect('/admin/profile')
+          	return res.redirect('/admin/user/edit/'+object.slug)
           }
-          object.save(function(error){
-            if(err)
-              console.log('Error on user update', err)
-            req.session.save(function (err) {
+          if(req.user._id == id) {
+	          req.session.save(function (err) {
 	            if (err) {
 	            	console.log('Error on user session save', err)
 	              return next(err);
+	            } else {
+	            	console.log('Updated user and password', object)
+	            	return res.redirect('/admin/user/edit/'+object.slug)
 	            }
-			        console.log('Updated user', object)
-			        res.redirect('/admin/users')
 	          })
-          })
+          } else {
+          	console.log('Updated user', object)
+		        return res.redirect('/admin/user/edit/'+object.slug)
+		       }
         })
       }
     })
