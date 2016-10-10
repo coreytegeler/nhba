@@ -92,17 +92,16 @@ var async = function(func, req, res) {
 }
 
 var isLoggedIn = function(req, res, next) {
-  return next()
+  // return next()
   if(req.isAuthenticated())
     return next();
   res.redirect('/admin/login');
 }
 
 var isAdmin = function(req, res, next) {
-  return next()
+  // return next()
   if(req.isAuthenticated())
-    if(req.user) {
-       // && req.user.admin
+    if(req.user && req.user.admin) {
       return next()
     } else {
       return res.redirect('/admin/')
