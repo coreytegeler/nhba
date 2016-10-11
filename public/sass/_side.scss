@@ -1,5 +1,8 @@
 aside {
 	width: $sideWidth;
+	@media (max-width: 600px) {
+		width: 90vw;
+	}
 	height: 100%;
 	position: fixed;
 	top: 0;
@@ -34,7 +37,7 @@ aside {
 		border-bottom: 2px dotted black;
 	}
 	header {
-		width: calc(#{$sideWidth} - #{$sidePad}*2);
+		width: calc(100% - #{$sidePad}*2);
 		position: absolute;
 		left: 0;
 		top: 0;

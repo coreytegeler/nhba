@@ -37,17 +37,13 @@ $ ->
 		editor = new MediumEditor('textarea', {
 			buttons: ['italic', 'underline', 'anchor'],
 			placeholder: false,
-			autoLink: true,
 			imageDragging: false,
 			disableDoubleReturn: true,
+			targetBlank: true,
 			paste: {
 				cleanPastedHTML: true,
 				cleanAttrs: ['style']
-			},
-			anchor: {
-		  	targetCheckbox: true
-		  	targetCheckboxText: ''
-		  }
+			}
 		})
 		$(editor.elements).each () ->
 			$(this).addClass('editable')

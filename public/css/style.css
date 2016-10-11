@@ -8,6 +8,9 @@ aside {
   line-height: 1.2em;
   clear: both;
   background: #ffcc86; }
+  @media (max-width: 600px) {
+    aside {
+      width: 90vw; } }
   aside.noBG, aside.noBG header {
     background: transparent; }
   aside h1, aside h2, aside h3 {
@@ -27,7 +30,7 @@ aside {
     display: inline;
     border-bottom: 2px dotted black; }
   aside header {
-    width: calc(calc(15em + 20vw) - 1em*2);
+    width: calc(100% - 1em*2);
     position: absolute;
     left: 0;
     top: 0;
@@ -562,6 +565,9 @@ html {
   font-weight: bold;
   font-size: 21px;
   line-height: 1.5em; }
+  @media (max-width: 600px) {
+    html {
+      font-size: 16px; } }
   html * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
