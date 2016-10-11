@@ -1,4 +1,5 @@
 var Async = require('async')
+var Info = require('./models/info')
 var User = require('./models/user')
 var Building = require('./models/building')
 var Neighborhood = require('./models/neighborhood')
@@ -53,7 +54,7 @@ var async = function(func, req, res) {
         uses = {}
         for(var i = 0; i < data.length; i++) {
           useType = data[i].useType
-          if(useType) {
+          if(useType && useType.length) {
             if(!uses[useType])
               uses[useType] = {
                 name: useType,
@@ -61,7 +62,7 @@ var async = function(func, req, res) {
               }
             uses[useType].uses[data[i].slug] = data[i]
           } else {
-            uses['Zzz'] = data[i] 
+            uses['z'+i] = data[i] 
           }
         }
         uses = alphaSortObject(uses)
@@ -74,6 +75,13 @@ var async = function(func, req, res) {
           callback(err)
         callback(null, data)
       }).sort({'name':1})
+    },
+    function(callback) {
+      Info.find({}, function(err, data) {
+        if(err)
+          callback(err)
+        callback(null, data)
+      })
     }
   ],
   function(err, results) { 
@@ -85,21 +93,22 @@ var async = function(func, req, res) {
       'style': results[3],
       'use': results[4],
       'term': results[5],
-      'glossary': glossary
+      'glossary': glossary,
+      'info': results[6]
     }
     func(results, err, models)
   });
 }
 
 var isLoggedIn = function(req, res, next) {
-  // return next()
+  return next()
   if(req.isAuthenticated())
     return next();
   res.redirect('/admin/login');
 }
 
 var isAdmin = function(req, res, next) {
-  // return next()
+  return next()
   if(req.isAuthenticated())
     if(req.user && req.user.admin) {
       return next()
@@ -150,6 +159,8 @@ var pluralize = function(string) {
 var getModel = function(type) {
   var type = singularize(type)
   switch(type) {
+    case 'info':
+      return Info
     case 'user':
       return User
     case 'building':
@@ -191,6 +202,8 @@ var getSideSection = function(type) {
     return 'filter'
   } else if(type == 'term') {
     return 'glossary'
+  } else {
+    return type
   }
 }
 

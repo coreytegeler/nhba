@@ -22,6 +22,8 @@ block body
 				include ../admin/forms/material.pug
 			when 'term'
 				include ../admin/forms/term.pug
+			when 'info'
+				include ../admin/forms/info.pug
 			default
 				- var noForm = true
 				| No form for "#{loadedType.s}"

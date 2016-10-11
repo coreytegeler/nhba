@@ -44,6 +44,13 @@ aside {
 								font-size: 0.8em;
 								opacity: 0;
 								.zoom {
+									width: 1.25em;
+								  height: 1.25em;
+								  display: inline-block;
+								  background-image: url(/img/zoom.svg);
+								  background-size: contain;
+								  background-repeat: no-repeat;
+								  background-position: center;
 									opacity: .25;
 									&::before {
 										content: ' ';
@@ -113,6 +120,12 @@ aside {
 						vertical-align: middle;
 						line-height: 1;
 						text-align: center;
+					}
+				}
+				.text {
+					width: 100%;
+					a {
+						display: inline;
 					}
 				}
 			}
@@ -259,10 +272,6 @@ aside {
 	.grid {
 		pointer-events: none;
 	}
-	.close {
-		opacity: 0;
-		pointer-events: none;
-	}
 }
 .gridWrap {
 	width: 100%;
@@ -275,13 +284,14 @@ aside {
 	.grid {
 		min-width: 100%;
 		min-height: 100%;
-		display: table;
 		position: absolute;
 		z-index: 9;
-		display: table;
 		margin: auto;
-		// opacity: 0;
-		padding-left: $sideWidth;
+		display: flex;
+		flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: $sideWidth;
 		&.show {
 			opacity: 1;
 		}
@@ -303,6 +313,7 @@ aside {
 			height: calc(#{$gridCell} + 4em);
 			padding: 2em;
 			display: table;
+			margin: auto;
 			float: left;
 			a {
 				display: table;
@@ -353,5 +364,8 @@ body:not(.full) {
 			background: transparent !important;
 			border-color: black;
 		}
+	}
+	.button.open {
+		display: none;
 	}
 }

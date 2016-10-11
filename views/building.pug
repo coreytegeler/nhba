@@ -29,7 +29,7 @@ include  ./mixins
 												img(src=image.medium)
 									.caption
 										| #{image.caption}
-										a.zoom(href=image.original, target='_blank')='Full Image'
+										a.zoom(href=image.original, target='_blank')
 		.mapWrap.togglable(data-group='map', class=(!hasImages ? 'show' : ''))
 			.map
 			.loader
@@ -76,9 +76,11 @@ include  ./mixins
 
 	.group.contribute
 		.index
-			.circle= '+'
+			a(href='mailto:email@email.com').circle= '+'
 		.text
-			a(href='mailto:email@email.com')= 'We want your contributions. Email email@email.com with any photos or audio you\'d like to add to this building entry.'
+			| We want your contributions. Email 
+			a(href='mailto:email@email.com')= 'email@email.com'
+			|  with any photos or audio you'd like to add to this building entry.'
 
 	if(object.tour && tourBuildings)
 		if(tourBuildings.length)

@@ -7,7 +7,7 @@ aside {
 	z-index: 2000;
   line-height: 1.2em;
 	clear: both;
-	background: $yellow;
+	background: $tan;
 	&.noBG, &.noBG header {
 		background: transparent;
 	}
@@ -40,7 +40,7 @@ aside {
 		top: 0;
 		z-index: 101;
 		padding: $sidePad;
-		background: $yellow;
+		background: $tan;
 		.tabs {
 			display: flex;
 			flex-direction: row;
@@ -49,6 +49,7 @@ aside {
 				float: left;
 				margin-right: 1em;
 				margin-left: 0.3em;
+				background-color: $tan;
 				&:first-child {
 					padding-left: 0;
 					margin-left: 0;
@@ -91,7 +92,7 @@ aside {
 							}
 						}
 						&:hover {
-							color: $yellow;
+							color: $tan;
 							background-color: black;
 						}
 						&:first-child {
@@ -181,12 +182,12 @@ aside {
 		position: relative;
 		section {
 			width: calc(100% - #{$sidePad}*2);
-			height: 100%;
-			padding: 0 $sidePad;
+			height: calc(100% - #{$sidePad}*2);
+			padding: 0 $sidePad #{$sidePad*2} $sidePad;
 			position: absolute;
 			left: 0;
 			top: 0;
-			background: $yellow;
+			background: $tan;
 			pointer-events: none;
 			overflow: auto;
 			opacity: 0;
@@ -210,7 +211,6 @@ aside {
 	}
 	#filter, #index {
 		line-height: 1.1em;
-		position: relative;
 		ul.nested {
 			width: 100%;
 			margin: 0;
@@ -278,9 +278,8 @@ aside {
 			position: absolute;
 			right: $sidePad;
 			top: .25em;
-			font-size: 1em;
-			opacity: .25;
-			display: none;
+		  opacity: .25;
+		  display: none;
 			&:hover {
 				cursor: pointer;
 			}
@@ -312,6 +311,13 @@ aside {
 			margin: 0;
 		}
 	}
+	#info {
+		.colophon {
+			p {
+				margin-bottom: 0;
+			}
+		}
+	}
 	.full & {
 		left: calc(-15em - 20vw);
 	}
@@ -329,4 +335,20 @@ aside {
 			}
 		}
 	}
+}
+.button.open {
+  width: 1.5em;
+  height: 1.5em;
+  position: fixed;
+	left: $sidePad;
+	top: $sidePad;
+	z-index: 999999;
+  padding: 1px;
+  background-image: url(/img/plus.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  &:hover {
+  	cursor: pointer;
+  }
 }

@@ -1,3 +1,4 @@
+.button.open
 aside
 	.shadow
 		header
@@ -9,7 +10,7 @@ aside
 						input(name='search', type='text', placeholder='Search')
 				.buttons
 					.tab.info.button(data-section='info')
-					.tab.close.button(data-section='close')
+					.tab.close.button
 		.inner
 			section#info
 				h1= 'New Haven Building Archive'
@@ -17,21 +18,8 @@ aside
 					.mapWrap.show
 						.map
 						.loader
-				.group.about
-					p= 'Cras blandit porttitor hendrerit. Integer auctor est nisl, quis consectetur dui sagittis vel. Nullam mollis turpis in nisi ornare vehicula. Nullam a enim tortor. Cras non pellentesque lorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
-					p= 'Wuis consectetur dui sagittis vel. Nullam mollis turpis in nisilorem. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesuada mauris a, con- sequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio. Nullam elementum turpis eget nunc porta, sed volutpat ante rhoncus. Aenean a ex luctus, malesua- da mauris a, consequat ipsum. Sed fringilla tortor id suscipit porttitor. Mauris vel laoreet dui. Pellentesque aliquet sem ac luctus tincidunt. Phasellus eu enim odio.'
-					ul
-						li Project Manager: Elihu Rubin 
-						li Design:&nbsp;
-							a(href='http://benfehrmanlee.info' target='_blank')= 'Ben Fehrman-Lee'
-							| &nbsp;&amp;&nbsp;
-							a(href='http://www.sashaportis.com/' target='_blank')= 'Sasha Portis'
-						li Development:&nbsp;
-							a(href='http://coreytegeler.com' target='_blank')= 'Corey Tegeler'
-						li Sponsored by:&nbsp;
-							a(href='http://web.library.yale.edu/dhlab' target='_blank')= 'Yale Digital Humanities Lab'
-							| &nbsp;&amp;&nbsp;
-							a(href='http://architecture.yale.edu/' target='_blank')= 'Yale School of Architecture'
+				for info in models['info']
+					.group(class=info.slug) !{info.text}
 						//- li Contributors: 
 						//- 	br
 						//- 	for building, i in models.buildings
@@ -47,7 +35,7 @@ aside
 				ul.group.filters.nested
 					if models
 						each model, name in models
-							if(name != 'buildings' && name != 'glossary' &&  name != 'term' && name != 'use')
+							if(name != 'buildings' && name != 'glossary' &&  name != 'term' && name != 'use' && name != 'info')
 								li(class=name)
 									.title(data-slug=name)= uppercase(name)
 									ul(class=name)
@@ -69,15 +57,15 @@ aside
 							-var uses = models['use']
 							for use, useType in uses
 								li.useType.withSub
-									.title(data-slug=useType)= uses[useType].name
-									ul.sub(class=useType)
-										if(uses[useType].uses)
+									if(uses[useType].uses)
+										.title(data-slug=useType)= uses[useType].name
+										ul.sub(class=useType)
 											for use in uses[useType].uses
 												li(class=use.slug)
 													a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
-										else
-											li(class=use.slug)
-												a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+									else
+										li(class=use.slug)
+											a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
 
 			section#glossary
 				-var currentAlpha

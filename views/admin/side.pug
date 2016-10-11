@@ -17,7 +17,7 @@ aside
 							a.tab.logout(href='/admin/logout')
 								span= 'Logout'
 
-					.tab.info.button(data-section='info')
+					a(href='/admin/info/').tab.info.button
 			.inner
 				section#glossary(class=(sideSection == 'glossary' ? 'show' : ''))
 					ul.group.edit
@@ -79,7 +79,7 @@ aside
 								-var uses = models['use']
 								for use, useType in uses
 									li.useType.withSub
-										if(uses[useType].uses)
+										if(useType.length && uses[useType].uses)
 											.title(data-slug=useType)= uses[useType].name
 											ul.sub(class=useType+' '+(uses[useType].uses[loadedSlug] ? 'open' : ''))
 												for use in uses[useType].uses

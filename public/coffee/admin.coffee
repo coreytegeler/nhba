@@ -35,15 +35,19 @@ $ ->
 		sortable.disableSelection()
 
 		editor = new MediumEditor('textarea', {
-			buttons: ['italic', 'underline'],
+			buttons: ['italic', 'underline', 'anchor'],
 			placeholder: false,
 			autoLink: true,
 			imageDragging: false,
-			disableDoubleReturn: false,
+			disableDoubleReturn: true,
 			paste: {
 				cleanPastedHTML: true,
 				cleanAttrs: ['style']
-			}
+			},
+			anchor: {
+		  	targetCheckbox: true
+		  	targetCheckboxText: ''
+		  }
 		})
 		$(editor.elements).each () ->
 			$(this).addClass('editable')
@@ -161,9 +165,15 @@ $ ->
 		$quicky.find('input[name="name"]').focus()
 		return
 
-	closeQuicky = () ->
-		$quicky = $(this).parents('.quicky')
+	closeQuicky = (quicky) ->
+		if(quicky.length)
+			$quicky = $(quicky)
+		else
+			$quicky = $(this).parents('.quicky')
+		$quicky.find('input:not([type="submit"])').each (i, input) ->
+			$(input).val('')
 		$quicky.removeClass('open')
+		$quicky.removeClass('saving')
 		return
 
 	quickySave = (event) ->
@@ -189,6 +199,7 @@ $ ->
 		postUrl = $form.attr('action')
 		if(!data)
 			return
+		$quicky.addClass('saving')
 		$.ajax
 			type: 'POST',
 			data: data,
@@ -205,7 +216,8 @@ $ ->
 					addCheckbox(checkboxes, object, object._id)
 				else if(type == 'image')
 					addImage(object)
-				$quicky.removeClass('open')
+				$quicky.removeClass('saving')
+				closeQuicky($quicky)
 		return
 
 	addImage = (object) ->

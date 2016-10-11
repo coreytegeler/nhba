@@ -41,7 +41,8 @@ aside {
       aside header .tabs .tab, aside header .tabs .tabDown {
         float: left;
         margin-right: 1em;
-        margin-left: 0.3em; }
+        margin-left: 0.3em;
+        background-color: #ffcc86; }
         aside header .tabs .tab:first-child, aside header .tabs .tabDown:first-child {
           padding-left: 0;
           margin-left: 0; }
@@ -151,8 +152,8 @@ aside {
     position: relative; }
     aside .inner section {
       width: calc(100% - 1em*2);
-      height: 100%;
-      padding: 0 1em;
+      height: calc(100% - 1em*2);
+      padding: 0 1em 2em 1em;
       position: absolute;
       left: 0;
       top: 0;
@@ -172,8 +173,7 @@ aside {
     display: table;
     margin-bottom: 2em; }
   aside #filter, aside #index {
-    line-height: 1.1em;
-    position: relative; }
+    line-height: 1.1em; }
     aside #filter ul.nested, aside #index ul.nested {
       width: 100%;
       margin: 0;
@@ -227,7 +227,6 @@ aside {
       position: absolute;
       right: 1em;
       top: .25em;
-      font-size: 1em;
       opacity: .25;
       display: none; }
       aside #filter .clear:hover, aside #index .clear:hover {
@@ -248,6 +247,8 @@ aside {
     width: 100%;
     padding: 0;
     margin: 0; }
+  aside #info .colophon p {
+    margin-bottom: 0; }
   .full aside {
     left: calc(-15em - 20vw); }
   aside .toggle {
@@ -260,6 +261,21 @@ aside {
         border-bottom: 2px dotted black; }
       aside .toggle .toggler:hover {
         cursor: pointer; }
+
+.button.open {
+  width: 1.5em;
+  height: 1.5em;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  z-index: 999999;
+  padding: 1px;
+  background-image: url(/img/plus.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center; }
+  .button.open:hover {
+    cursor: pointer; }
 
 body.admin main {
   width: calc(100% - calc(15em + 20vw));
@@ -307,7 +323,8 @@ body.admin form {
     font-size: 0.95em;
     font-weight: 400; }
     body.admin form textarea p, body.admin form .editable p {
-      margin-top: 0; }
+      margin-top: 0;
+      margin-bottom: 0.1em; }
   body.admin form .research .editable {
     min-height: 11em; }
   body.admin form .group {
@@ -393,6 +410,34 @@ body.admin .checkboxes, body.admin .options {
     display: none; }
     body.admin .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body.admin .options .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .options .checkbox input[type="radio"]:checked ~ label::before {
       background: black; }
+  body.admin .checkboxes.color, body.admin .options.color {
+    min-height: 0;
+    border: none;
+    padding: 0;
+    display: table; }
+    body.admin .checkboxes.color .checkbox, body.admin .options.color .checkbox {
+      width: 1em;
+      height: 1em;
+      margin-right: .5em;
+      float: left; }
+      body.admin .checkboxes.color .checkbox label, body.admin .options.color .checkbox label {
+        width: calc(100% + .2em);
+        height: calc(100% + .2em);
+        border-radius: 50%;
+        padding: 0;
+        position: relative; }
+        body.admin .checkboxes.color .checkbox label::before, body.admin .options.color .checkbox label::before {
+          width: calc(100% - .1em);
+          height: calc(100% - .1em);
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: 0;
+          border-radius: 50%;
+          border-color: transparent; }
+      body.admin .checkboxes.color .checkbox input:checked ~ label::before, body.admin .options.color .checkbox input:checked ~ label::before {
+        border-color: black;
+        background-color: inherit; }
 body.admin .checkboxes {
   min-height: 4em;
   max-height: 8em; }
@@ -464,6 +509,9 @@ body.admin .quicky {
   overflow: auto;
   display: none;
   background: rgba(255, 255, 255, 0.95); }
+  body.admin .quicky.saving .inner {
+    pointer-events: none;
+    opacity: 0.5; }
   body.admin .quicky .inner {
     width: 100%;
     max-width: 600px;
@@ -496,6 +544,13 @@ body.admin .quicky {
     background-image: url(/img/x.svg); }
     body.admin .quicky .close:hover {
       cursor: pointer; }
+
+.medium-editor-toolbar, .medium-editor-anchor-preview {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background: white;
+  color: black; }
+  .medium-editor-toolbar a, .medium-editor-anchor-preview a {
+    color: black; }
 
 html {
   width: 100%;
@@ -546,9 +601,15 @@ main {
     padding: 20px; }
 
 .square {
-  width: 0.65em;
-  height: 0.65em;
+  width: .65em;
+  height: .65em;
+  margin-left: .5em;
   display: inline-block; }
+  .square.remove {
+    background-image: url(/img/x.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; }
 
 .vert {
   display: table-cell;
@@ -558,6 +619,9 @@ main {
   display: table;
   margin-left: auto;
   margin-right: auto; }
+
+*::-webkit-scrollbar {
+  background: transparent; }
 
 main {
   position: relative; }
@@ -594,6 +658,13 @@ aside section#single .sliderWrap .slider .slideWrap {
       font-size: 0.8em;
       opacity: 0; }
       aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom {
+        width: 1.25em;
+        height: 1.25em;
+        display: inline-block;
+        background-image: url(/img/zoom.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
         opacity: .25; }
         aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom::before {
           content: ' '; }
@@ -644,6 +715,10 @@ aside section#single .contribute {
       vertical-align: middle;
       line-height: 1;
       text-align: center; }
+  aside section#single .contribute .text {
+    width: 100%; }
+    aside section#single .contribute .text a {
+      display: inline; }
 aside section#single .tour h4 {
   margin-bottom: 1.5em; }
   aside section#single .tour h4 a {
@@ -754,9 +829,6 @@ aside .mapWrap {
   display: block; }
 .empty .grid {
   pointer-events: none; }
-.empty .close {
-  opacity: 0;
-  pointer-events: none; }
 
 .gridWrap {
   width: 100%;
@@ -769,11 +841,13 @@ aside .mapWrap {
   .gridWrap .grid {
     min-width: 100%;
     min-height: 100%;
-    display: table;
     position: absolute;
     z-index: 9;
-    display: table;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     padding-left: calc(15em + 20vw); }
     .gridWrap .grid.show {
       opacity: 1; }
@@ -782,6 +856,7 @@ aside .mapWrap {
       height: calc(160px + 4em);
       padding: 2em;
       display: table;
+      margin: auto;
       float: left; }
       .gridWrap .grid .building a {
         display: table;
@@ -815,5 +890,7 @@ body:not(.full) .building.selected {
   body:not(.full) .building.selected .image {
     background: transparent !important;
     border-color: black; }
+body:not(.full) .button.open {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

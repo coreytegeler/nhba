@@ -1,4 +1,5 @@
 var Async = require('async')
+var Info = require('../models/info')
 var User = require('../models/user')
 var Building = require('../models/building')
 var Tour = require('../models/tour')
@@ -56,7 +57,7 @@ module.exports = function(app) {
       res.render('admin/model.pug', {
         errors: err,
         loadedType: {
-          s: tools.pluralize(type),
+          s: tools.singularize(type),
           p: tools.pluralize(type)
         },
         models: models,
@@ -80,7 +81,8 @@ module.exports = function(app) {
         },
         models: models,
         action: 'create',
-        user: req.user
+        user: req.user,
+        sideSection: tools.getSideSection(type)
       })
     }, req, res)
   })
@@ -95,6 +97,9 @@ module.exports = function(app) {
     if(data.style) { data.style = JSON.parse(data.style) }
     if(data.use) { data.use = JSON.parse(data.use) }
     switch(type) {
+      case 'info':
+        var object = new Info(data)
+        break 
       case 'user':
         var object = new User(data)
         break
@@ -123,11 +128,16 @@ module.exports = function(app) {
         var object = new Structure(data)
         break 
     }
+    if(!object) {
+      console.log('No model for type')
+      res.redirect('/admin/'+type+'/new/')
+    }
     if(type == 'building') {
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
           console.log('Failed:')
           console.log(err)
+          res.redirect('/admin/'+type+'/new/')
         } else {
           console.log('Geocoded address:')
           object.coords = { lat:location[0].latitude, lng: location[0].longitude }
@@ -145,14 +155,7 @@ module.exports = function(app) {
       if(err) {
         console.log('Failed:')
         console.log(err)
-        res.render('admin/edit.pug', {
-          errors: err,
-          type: {
-            s: tools.singularize(type),
-            p: tools.pluralize(type)
-          },
-          action: 'create'
-        })
+        res.redirect('/admin/'+type+'/edit/'+object.slug)
       } else {
         console.log('Created:')
         console.log(object)
@@ -274,7 +277,7 @@ module.exports = function(app) {
       if(type == 'image' && object.path)
         fs.unlinkSync(appRoot+'/public'+object.path);
       else
-        res.redirect('/admin/')
+        res.redirect('/admin/'+type)
     })
   })
 

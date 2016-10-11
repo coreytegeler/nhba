@@ -27,8 +27,10 @@ if(tour)
 							.style= building.style.name
 						.era= building.era
 						.researchBy= 'Contributed by ' + building.researchBy
-		li.building
-				a(href='mailto:email@email.com')
-					.index
-						.circle= '+'
-					.text= 'Have a suggestion for another building that belongs on this tour? Email us at email@email.com.'
+		li.building.contribute
+			.index
+				a(href='mailto:email@email.com').circle= '+'
+			.text
+				| We want your contributions. Email 
+				a(href='mailto:email@email.com')= 'email@email.com'
+				|  with any photos or audio you'd like to add to this building entry.'

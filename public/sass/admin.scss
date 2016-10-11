@@ -56,6 +56,7 @@ body.admin {
 			font-weight: 400;
 			p {
 				margin-top: 0;
+				margin-bottom: 0.1em;
 			}
 		}
 		.research .editable {
@@ -186,6 +187,41 @@ body.admin {
 				}
 			}
 		}
+		&.color {
+			min-height: 0;
+			border: none;
+			padding: 0;
+			display: table;
+			.checkbox {
+				width: 1em;
+				height: 1em;
+				margin-right: .5em;
+				float: left;
+				label {
+					width: calc(100% + .2em);
+					height: calc(100% + .2em);
+					border-radius: 50%;
+					padding: 0;
+					position: relative;
+					&::before {
+						width: calc(100% - .1em);
+						height: calc(100% - .1em);
+						position: absolute;
+						left: 0;
+						top: 0;
+						padding: 0;
+						border-radius: 50%;
+						border-color: transparent;
+					}
+				}
+				input {
+					&:checked~label::before {
+						border-color: black;
+						background-color: inherit;
+					}
+				}
+			}
+		}
 	}	
 
 	.checkboxes {
@@ -296,6 +332,10 @@ body.admin {
 		overflow: auto;
 		display: none;
 		background: rgba(255,255,255,0.95);
+		&.saving .inner {
+			pointer-events: none;
+			opacity: 0.5;
+		}
 		.inner {
 			width: 100%;
 			max-width: 600px;
@@ -335,5 +375,13 @@ body.admin {
 				cursor: pointer;
 			}
 		}
+	}
+}
+.medium-editor-toolbar, .medium-editor-anchor-preview {
+  border: 1px solid rgba(0,0,0,.25);
+  background: white;
+  color: black;
+  a {
+	  color: black;
 	}
 }

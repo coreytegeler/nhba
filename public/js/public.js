@@ -25,7 +25,7 @@
       $body.on('click', '.group.tour a.tour', clickTour);
       $body.on('click', 'a.filter', clickFilter);
       $body.on('click', '#filter .clear', clearFilter);
-      $body.on('click', '#closedHeader', openSide);
+      $body.on('click', '.button.open', openSide);
       $body.on('click', '.close.tab', closeSide);
       $body.on('click', '.slide', nextSlide);
       $body.on('click', '.toggler', clickToggle);
@@ -35,8 +35,10 @@
         resizeGrid();
         return setUpSlider();
       });
-      $(window).resize();
       makeDraggable();
+      resizeGrid();
+      centerGrid();
+      setUpSlider();
       getParams();
       filter();
       infoMapSetup();
@@ -558,12 +560,10 @@
       return $body.removeClass('full');
     };
     closeSide = function() {
-      $body.addClass('full');
-      $main.attr('style', '');
-      return resizeGrid();
+      return $body.addClass('full');
     };
     resizeGrid = function() {
-      var $visibleTiles, $window, edge, gridHeight, gridWidth, larger, length, smaller;
+      var $visibleTiles, $window, edge, gridHeight, gridWidth, larger, length, sideWidth, smaller;
       $window = $(window);
       $visibleTiles = $buildingTiles.filter(':not(.hidden)');
       length = $visibleTiles.length;
@@ -572,25 +572,26 @@
       edge = $visibleTiles.eq(0).innerWidth();
       gridWidth = larger * edge;
       gridHeight = smaller * edge;
-      if (gridWidth < parseInt($window.innerWidth())) {
-        gridWidth = parseInt($window.innerWidth());
+      if (gridWidth < $window.innerWidth()) {
+        sideWidth = $side.innerWidth();
+        gridWidth = $window.innerWidth() - sideWidth;
       }
-      if (gridHeight < parseInt($window.innerHeight())) {
-        gridHeight = parseInt($window.innerHeight());
+      if (gridHeight < $window.innerHeight()) {
+        gridHeight = $window.innerHeight();
       }
       if (Math.floor(gridWidth / edge) % 2 === 0) {
         $grid.addClass('even');
       } else {
         $grid.addClass('odd');
       }
-      $grid.css({
+      return $grid.css({
         minWidth: gridWidth + 'px',
         mineight: gridHeight + 'px'
       });
-      return centerGrid();
     };
     centerGrid = function() {
       var centerMatrix, centerX, centerY, gridHeight, gridWidth, matrix, wrapHeight, wrapWidth;
+      return;
       wrapWidth = $gridWrap.innerWidth();
       wrapHeight = $gridWrap.innerHeight();
       gridWidth = $grid.innerWidth();
@@ -600,12 +601,9 @@
       centerY = wrapHeight / 2 - gridHeight / 2;
       if (!isNaN(centerX) || !isNaN(centerY)) {
         centerMatrix = [1, 0, 0, 1, centerX, centerY].join(',');
-        console.log('center matrix: ' + centerMatrix);
         return $grid.css({
           transform: 'matrix(' + centerMatrix + ')'
         }).addClass('show');
-      } else {
-        return console.log($grid, $gridWrap);
       }
     };
     paginate = function() {

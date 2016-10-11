@@ -22,7 +22,7 @@ window.initPublic = ->
 		$body.on 'click', '.group.tour a.tour', clickTour
 		$body.on 'click', 'a.filter', clickFilter
 		$body.on 'click', '#filter .clear', clearFilter
-		$body.on 'click', '#closedHeader', openSide
+		$body.on 'click', '.button.open', openSide
 		$body.on 'click', '.close.tab', closeSide
 		$body.on 'click', '.slide', nextSlide
 		$body.on 'click', '.toggler', clickToggle
@@ -31,10 +31,11 @@ window.initPublic = ->
 		$(window).on 'popstate', popState
 		$(window).resize () ->
 			resizeGrid()
-			setUpSlider()
-		$(window).resize()
-		
+			setUpSlider()		
 		makeDraggable()
+		resizeGrid()
+		centerGrid()
+		setUpSlider()
 		getParams()
 		filter()
 		infoMapSetup()
@@ -473,8 +474,7 @@ window.initPublic = ->
 
 	closeSide = () ->
 		$body.addClass('full')
-		$main.attr('style', '')
-		resizeGrid()
+		# resizeGrid()
 
 	resizeGrid = () -> 
 		$window = $(window)
@@ -485,10 +485,12 @@ window.initPublic = ->
 		edge = $visibleTiles.eq(0).innerWidth()
 		gridWidth = larger * edge
 		gridHeight = smaller * edge
-		if(gridWidth < parseInt($window.innerWidth()))
-			gridWidth = parseInt($window.innerWidth())
-		if(gridHeight < parseInt($window.innerHeight()))
-			gridHeight = parseInt($window.innerHeight())
+		# paddingLeft = sideWidth
+		if(gridWidth < $window.innerWidth())
+			sideWidth = $side.innerWidth()
+			gridWidth = $window.innerWidth() - sideWidth
+		if(gridHeight < $window.innerHeight())
+			gridHeight = $window.innerHeight()
 
 		if(Math.floor((gridWidth/edge))%2 == 0)
 			$grid.addClass('even')
@@ -497,11 +499,12 @@ window.initPublic = ->
 
 		$grid.css({
 			minWidth: gridWidth+'px',
-			mineight: gridHeight+'px'
+			mineight: gridHeight+'px',
+			# paddingLeft: paddingLeft+'px'
 		})
-		centerGrid()
 
 	centerGrid = () ->
+		return
 		wrapWidth = $gridWrap.innerWidth()
 		wrapHeight = $gridWrap.innerHeight()
 		gridWidth = $grid.innerWidth()
@@ -511,10 +514,8 @@ window.initPublic = ->
 		centerY = wrapHeight/2 - gridHeight/2
 		if(!isNaN(centerX) || !isNaN(centerY))
 			centerMatrix = [1,0,0,1,centerX,centerY].join(',')
-			console.log('center matrix: ' + centerMatrix)
+			# console.log('center matrix: ' + centerMatrix)
 			$grid.css({transform: 'matrix('+centerMatrix+')'}).addClass('show')
-		else
-			console.log($grid, $gridWrap)
 
 	paginate = () ->
 		id = $(this).parents('section')[0].dataset.id

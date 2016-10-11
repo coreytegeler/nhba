@@ -57,11 +57,12 @@ mixin checkboxes(type, name, multiple, addable)
 mixin checkbox(type, name, value, multiple, checked)
 	if(type == 'color')
 		-var style = 'background-color:'+value
+		-var name = ''
 	else
 		-var style = ''
-	.item.checkbox(class=(value || value != null ? value : 'sample'), style=style)
+	.item.checkbox(class=(value || value != null ? value : 'sample'))
 		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : ''), name=type, id=(value ? type+'-'+value : ''), checked=checked)
-		label(class=type, data-pop='name', for=(value ? type+'-'+value : '')) #{(name ? name : '')}
+		label(class=type, style=style, data-pop='name', for=(value ? type+'-'+value : '')) #{(name ? name : '')}
 
 mixin dateselect(months, days)
 	.input

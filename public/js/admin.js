@@ -42,14 +42,18 @@
       });
       sortable.disableSelection();
       editor = new MediumEditor('textarea', {
-        buttons: ['italic', 'underline'],
+        buttons: ['italic', 'underline', 'anchor'],
         placeholder: false,
         autoLink: true,
         imageDragging: false,
-        disableDoubleReturn: false,
+        disableDoubleReturn: true,
         paste: {
           cleanPastedHTML: true,
           cleanAttrs: ['style']
+        },
+        anchor: {
+          targetCheckbox: true,
+          targetCheckboxText: ''
         }
       });
       return $(editor.elements).each(function() {
@@ -174,10 +178,18 @@
       $quicky.addClass('open');
       $quicky.find('input[name="name"]').focus();
     };
-    closeQuicky = function() {
+    closeQuicky = function(quicky) {
       var $quicky;
-      $quicky = $(this).parents('.quicky');
+      if (quicky.length) {
+        $quicky = $(quicky);
+      } else {
+        $quicky = $(this).parents('.quicky');
+      }
+      $quicky.find('input:not([type="submit"])').each(function(i, input) {
+        return $(input).val('');
+      });
       $quicky.removeClass('open');
+      $quicky.removeClass('saving');
     };
     quickySave = function(event) {
       var $form, $quicky, caption, contentType, data, id, image, postUrl, processData, type;
@@ -204,6 +216,7 @@
       if (!data) {
         return;
       }
+      $quicky.addClass('saving');
       $.ajax({
         type: 'POST',
         data: data,
@@ -223,7 +236,8 @@
           } else if (type === 'image') {
             addImage(object);
           }
-          return $quicky.removeClass('open');
+          $quicky.removeClass('saving');
+          return closeQuicky($quicky);
         }
       });
     };
