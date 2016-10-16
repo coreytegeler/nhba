@@ -506,7 +506,7 @@ window.initPublic = ->
 		console.log(larger, edge)
 		console.log(gridWidth)
 		sideWidth = $side.innerWidth()
-		if(gridWidth < $window.innerWidth() - sideWidth)
+		if(gridWidth < $window.innerWidth())
 			gridWidth = $window.innerWidth() - sideWidth
 		if(gridHeight < $window.innerHeight())
 			gridHeight = $window.innerHeight()
