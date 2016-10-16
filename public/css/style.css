@@ -8,9 +8,6 @@ aside {
   line-height: 1.2em;
   clear: both;
   background: #ffcc86; }
-  @media (max-width: 600px) {
-    aside {
-      width: 90vw; } }
   aside.noBG, aside.noBG header {
     background: transparent; }
   aside h1, aside h2, aside h3 {
@@ -280,277 +277,285 @@ aside {
   .button.open:hover {
     cursor: pointer; }
 
-body.admin main {
-  width: calc(100% - calc(15em + 20vw));
-  padding-left: calc(15em + 20vw); }
-body.admin ul.list a.new {
-  text-transform: capitalize; }
-body.admin form {
-  width: calc(100% - 2em);
-  max-width: 600px;
-  padding: 0 1em 1em 1em;
-  margin: auto;
-  display: table; }
-  body.admin form label {
-    font-size: 1em;
-    line-height: 1.5em;
-    display: table; }
-    body.admin form label .instruct {
-      opacity: .25; }
-  body.admin form input, body.admin form textarea, body.admin form select {
-    font-size: 0.95em;
-    line-height: 1.1em;
-    font-weight: 700; }
-    body.admin form input:-webkit-autofill, body.admin form textarea:-webkit-autofill, body.admin form select:-webkit-autofill {
-      background: none; }
-  body.admin form input {
-    -webkit-appearance: none;
-    border: 1px solid black;
-    outline: none;
-    font-family: inherit;
-    font-weight: 400;
-    line-height: 1.2em;
-    background: transparent; }
-    body.admin form input[type="text"], body.admin form input[type="email"], body.admin form input[type="password"], body.admin form input[type="file"] {
-      background: white;
-      width: calc(100% - 1em - 2px);
-      padding: 0.5em; }
-  body.admin form textarea, body.admin form .editable {
-    width: calc(100% - 1em - 2px);
-    padding: 0.5em;
-    line-height: 1.5em;
-    border: 1px solid black;
-    resize: none;
-    outline: none;
-    background: white;
-    vertical-align: bottom;
-    min-height: 3.4em;
-    font-size: 0.95em;
-    font-weight: 400; }
-    body.admin form textarea p, body.admin form .editable p {
-      margin-top: 0;
-      margin-bottom: 0.1em; }
-  body.admin form .research .editable {
-    min-height: 11em;
-    max-height: 25em;
-    overflow: auto; }
-  body.admin form .group {
-    padding: 0 0 20px 0; }
-  body.admin form .sample {
-    display: none; }
-  body.admin form .row {
-    width: 100%;
-    display: table;
-    margin: 0 0 1em 0;
-    clear: both;
-    position: relative; }
-    body.admin form .row .cell {
-      float: left; }
-      body.admin form .row .cell:first-child {
-        margin-right: 1em; }
-    body.admin form .row.two .cell {
-      width: calc(50% - .5em); }
-    body.admin form .row .button {
-      margin-top: 0.5em; }
-  body.admin form [data-template] {
-    display: none; }
-  body.admin form .buttons {
-    display: table;
-    margin-top: 3em; }
-  body.admin form .button {
-    display: block;
-    padding: 0.3em 0.35em;
-    margin: 0 1em 0 0;
-    float: left;
-    vertical-align: middle;
-    font-size: 0.8em;
-    font-weight: bold;
-    line-height: 1em;
-    color: black;
-    text-decoration: none;
-    border: 0;
-    border: 1px solid black;
-    background: transparent;
+@media screen and (max-width: 600px) {
+  aside {
+    width: 90vw; }
+
+  .full aside {
+    left: -90vw; } }
+body.admin {
+  overflow-y: auto; }
+  body.admin main {
+    width: calc(100% - calc(15em + 20vw));
+    padding-left: calc(15em + 20vw); }
+  body.admin ul.list a.new {
     text-transform: capitalize; }
-    body.admin form .button:hover {
-      cursor: pointer;
-      background: black;
-      color: white; }
-    body.admin form .button:last-child {
-      margin-right: 0; }
-body.admin .sortable {
-  padding-top: .5em;
-  display: table; }
-  body.admin .sortable ul {
-    padding: 0;
-    margin: 0; }
-    body.admin .sortable ul li {
-      list-style: decimal;
-      padding: .5em 0;
-      margin: 0 0 0 1.1em;
-      cursor: move;
-      line-height: 1.1em; }
-  body.admin .sortable input {
-    display: none; }
-body.admin .checkboxes, body.admin .options {
-  overflow: auto;
-  font-size: 1em;
-  line-height: 1em;
-  border: 1px solid black;
-  background: white; }
-  body.admin .checkboxes.populate .item, body.admin .options.populate .item {
-    opacity: 0; }
-  body.admin .checkboxes.populate.loaded .item, body.admin .options.populate.loaded .item {
-    opacity: 1; }
-  body.admin .checkboxes .checkbox label, body.admin .options .checkbox label {
-    width: calc(100% - 1em);
-    font-family: inherit;
-    font-size: inherit;
-    line-height: 1.1em;
-    display: table;
-    padding: 0.5em 0.5em 0 0.5em; }
-    body.admin .checkboxes .checkbox label:active, body.admin .checkboxes .checkbox label:hover, body.admin .options .checkbox label:active, body.admin .options .checkbox label:hover {
-      cursor: pointer; }
-  body.admin .checkboxes .checkbox:last-child label, body.admin .options .checkbox:last-child label {
-    padding: 0.5em; }
-  body.admin .checkboxes .checkbox input[type="checkbox"], body.admin .checkboxes .checkbox input[type="radio"], body.admin .options .checkbox input[type="checkbox"], body.admin .options .checkbox input[type="radio"] {
-    display: none; }
-    body.admin .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body.admin .options .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .options .checkbox input[type="radio"]:checked ~ label::before {
-      background: black; }
-  body.admin .checkboxes.color, body.admin .options.color {
-    min-height: 0;
-    border: none;
-    padding: 0;
-    display: table; }
-    body.admin .checkboxes.color .checkbox, body.admin .options.color .checkbox {
-      width: 1em;
-      height: 1em;
-      margin-right: .5em;
-      float: left; }
-      body.admin .checkboxes.color .checkbox label, body.admin .options.color .checkbox label {
-        width: calc(100% + .2em);
-        height: calc(100% + .2em);
-        border-radius: 50%;
-        padding: 0;
-        position: relative; }
-        body.admin .checkboxes.color .checkbox label::before, body.admin .options.color .checkbox label::before {
-          width: calc(100% - .1em);
-          height: calc(100% - .1em);
-          position: absolute;
-          left: 0;
-          top: 0;
-          padding: 0;
-          border-radius: 50%;
-          border-color: transparent; }
-      body.admin .checkboxes.color .checkbox input:checked ~ label::before, body.admin .options.color .checkbox input:checked ~ label::before {
-        border-color: black;
-        background-color: inherit; }
-body.admin .checkboxes {
-  min-height: 4em;
-  max-height: 8em; }
-  body.admin .checkboxes .checkbox label::before {
-    width: 0.55em;
-    height: 0.55em;
-    margin-right: 0.5em;
-    border-radius: 50%;
-    border: solid black 0.1em;
-    font-size: inherit;
-    display: inline-block;
-    content: ''; }
-body.admin .selects {
-  display: flex;
-  border-bottom: solid black 0.1em;
-  padding: 0.15em 0; }
-  body.admin .selects .select {
-    background: transparent;
-    position: relative; }
-    body.admin .selects .select .display {
-      display: inline-block;
-      padding: 0 1.1em 0 0.6em;
-      cursor: pointer; }
-    body.admin .selects .select .options {
-      max-height: calc(1.8em * 10);
-      position: absolute;
-      left: 0;
-      top: calc(100% + 0.15em);
-      padding: 0 0.5em;
-      display: none; }
-      body.admin .selects .select .options.open {
-        display: block; }
-body.admin .selects.date .select {
-  position: relative; }
-  body.admin .selects.date .select.month .display {
-    width: 6em; }
-  body.admin .selects.date .select.day .display {
-    width: 1.5em; }
-  body.admin .selects.date .select.year .display {
-    width: 2.5em; }
-  body.admin .selects.date .select:not(:last-child) .display:after {
-    content: '/';
-    position: absolute;
-    right: 0;
-    top: 0; }
-body.admin form .images {
-  display: block;
-  clear: both; }
-  body.admin form .images input[type="text"] {
-    display: none; }
-  body.admin form .images .image {
-    height: 100px;
-    display: inline-block;
-    margin: 0 .5em 0 0;
-    padding: 0;
-    cursor: pointer;
-    vertical-align: bottom; }
-    body.admin form .images .image.sample {
-      display: none; }
-    body.admin form .images .image img {
-      height: 100%; }
-body.admin .quicky {
-  width: calc(100% - calc(15em + 20vw));
-  height: 100%;
-  padding: 0;
-  position: fixed;
-  left: calc(15em + 20vw);
-  top: 0;
-  overflow: auto;
-  display: none;
-  background: rgba(255, 255, 255, 0.95); }
-  body.admin .quicky.saving .inner {
-    pointer-events: none;
-    opacity: 0.5; }
-  body.admin .quicky .inner {
-    width: 100%;
+  body.admin form {
+    width: calc(100% - 2em);
     max-width: 600px;
-    height: 100%;
+    padding: 0 1em 1em 1em;
     margin: auto;
     display: table; }
-    body.admin .quicky .inner form {
+    body.admin form label {
+      font-size: 1em;
+      line-height: 1.5em;
+      display: table; }
+      body.admin form label .instruct {
+        opacity: .25; }
+    body.admin form input, body.admin form textarea, body.admin form select {
+      font-size: 0.95em;
+      line-height: 1.1em;
+      font-weight: 700; }
+      body.admin form input:-webkit-autofill, body.admin form textarea:-webkit-autofill, body.admin form select:-webkit-autofill {
+        background: none; }
+    body.admin form input {
+      -webkit-appearance: none;
+      border: 1px solid black;
+      outline: none;
+      font-family: inherit;
+      font-weight: 400;
+      line-height: 1.2em;
+      background: transparent; }
+      body.admin form input[type="text"], body.admin form input[type="email"], body.admin form input[type="password"], body.admin form input[type="file"] {
+        background: white;
+        width: calc(100% - 1em - 2px);
+        padding: 0.5em; }
+    body.admin form textarea, body.admin form .editable {
+      width: calc(100% - 1em - 2px);
+      padding: 0.5em;
+      line-height: 1.5em;
+      border: 1px solid black;
+      resize: none;
+      outline: none;
+      background: white;
+      vertical-align: bottom;
+      min-height: 3.4em;
+      font-size: 0.95em;
+      font-weight: 400; }
+      body.admin form textarea p, body.admin form .editable p {
+        margin-top: 0;
+        margin-bottom: 0.1em; }
+    body.admin form .research .editable {
+      min-height: 11em;
+      max-height: 25em;
+      overflow: auto; }
+    body.admin form .group {
+      padding: 0 0 20px 0; }
+    body.admin form .sample {
+      display: none; }
+    body.admin form .row {
       width: 100%;
+      display: table;
+      margin: 0 0 1em 0;
+      clear: both;
+      position: relative; }
+      body.admin form .row .cell {
+        float: left; }
+        body.admin form .row .cell:first-child {
+          margin-right: 1em; }
+      body.admin form .row.two .cell {
+        width: calc(50% - .5em); }
+      body.admin form .row .button {
+        margin-top: 0.5em; }
+    body.admin form [data-template] {
+      display: none; }
+    body.admin form .buttons {
+      display: table;
+      margin-top: 3em; }
+    body.admin form .button {
+      display: block;
+      padding: 0.3em 0.35em;
+      margin: 0 1em 0 0;
+      float: left;
+      vertical-align: middle;
+      font-size: 0.8em;
+      font-weight: bold;
+      line-height: 1em;
+      color: black;
+      text-decoration: none;
+      border: 0;
+      border: 1px solid black;
+      background: transparent;
+      text-transform: capitalize; }
+      body.admin form .button:hover {
+        cursor: pointer;
+        background: black;
+        color: white; }
+      body.admin form .button:last-child {
+        margin-right: 0; }
+  body.admin .sortable {
+    padding-top: .5em;
+    display: table; }
+    body.admin .sortable ul {
       padding: 0;
       margin: 0; }
-      body.admin .quicky .inner form label {
-        text-transform: capitalize; }
-      body.admin .quicky .inner form img {
-        max-width: 100%;
-        display: table;
-        margin: auto; }
-  body.admin .quicky.open {
-    display: block; }
-  body.admin .quicky .close {
-    width: 1.5em;
-    height: 1.5em;
-    padding: 1px;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    z-index: 100;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url(/img/x.svg); }
-    body.admin .quicky .close:hover {
-      cursor: pointer; }
+      body.admin .sortable ul li {
+        list-style: decimal;
+        padding: .5em 0;
+        margin: 0 0 0 1.1em;
+        cursor: move;
+        line-height: 1.1em; }
+    body.admin .sortable input {
+      display: none; }
+  body.admin .checkboxes, body.admin .options {
+    overflow: auto;
+    font-size: 1em;
+    line-height: 1em;
+    border: 1px solid black;
+    background: white; }
+    body.admin .checkboxes.populate .item, body.admin .options.populate .item {
+      opacity: 0; }
+    body.admin .checkboxes.populate.loaded .item, body.admin .options.populate.loaded .item {
+      opacity: 1; }
+    body.admin .checkboxes .checkbox label, body.admin .options .checkbox label {
+      width: calc(100% - 1em);
+      font-family: inherit;
+      font-size: inherit;
+      line-height: 1.1em;
+      display: table;
+      padding: 0.5em 0.5em 0 0.5em; }
+      body.admin .checkboxes .checkbox label:active, body.admin .checkboxes .checkbox label:hover, body.admin .options .checkbox label:active, body.admin .options .checkbox label:hover {
+        cursor: pointer; }
+    body.admin .checkboxes .checkbox:last-child label, body.admin .options .checkbox:last-child label {
+      padding: 0.5em; }
+    body.admin .checkboxes .checkbox input[type="checkbox"], body.admin .checkboxes .checkbox input[type="radio"], body.admin .options .checkbox input[type="checkbox"], body.admin .options .checkbox input[type="radio"] {
+      display: none; }
+      body.admin .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body.admin .options .checkbox input[type="checkbox"]:checked ~ label::before, body.admin .options .checkbox input[type="radio"]:checked ~ label::before {
+        background: black; }
+    body.admin .checkboxes.color, body.admin .options.color {
+      min-height: 0;
+      border: none;
+      padding: 0;
+      display: table; }
+      body.admin .checkboxes.color .checkbox, body.admin .options.color .checkbox {
+        width: 1em;
+        height: 1em;
+        margin-right: .5em;
+        float: left; }
+        body.admin .checkboxes.color .checkbox label, body.admin .options.color .checkbox label {
+          width: calc(100% + .2em);
+          height: calc(100% + .2em);
+          border-radius: 50%;
+          padding: 0;
+          position: relative; }
+          body.admin .checkboxes.color .checkbox label::before, body.admin .options.color .checkbox label::before {
+            width: calc(100% - .1em);
+            height: calc(100% - .1em);
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+            border-radius: 50%;
+            border-color: transparent; }
+        body.admin .checkboxes.color .checkbox input:checked ~ label::before, body.admin .options.color .checkbox input:checked ~ label::before {
+          border-color: black;
+          background-color: inherit; }
+  body.admin .checkboxes {
+    min-height: 4em;
+    max-height: 8em; }
+    body.admin .checkboxes .checkbox label::before {
+      width: 0.55em;
+      height: 0.55em;
+      margin-right: 0.5em;
+      border-radius: 50%;
+      border: solid black 0.1em;
+      font-size: inherit;
+      display: inline-block;
+      content: ''; }
+  body.admin .selects {
+    display: flex;
+    border-bottom: solid black 0.1em;
+    padding: 0.15em 0; }
+    body.admin .selects .select {
+      background: transparent;
+      position: relative; }
+      body.admin .selects .select .display {
+        display: inline-block;
+        padding: 0 1.1em 0 0.6em;
+        cursor: pointer; }
+      body.admin .selects .select .options {
+        max-height: calc(1.8em * 10);
+        position: absolute;
+        left: 0;
+        top: calc(100% + 0.15em);
+        padding: 0 0.5em;
+        display: none; }
+        body.admin .selects .select .options.open {
+          display: block; }
+  body.admin .selects.date .select {
+    position: relative; }
+    body.admin .selects.date .select.month .display {
+      width: 6em; }
+    body.admin .selects.date .select.day .display {
+      width: 1.5em; }
+    body.admin .selects.date .select.year .display {
+      width: 2.5em; }
+    body.admin .selects.date .select:not(:last-child) .display:after {
+      content: '/';
+      position: absolute;
+      right: 0;
+      top: 0; }
+  body.admin form .images {
+    display: block;
+    clear: both; }
+    body.admin form .images input[type="text"] {
+      display: none; }
+    body.admin form .images .image {
+      height: 100px;
+      display: inline-block;
+      margin: 0 .5em 0 0;
+      padding: 0;
+      cursor: pointer;
+      vertical-align: bottom; }
+      body.admin form .images .image.sample {
+        display: none; }
+      body.admin form .images .image img {
+        height: 100%; }
+  body.admin .quicky {
+    width: calc(100% - calc(15em + 20vw));
+    height: 100%;
+    padding: 0;
+    position: fixed;
+    left: calc(15em + 20vw);
+    top: 0;
+    overflow: auto;
+    display: none;
+    background: rgba(255, 255, 255, 0.95); }
+    body.admin .quicky.saving .inner {
+      pointer-events: none;
+      opacity: 0.5; }
+    body.admin .quicky .inner {
+      width: 100%;
+      max-width: 600px;
+      height: 100%;
+      margin: auto;
+      display: table; }
+      body.admin .quicky .inner form {
+        width: 100%;
+        padding: 0;
+        margin: 0; }
+        body.admin .quicky .inner form label {
+          text-transform: capitalize; }
+        body.admin .quicky .inner form img {
+          max-width: 100%;
+          display: table;
+          margin: auto; }
+    body.admin .quicky.open {
+      display: block; }
+    body.admin .quicky .close {
+      width: 1.5em;
+      height: 1.5em;
+      padding: 1px;
+      position: absolute;
+      right: 1em;
+      top: 1em;
+      z-index: 100;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(/img/x.svg); }
+      body.admin .quicky .close:hover {
+        cursor: pointer; }
 
 .medium-editor-toolbar, .medium-editor-anchor-preview {
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -581,7 +586,7 @@ html {
   html body {
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     margin: 0;
     font-size: 0.95em; }
 

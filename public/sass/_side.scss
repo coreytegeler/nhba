@@ -1,8 +1,5 @@
 aside {
 	width: $sideWidth;
-	@media (max-width: 600px) {
-		width: 90vw;
-	}
 	height: 100%;
 	position: fixed;
 	top: 0;
@@ -354,4 +351,13 @@ aside {
   &:hover {
   	cursor: pointer;
   }
+}
+
+@media screen and (max-width: 600px) {
+	aside {
+		width: 90vw;
+	}
+	.full aside {
+		left: -90vw;
+	}
 }
