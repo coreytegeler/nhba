@@ -29,7 +29,6 @@ window.initPublic = ->
 		$body.on 'click', '.header .arrow', paginate
 		$body.on 'submit', 'form.search', (event) ->
 			search(this, event)
-
 		$(window).on 'popstate', popState
 		$(window).resize () ->
 			resizeGrid()
@@ -267,6 +266,7 @@ window.initPublic = ->
 
 
 	getContent = (id, type, format, filter) ->
+		console.log(id, type, format, filter)
 		url = '/api/?type='+type
 		if(id)
 			url += '&id='+id

@@ -330,6 +330,7 @@
     };
     getContent = function(id, type, format, filter) {
       var url;
+      console.log(id, type, format, filter);
       url = '/api/?type=' + type;
       if (id) {
         url += '&id=' + id;

@@ -19,7 +19,6 @@ module.exports = function(app) {
       getBuildingSection(id, format, res)  
     else if(model)
       model.find(query, function(err, response) {
-        // console.log(response)
         if(err)
           callback(err)
         return res.json(response)
@@ -30,7 +29,12 @@ module.exports = function(app) {
     Async.waterfall([
       function(callback) {
         Building.findOne({_id:id}, function(err, building) {
-          return callback(null, building)
+          if(err) {
+            console.log(err)
+            return callback(err)
+          } else {
+            return callback(null, building)
+          }
         })
       },
       function(building, callback) {
@@ -47,8 +51,10 @@ module.exports = function(app) {
         })
       }
     ], function (err, building, tourBuildings) {
-      if(err)
+      if(err) {
+        console.log(err)
         return err
+      }
       data = {
         object: building,
         tourBuildings: tourBuildings
