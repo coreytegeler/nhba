@@ -281,75 +281,10 @@ module.exports = function(app) {
     })
   })
 
-  app.get('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
-    var type = req.params.type
-    if(!type)
-      return
-    var form = 'quicky'
-    if(type == 'image')
-      form = 'image'
-    if(form)
-      res.render('admin/'+form+'.pug', {
-        type: type
-      })
-    else
-      return
-  })
-
-  app.post('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
-    var data = req.body
-    var type = tools.singularize(req.params.type)
-    var errors    
-    switch(type) {
-      case 'neighborhood':
-        var object = new Neighborhood(data)
-        break
-      case 'tour':
-        var object = new Tour(data)
-        break
-      case 'style':
-        var object = new Style(data)
-        break
-      case 'use':
-        var object = new Use(data)
-        break
-      case 'material':
-        var object = new Material(data)
-        break
-      case 'structure':
-        var object = new Structure(data)
-        break
-      case 'roofType':
-        var object = new RoofType(data)
-        break
-      case 'roofMaterial':
-        var object = new RoofMaterial(data)
-        break
-      case 'threat':
-        var object = new Threat(data)
-        break
-      case 'environment':
-        var object = new Environment(data)
-        break
-      default:
-        return
-    }
-    object.save(function(err) {
-      if(!err) {
-        console.log('Created:')
-        console.log(object)
-        return res.json(object)
-      } else {
-        console.log('Failed:')
-        console.log(err)
-        return res.json(err)
-      }
-    })
-  })
-
   app.get('/admin/image/quicky/:id', tools.isLoggedIn, function(req, res) {
     var id = req.params.id
     Image.findById(id, function(err, image) {
+      console.log(image)
       res.render('admin/image.pug', {
         object: image,
         type: 'image'
@@ -434,4 +369,72 @@ module.exports = function(app) {
       }
     })
   })
+
+  app.get('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
+    var type = req.params.type
+    if(!type)
+      return
+    var form = 'quicky'
+    if(type == 'image')
+      form = 'image'
+    if(form)
+      res.render('admin/'+form+'.pug', {
+        type: type
+      })
+    else
+      return
+  })
+
+  app.post('/admin/:type/quicky', tools.isLoggedIn, function(req, res) {
+    var data = req.body
+    var type = tools.singularize(req.params.type)
+    var errors    
+    switch(type) {
+      case 'neighborhood':
+        var object = new Neighborhood(data)
+        break
+      case 'tour':
+        var object = new Tour(data)
+        break
+      case 'style':
+        var object = new Style(data)
+        break
+      case 'use':
+        var object = new Use(data)
+        break
+      case 'material':
+        var object = new Material(data)
+        break
+      case 'structure':
+        var object = new Structure(data)
+        break
+      case 'roofType':
+        var object = new RoofType(data)
+        break
+      case 'roofMaterial':
+        var object = new RoofMaterial(data)
+        break
+      case 'threat':
+        var object = new Threat(data)
+        break
+      case 'environment':
+        var object = new Environment(data)
+        break
+      default:
+        return
+    }
+    object.save(function(err) {
+      if(!err) {
+        console.log('Created:')
+        console.log(object)
+        return res.json(object)
+      } else {
+        console.log('Failed:')
+        console.log(err)
+        return res.json(err)
+      }
+    })
+  })
+
+
 }
