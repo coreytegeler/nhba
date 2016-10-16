@@ -34,19 +34,20 @@ $ ->
 				$sortable.find('input').val(newOrderJson)
 		sortable.disableSelection()
 
-		editor = new MediumEditor('textarea', {
-			buttons: ['italic', 'underline', 'anchor'],
-			placeholder: false,
-			imageDragging: false,
-			disableDoubleReturn: true,
-			targetBlank: true,
-			paste: {
-				cleanPastedHTML: true,
-				cleanAttrs: ['style']
-			}
-		})
-		$(editor.elements).each () ->
-			$(this).addClass('editable')
+		$('textarea').each () ->
+			editor = new MediumEditor(this, {
+				buttons: ['italic', 'underline', 'anchor', 'superscript'],
+				placeholder: false,
+				imageDragging: false,
+				disableDoubleReturn: true,
+				targetBlank: true,
+				paste: {
+					cleanPastedHTML: true,
+					cleanAttrs: ['style']
+				}
+			})
+			$(editor.elements).each () ->
+				$(this).addClass('editable')
 
 
 	getData = () ->
@@ -103,7 +104,6 @@ $ ->
 		if checked
 			if $.isArray(checked)
 				for checkedValue in checked
-					console.log valueObject.id, JSON.parse(checkedValue).id
 					if valueObject.id == JSON.parse(checkedValue).id
 						$input.attr('checked', true)
 			else if (valueObject.id == checked || valueObject.id == checked.id) 
@@ -253,7 +253,7 @@ $ ->
 				$clone.find('img').remove()
 				$clone.append(this)
 				$clone.find('.caption').text(imageObject.caption)
-				$imagesWrapper.append($clone)
+				$imagesWrapper.find('.ui-sortable').append($clone)
 			newImg.src = imageObject.original;
 
 	# updateTemplate = (event) ->

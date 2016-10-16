@@ -331,7 +331,9 @@ body.admin form {
       margin-top: 0;
       margin-bottom: 0.1em; }
   body.admin form .research .editable {
-    min-height: 11em; }
+    min-height: 11em;
+    max-height: 25em;
+    overflow: auto; }
   body.admin form .group {
     padding: 0 0 20px 0; }
   body.admin form .sample {

@@ -5,7 +5,7 @@
     $body = $('body');
     $main = $('main');
     initAdmin = function() {
-      var $sortable, editor, sortable;
+      var $sortable, sortable;
       getData();
       $body.on('click', 'form .add', openQuicky);
       $body.on('click', 'form .images .edit', openQuicky);
@@ -41,19 +41,22 @@
         }
       });
       sortable.disableSelection();
-      editor = new MediumEditor('textarea', {
-        buttons: ['italic', 'underline', 'anchor'],
-        placeholder: false,
-        imageDragging: false,
-        disableDoubleReturn: true,
-        targetBlank: true,
-        paste: {
-          cleanPastedHTML: true,
-          cleanAttrs: ['style']
-        }
-      });
-      return $(editor.elements).each(function() {
-        return $(this).addClass('editable');
+      return $('textarea').each(function() {
+        var editor;
+        editor = new MediumEditor(this, {
+          buttons: ['italic', 'underline', 'anchor', 'superscript'],
+          placeholder: false,
+          imageDragging: false,
+          disableDoubleReturn: true,
+          targetBlank: true,
+          paste: {
+            cleanPastedHTML: true,
+            cleanAttrs: ['style']
+          }
+        });
+        return $(editor.elements).each(function() {
+          return $(this).addClass('editable');
+        });
       });
     };
     getData = function() {
@@ -129,7 +132,6 @@
         if ($.isArray(checked)) {
           for (j = 0, len = checked.length; j < len; j++) {
             checkedValue = checked[j];
-            console.log(valueObject.id, JSON.parse(checkedValue).id);
             if (valueObject.id === JSON.parse(checkedValue).id) {
               $input.attr('checked', true);
             }
@@ -278,7 +280,7 @@
           $clone.find('img').remove();
           $clone.append(this);
           $clone.find('.caption').text(imageObject.caption);
-          return $imagesWrapper.append($clone);
+          return $imagesWrapper.find('.ui-sortable').append($clone);
         };
         return newImg.src = imageObject.original;
       }

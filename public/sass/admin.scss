@@ -66,6 +66,8 @@ body.admin {
 		}
 		.research .editable {
 			min-height: 11em;
+			max-height: 25em;
+	    overflow: auto;
 		}
 		.group {
 			padding: 0 0 20px 0;

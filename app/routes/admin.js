@@ -91,6 +91,7 @@ module.exports = function(app) {
     var data = req.body
     var type = tools.singularize(req.params.type)
     var errors
+    console.log(data)
     if(data.images) { data.images = JSON.parse(data.images) }
     if(data.tour) { data.tour = JSON.parse(data.tour) }
     if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
