@@ -69,10 +69,12 @@ include  ./mixins
 					span.label= 'Neighborhood: '
 					span.value= object.neighborhood.name
 			if(object.researchBy)
-				li.research
+				li.researchBy
 					span.label= 'Researcher: '
 					span.value= object.researchBy+(object.researchYear ? ', '+object.researchYear : '')
-	.group.paragraphs !{object.research}
+	.group.paragraphs.research
+		| !{object.research}
+		.citations !{object.citations}
 
 	.group.contribute
 		.index

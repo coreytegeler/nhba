@@ -690,6 +690,9 @@ aside section#single .sliderWrap .slider .slideWrap {
       left: 0; }
 aside section#single .paragraphs {
   white-space: pre-line; }
+  aside section#single .paragraphs .citations {
+    font-size: 0.7em;
+    line-height: 1.1em; }
 aside section#single .header {
   margin-bottom: 0.3em; }
   aside section#single .header h1 {

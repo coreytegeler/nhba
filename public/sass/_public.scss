@@ -75,6 +75,10 @@ aside {
 			}
 			.paragraphs {
 				white-space: pre-line;
+				.citations {
+					font-size: $smallFont;
+					line-height: 1.1em;
+				}
 			}
 			.header {
 				h1 {
