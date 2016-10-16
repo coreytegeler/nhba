@@ -12,4 +12,5 @@ block body
 					li.item
 						a(href='/admin/'+loadedType.s+'/edit/'+object.slug) #{object.name}
 						a(href='/admin/'+loadedType.s+'/remove/'+object._id).square.remove
-		a(href='/admin/'+loadedType.s+'/new') Add new #{loadedType.s}
+				li.item
+					a.new(href='/admin/'+loadedType.s+'/new') Add #{loadedType.s}

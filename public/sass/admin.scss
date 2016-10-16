@@ -3,6 +3,11 @@ body.admin {
 		width: calc(100% - #{$sideWidth});
 		padding-left: $sideWidth;
 	}
+	ul.list {
+		a.new {
+			text-transform: capitalize;
+		}
+	}
 	form {
 		width: calc(100% - 2em);
 		max-width: 600px;

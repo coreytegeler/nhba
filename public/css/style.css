@@ -283,6 +283,8 @@ aside {
 body.admin main {
   width: calc(100% - calc(15em + 20vw));
   padding-left: calc(15em + 20vw); }
+body.admin ul.list a.new {
+  text-transform: capitalize; }
 body.admin form {
   width: calc(100% - 2em);
   max-width: 600px;
@@ -893,7 +895,7 @@ aside .mapWrap {
 body:not(.full) .building.selected {
   background: transparent; }
   body:not(.full) .building.selected img, body:not(.full) .building.selected .img {
-    opacity: 0; }
+    opacity: 0 !important; }
   body:not(.full) .building.selected .image {
     background: transparent !important;
     border-color: black; }

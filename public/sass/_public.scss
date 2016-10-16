@@ -357,7 +357,7 @@ body:not(.full) {
 	.building.selected {
 		background: transparent;
 		img, .img {
-			opacity: 0;
+			opacity: 0 !important;
 		}
 		.image {
 			background: transparent !important;
