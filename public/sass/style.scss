@@ -9,19 +9,19 @@ html {
 	margin: 0;
 	background: white;
 	overflow: hidden;
-	font: {
-		family: Arial Narrow, Arial;
-		weight: bold;
-		size: 21px;
-	}
+	font-family: Arial Narrow, Arial;
+	font-weight: bold;
+	font-size: 21px;
+	line-height: 1.5em;
 	@media (max-width: 600px) {
 		font-size: 16px;
 	}
-	line-height: 1.5em;
+	-webkit-overflow-scrolling: touch;
 	* {
 		-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
+    -webkit-overflow-scrolling: touch;
 	}
 	body {
 		width: 100%;

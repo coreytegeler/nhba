@@ -6,8 +6,8 @@ aside
 				.tab.filter(data-section='filter')= 'Filters'
 				.tab.glossary(data-section='glossary')= 'Glossary'
 				.tab.search
-					form
-						input(name='search', type='text', placeholder='Search')
+					form.search(method='post' action='/search/')
+						input(name='query', type='text', placeholder='Search')
 				.buttons
 					.tab.info.button(data-section='info')
 					.tab.close.button

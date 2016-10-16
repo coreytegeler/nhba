@@ -27,6 +27,8 @@ window.initPublic = ->
 		$body.on 'click', '.slide', nextSlide
 		$body.on 'click', '.toggler', clickToggle
 		$body.on 'click', '.header .arrow', paginate
+		$body.on 'submit', 'form.search', (event) ->
+			search(this, event)
 
 		$(window).on 'popstate', popState
 		$(window).resize () ->
@@ -184,6 +186,7 @@ window.initPublic = ->
 				$body.addClass('empty')
 			else
 				$body.removeClass('empty')
+		makeDraggable()
 		resizeGrid()
 
 	filterUrl = () ->
@@ -284,6 +287,20 @@ window.initPublic = ->
 				else if(type=='tour' && format=='html')
 					updateSingleSect(response, id, 'tour')
 					# $singleSect.find('.group.tour').html(response)
+		return
+
+	search = (form, event) ->
+		event.preventDefault()
+		query = $(form).find('input:text').val()
+		url = '/search/' + query
+		console.log(url)
+		$.ajax
+			url: url,
+			error:  (jqXHR, status, error) ->
+				console.error jqXHR, status, error
+				return
+			success: (response, status, jqXHR) ->
+				console.log(response)
 		return
 
 	updateSingleSect = (content, id, type) ->
@@ -483,11 +500,13 @@ window.initPublic = ->
 		smaller = Math.floor(Math.sqrt(length))
 		larger = Math.ceil(Math.sqrt(length))
 		edge = $visibleTiles.eq(0).innerWidth()
-		gridWidth = larger * edge
+		gridWidth = larger * edge + larger
 		gridHeight = smaller * edge
 		# paddingLeft = sideWidth
-		if(gridWidth < $window.innerWidth())
-			sideWidth = $side.innerWidth()
+		console.log(larger, edge)
+		console.log(gridWidth)
+		sideWidth = $side.innerWidth()
+		if(gridWidth < $window.innerWidth() - sideWidth)
 			gridWidth = $window.innerWidth() - sideWidth
 		if(gridHeight < $window.innerHeight())
 			gridHeight = $window.innerHeight()

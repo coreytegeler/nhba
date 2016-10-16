@@ -37,6 +37,7 @@
     "multer": "1.2.0",
     "medium-editor": "5.22.0",
     "node-geocoder": "3.15.0",
-    "gm": "1.23.0"
+    "gm": "1.23.0",
+    "elasticsearch": "^9.0.2"
   }
 }

@@ -50,6 +50,7 @@ app.use(passport.session()) // persistent login sessions
 app.use(flash()) // use connect-flash for flash messages stored in session
 
 // routes
+require('./app/routes/search.js')(app)
 require('./app/routes/api.js')(app)
 require('./app/routes/user.js')(app, passport)
 require('./app/routes/admin.js')(app)
