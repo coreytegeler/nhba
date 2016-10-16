@@ -495,21 +495,19 @@ window.initPublic = ->
 
 	resizeGrid = () -> 
 		$window = $(window)
+		sideWidth = $side.innerWidth()
 		$visibleTiles = $buildingTiles.filter(':not(.hidden)')
 		length = $visibleTiles.length
 		smaller = Math.floor(Math.sqrt(length))
 		larger = Math.ceil(Math.sqrt(length))
 		edge = $visibleTiles.eq(0).innerWidth()
-		gridWidth = larger * edge + larger
+		gridWidth = larger * edge + sideWidth
 		gridHeight = smaller * edge
 		# paddingLeft = sideWidth
 		console.log(larger, edge)
 		console.log(gridWidth)
-		sideWidth = $side.innerWidth()
 		if(gridWidth < $window.innerWidth())
 			gridWidth = $window.innerWidth() - sideWidth
-		if(gridHeight < $window.innerHeight())
-			gridHeight = $window.innerHeight()
 
 		if(Math.floor((gridWidth/edge))%2 == 0)
 			$grid.addClass('even')
@@ -518,8 +516,7 @@ window.initPublic = ->
 
 		$grid.css({
 			minWidth: gridWidth+'px',
-			mineight: gridHeight+'px',
-			# paddingLeft: paddingLeft+'px'
+			minHeight: $window.innerHeight()
 		})
 
 	centerGrid = () ->
