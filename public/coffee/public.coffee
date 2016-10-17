@@ -13,7 +13,9 @@ window.initPublic = ->
 	$singleSect = $('section#single')
 	filterQuery = {}
 	urlQuery = {}
+	mobile = false
 	filterIsOn = false
+	grid = null
 	
 	setUp = () ->
 		$body.on 'mouseenter', '.building a', hoverBuilding
@@ -70,7 +72,11 @@ window.initPublic = ->
 			type: 'x,y',
 			edgeResistance: 0.95,
 			throwProps: true,
-			bounds: $gridWrap
+			bounds: $gridWrap,
+			dragClickables: false,
+			onPress: (e) ->
+				if(mobile)
+					closeSide()
 		}
 
 	hoverBuilding = (event) -> 
@@ -266,7 +272,6 @@ window.initPublic = ->
 
 
 	getContent = (id, type, format, filter) ->
-		console.log(id, type, format, filter)
 		url = '/api/?type='+type
 		if(id)
 			url += '&id='+id
@@ -293,7 +298,6 @@ window.initPublic = ->
 		event.preventDefault()
 		query = $(form).find('input:text').val()
 		url = '/search/' + query
-		console.log(url)
 		$.ajax
 			url: url,
 			error:  (jqXHR, status, error) ->
@@ -504,8 +508,8 @@ window.initPublic = ->
 		gridWidth = larger * edge + sideWidth
 		gridHeight = smaller * edge
 		# paddingLeft = sideWidth
-		console.log(larger, edge)
-		console.log(gridWidth)
+		# console.log(larger, edge)
+		# console.log(gridWidth)
 		if(gridWidth < $window.innerWidth())
 			gridWidth = $window.innerWidth() - sideWidth
 
@@ -518,6 +522,13 @@ window.initPublic = ->
 			minWidth: gridWidth+'px',
 			minHeight: $window.innerHeight()
 		})
+
+		if(grid)
+			content = $body.css('content').replace(/['"]+/g, '')
+			if(content && content.replace(/['"]+/g, '') == 'mobile')
+				mobile = true
+			else
+				mobile = false
 
 	centerGrid = () ->
 		return

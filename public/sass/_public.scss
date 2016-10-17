@@ -296,7 +296,7 @@ aside {
     flex-wrap: wrap;
     align-items: center;
     padding-left: $sideWidth;
-    @media screen and (max-width: 600px) {
+    @include mobile {
     	padding-left: 0;
     }
 		&.show {

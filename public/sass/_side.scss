@@ -353,7 +353,7 @@ aside {
   }
 }
 
-@media screen and (max-width: 600px) {
+@include mobile {
 	aside {
 		width: 90vw;
 	}

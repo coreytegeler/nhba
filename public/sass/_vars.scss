@@ -15,6 +15,12 @@ $sidePad: 1em;
   -ms-user-select: none;
   user-select: none;
 }
+@mixin mobile {
+	@media (max-width: 600px) {
+		@content;
+	}	
+}
+
 
 @mixin loader {
 	// background-image: url(/img/ajax.gif);

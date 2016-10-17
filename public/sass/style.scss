@@ -13,7 +13,7 @@ html {
 	font-weight: bold;
 	font-size: 21px;
 	line-height: 1.5em;
-	@media (max-width: 600px) {
+	@include mobile {
 		font-size: 16px;
 	}
 	-webkit-overflow-scrolling: touch;
@@ -29,6 +29,9 @@ html {
     overflow: hidden;
 		margin: 0;
 		font-size: $mediumFont;
+		@include mobile {
+			content: 'mobile';
+		}
 	}
 }
 h1 {

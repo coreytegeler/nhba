@@ -277,7 +277,7 @@ aside {
   .button.open:hover {
     cursor: pointer; }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
   aside {
     width: 90vw; }
 
@@ -589,6 +589,9 @@ html {
     overflow: hidden;
     margin: 0;
     font-size: 0.95em; }
+    @media (max-width: 600px) {
+      html body {
+        content: 'mobile'; } }
 
 h1 {
   font-size: 1.5em;
@@ -869,7 +872,7 @@ aside .mapWrap {
     flex-wrap: wrap;
     align-items: center;
     padding-left: calc(15em + 20vw); }
-    @media screen and (max-width: 600px) {
+    @media (max-width: 600px) {
       .gridWrap .grid {
         padding-left: 0; } }
     .gridWrap .grid.show {
