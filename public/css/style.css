@@ -869,6 +869,9 @@ aside .mapWrap {
     flex-wrap: wrap;
     align-items: center;
     padding-left: calc(15em + 20vw); }
+    @media screen and (max-width: 600px) {
+      .gridWrap .grid {
+        padding-left: 0; } }
     .gridWrap .grid.show {
       opacity: 1; }
     .gridWrap .grid .building {
