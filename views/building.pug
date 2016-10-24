@@ -74,7 +74,10 @@ include  ./mixins
 					span.value= object.researchBy+(object.researchYear ? ', '+object.researchYear : '')
 	.group.paragraphs.research
 		| !{object.research}
-		.citations !{object.citations}
+		if(object.citations && object.citations.length > 1)
+			.citations
+				| Citations
+				| !{object.citations}
 
 	.group.contribute
 		.index

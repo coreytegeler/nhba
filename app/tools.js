@@ -20,32 +20,11 @@ var moment = require('moment')
 var async = function(func, req, res) {
   Async.parallel([
     function(callback) {
-      Building.find({}, function(err, data) {
+      Building.find({'$query':{},'$orderby':{ 'address': -1 }}, function(err, data) {
         if(err)
           callback(err)
         callback(null, data)
-      }).sort({'address':1})
-    },
-    function(callback) {
-      Neighborhood.find({}, function(err, data) {
-        if(err)
-          callback(err)
-        callback(null, data)
-      }).sort({'name':1})
-    },
-    function(callback) {
-      Tour.find({}, function(err, data) {
-        if(err)
-          callback(err)
-        callback(null, data)
-      }).sort({'name':1})
-    },
-    function(callback) {
-      Style.find({}, function(err, data) {
-        if(err)
-          callback(err)
-        callback(null, data)
-      }).sort({'name':1})
+      })
     },
     function(callback) {
       Use.find({}, function(err, data) {
@@ -70,6 +49,27 @@ var async = function(func, req, res) {
       }).sort({'name':1})
     },
     function(callback) {
+      Style.find({}, function(err, data) {
+        if(err)
+          callback(err)
+        callback(null, data)
+      }).sort({'name':1})
+    },
+    function(callback) {
+      Neighborhood.find({}, function(err, data) {
+        if(err)
+          callback(err)
+        callback(null, data)
+      }).sort({'name':1})
+    },
+    function(callback) {
+      Tour.find({}, function(err, data) {
+        if(err)
+          callback(err)
+        callback(null, data)
+      }).sort({'name':1})
+    },
+    function(callback) {
       Term.find({}, function(err, data) {
         if(err)
           callback(err)
@@ -85,13 +85,13 @@ var async = function(func, req, res) {
     }
   ],
   function(err, results) { 
-    var glossary = alphaSort(results[3].concat(results[5]))
+    var glossary = alphaSort(results[2].concat(results[5]))
     var models = {
       'buildings': results[0],
-      'neighborhood': results[1],
-      'tour': results[2],
-      'style': results[3],
-      'use': results[4],
+      'use': results[1],
+      'style': results[2],
+      'neighborhood': results[3],
+      'tour': results[4],
       'term': results[5],
       'glossary': glossary,
       'info': results[6]

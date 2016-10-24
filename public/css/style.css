@@ -120,7 +120,7 @@ aside {
             -webkit-appearance: none;
             border: 1px solid black;
             outline: none;
-            font-family: Arial Narrow, Arial;
+            font-family: Arial;
             background: transparent; }
             aside header .tabs .search form input::-webkit-input-placeholder {
               color: black; }
@@ -238,6 +238,10 @@ aside {
     line-height: 1.25em; }
   aside #glossary .add, aside #glossary .alpha, aside #glossary .term {
     margin-bottom: 1em; }
+  aside #glossary .alpha {
+    padding-top: 1em; }
+    aside #glossary .alpha:first-child {
+      padding-top: 0; }
   aside #glossary .definition {
     margin-bottom: 2em; }
   aside #glossary .alpha, aside #glossary .add {
@@ -298,7 +302,7 @@ body.admin {
     display: table; }
     body.admin form label {
       font-size: 1em;
-      line-height: 1.5em;
+      line-height: 1.1em;
       display: table; }
       body.admin form label .instruct {
         opacity: .25; }
@@ -317,6 +321,7 @@ body.admin {
       line-height: 1.2em;
       background: transparent; }
       body.admin form input[type="text"], body.admin form input[type="email"], body.admin form input[type="password"], body.admin form input[type="file"] {
+        font-family: Arial;
         background: white;
         width: calc(100% - 1em - 2px);
         padding: 0.5em; }
@@ -503,7 +508,7 @@ body.admin {
     body.admin form .images .image {
       height: 100px;
       display: inline-block;
-      margin: 0 .5em 0 0;
+      margin: 0 .5em .5em 0;
       padding: 0;
       cursor: pointer;
       vertical-align: bottom; }
@@ -674,12 +679,18 @@ aside section#single .sliderWrap .slider .slideWrap {
         opacity: 0;
         vertical-align: bottom; }
     aside section#single .sliderWrap .slider .slideWrap .slide .caption {
-      padding-top: 0.5em;
+      width: calc(100% - 1.25em);
+      padding: 0.5em 1.25em 0 0;
       font-size: 0.8em;
-      opacity: 0; }
+      line-height: 0.5em;
+      opacity: 0;
+      position: relative; }
       aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom {
         width: 1.25em;
         height: 1.25em;
+        position: absolute;
+        right: 0;
+        top: 0;
         display: inline-block;
         background-image: url(/img/zoom.svg);
         background-size: contain;
@@ -887,7 +898,8 @@ aside .mapWrap {
         display: table;
         margin: auto;
         font-size: 1em;
-        line-height: 1.1em; }
+        line-height: 1.1em;
+        text-align: center; }
       .gridWrap .grid .building .image {
         margin-bottom: .5em;
         border: 1px solid transparent;

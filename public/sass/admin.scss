@@ -17,7 +17,7 @@ body.admin {
 		display: table;
 		label {
 			font-size: 1em;
-			line-height: 1.5em;
+			line-height: 1.1em;
 			display: table;
 			.instruct {
 				opacity: .25;
@@ -43,6 +43,7 @@ body.admin {
 			&[type="email"], 
 			&[type="password"],
 			&[type="file"] {
+				font-family: Arial;
 				background: white;
 				width: calc(100% - 1em - 2px);
 				padding: 0.5em;
@@ -317,7 +318,7 @@ body.admin {
 		.image {
 			height: 100px;
 			display: inline-block;
-			margin: 0 .5em 0 0;
+			margin: 0 .5em .5em 0;
 			padding: 0;
 			cursor: pointer;
 			vertical-align: bottom;

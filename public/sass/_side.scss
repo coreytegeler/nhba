@@ -156,7 +156,7 @@ aside {
 						-webkit-appearance: none;
 						border: 1px solid black;
 						outline: none;
-						font-family: Arial Narrow, Arial;
+						font-family: Arial;
 						background: transparent;
 						@include placeholder(black);
 						&:focus {
@@ -295,6 +295,12 @@ aside {
 	#glossary {
 		.add, .alpha, .term {
 			margin-bottom: 1em;
+		}
+		.alpha {
+			padding-top: 1em;
+			&:first-child {
+				padding-top: 0;
+			}
 		}
 		.definition {
 			margin-bottom: 2em;

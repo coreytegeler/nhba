@@ -323,7 +323,7 @@ module.exports = function(app) {
       data.medium = '/uploads/medium/'+filename
       data.small = '/uploads/small/'+filename
 
-      gm(appRoot+'/public'+data.original).resize(500, 500).write(appRoot+'/public/'+data.medium, function (err) {
+      gm(appRoot+'/public'+data.original).resize(800, 800).quality(100).autoOrient().write(appRoot+'/public/'+data.medium, function (err) {
         if(err) {
           console.log('Failed medium resize:', err)
           return res.json(err)
@@ -332,7 +332,7 @@ module.exports = function(app) {
         }
       })
 
-      gm(appRoot+'/public'+data.original).resize(250, 250).write(appRoot+'/public/'+data.small, function (err) {
+      gm(appRoot+'/public'+data.original).resize(250, 250).quality(100).autoOrient().write(appRoot+'/public/'+data.small, function (err) {
         if(err) {
           console.log('Failed small resize:', err)
           return res.json(err)

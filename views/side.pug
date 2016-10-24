@@ -33,24 +33,6 @@ aside
 			section#filter
 				.clear= 'Clear Filter'
 				ul.group.filters.nested
-					if models
-						each model, name in models
-							if(name != 'buildings' && name != 'glossary' &&  name != 'term' && name != 'use' && name != 'info')
-								li(class=name)
-									.title(data-slug=name)= uppercase(name)
-									ul(class=name)
-										for item in model
-											li(class=item.type)
-												a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
-
-					li.era
-						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
-						.title(data-slug='era')= 'Era'
-						ul.era
-							for era in eras
-								li(class='era')
-									a.filter(href='/?era='+era, data-slug=era, data-id=era, data-type='era') #{era}
-
 					li.use
 						.title(data-slug='use') Use
 						ul.use
@@ -66,6 +48,17 @@ aside
 									else
 										li(class=use.slug)
 											a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+					+filter('style', 'Style', models['style'])
+					li.era
+						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
+						.title(data-slug='era')= 'Era'
+						ul.era
+							for era in eras
+								li(class='era')
+									a.filter(href='/?era='+era, data-slug=era, data-id=era, data-type='era') #{era}
+					+filter('neighborhood', 'Neighborhood', models['neighborhood'])
+					+filter('tour', 'Tour', models['tour'])
+
 
 			section#glossary
 				-var currentAlpha

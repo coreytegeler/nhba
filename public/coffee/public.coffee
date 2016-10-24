@@ -220,7 +220,7 @@ window.initPublic = ->
 			filterQuery[key] = []
 		for key, arr of urlQuery
 			urlQuery[key] = []
-		$('.filter.selected').removeClass('selected')
+		$('.filters .filter.selected').removeClass('selected')
 		filter()
 		filterUrl()
 
@@ -345,8 +345,9 @@ window.initPublic = ->
         path: google.maps.SymbolPath.CIRCLE,
         fillColor: color,
         fillOpacity: 1,
-        strokeWeight: 0,
-        scale: 5
+        strokeColor: 'black',
+        strokeWeight: .25,
+        scale: 10.25
       }
 		$mapWrap.addClass('loaded')
 		return
@@ -376,8 +377,9 @@ window.initPublic = ->
 	          fillColor: color,
 	          fillOpacity: 1,
 	          # strokeColor: '#fff',
-	          strokeWeight: 0,
-	          scale: 5
+	          strokeColor: 'black',
+	          strokeWeight: .25,
+	          scale: 10.25
 	        }
 				bounds.extend(marker.getPosition())
 				marker.addListener 'click', clickMarker
@@ -408,8 +410,9 @@ window.initPublic = ->
 		          path: google.maps.SymbolPath.CIRCLE,
 		          fillColor: tourColor,
 		          fillOpacity: 1,
-		          strokeWeight: 0,
-		          scale: 5
+		          strokeColor: 'black',
+		          strokeWeight: .25,
+		          scale: 10.25
 		        }
 					bounds.extend(coords)
 					marker.addListener 'click', clickMarker
@@ -462,13 +465,13 @@ window.initPublic = ->
 
 			if(orientation == 'landscape')
 				$image.css({
-					maxWidth: sliderWidth - captionHeight,
-					maxHeight: sliderHeight
+					maxWidth: sliderWidth,
+					maxHeight: sliderHeight - captionHeight
 				})
 			else if (orientation == 'portait')
 				$image.css({
-					maxHeight: sliderHeight - captionHeight,
-					maxWidth: sliderWidth
+					maxWidth: sliderWidth,
+					maxHeight: sliderHeight - captionHeight
 				})
 
 	nextSlide = () ->
@@ -479,7 +482,7 @@ window.initPublic = ->
 		if($next.length)
 			$slide.removeClass('show')
 			$next.addClass('show')
-		setUpSlider()
+			setUpSlider()
 
 	clickToggle = () ->
 		group = this.dataset.group

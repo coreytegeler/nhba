@@ -5,7 +5,8 @@
 .row
 	label= 'Color'
 	.module.checkboxes(data-type='checkboxes', data-model='color', class='color', data-checked=(object ? object.color : ''))
-		-var colors = ['#FF8000','#6699CC','#CCCC66','#66CC99','#FF99FF','#FF6633','#33CCFF','#FF99CC','#CC9933','#FFCC33','#FF6666','#6666CC','#CC99FF','#CCFFCC']
+		-var colors = ['#006d3b', '#00c80f', '#6e83fa', '#752675', '#ff00ff', '#ff0000', '#0041cb', '#ffaa8a', '#000000', '#f26721', '#ebe718', '#7a5220', '#757470', '#4effc0']
+
 		for color in colors
 			+checkbox('color', color, color, false, (object && object.color == color ? true : false))
 -var buildings = models['buildings']

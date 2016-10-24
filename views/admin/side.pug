@@ -44,33 +44,6 @@ aside
 								a(href='/admin/building/edit/'+building.slug, class=(loadedSlug == building.slug ? 'selected' : ''))= building.address
 				section#filter(class=(sideSection == 'filter' ? 'show' : ''))
 					ul.group.edit.nested
-						li.tours
-							.title(data-slug='tours' class=(loadedType.p == 'tours' ? 'toggled' : '')) Tour
-							ul.tours(class=(loadedType.p == 'tours' ? 'open' : ''))
-								li.add
-									a(href='/admin/tour/new')= 'Add Tour'
-								-var tours = models['tour']
-								for tour in tours
-									li(class=tour.slug)
-										a(href='/admin/tour/edit/'+tour.slug, class=(loadedSlug == tour.slug ? 'selected' : ''))= tour.name
-						li.neighborhoods
-							.title(data-slug='neighborhoods' class=(loadedType.p == 'neighborhoods' ? 'toggled' : '')) Neighborhood
-							ul.neighborhoods(class=(loadedType.p == 'neighborhoods' ? 'open' : ''))
-								li.add
-									a(href='/admin/neighborhood/new')= 'Add Neighborhood'
-								-var neighborhoods = models['neighborhood']
-								for neighborhood in neighborhoods
-									li(class=neighborhood.slug)
-										a(href='/admin/neighborhood/edit/'+neighborhood.slug, class=(loadedSlug == neighborhood.slug ? 'selected' : ''))= neighborhood.name
-						li.styles
-							.title(data-slug='styles' class=(loadedType.p == 'styles' ? 'toggled' : '')) Style
-							ul.styles(class=(loadedType.p == 'styles' ? 'open' : ''))
-								li.add
-									a(href='/admin/style/new')= 'Add Style'
-								-var styles = models['style']
-								for style in styles
-									li(class=style.slug)
-										a(href='/admin/style/edit/'+style.slug, class=(loadedSlug == style.slug ? 'selected' : ''))= style.name
 						li.uses
 							.title(data-slug='uses' class=(loadedType.p == 'uses' ? 'toggled' : '')) Use
 							ul.uses(class=(loadedType.p == 'uses' ? 'open' : ''))
@@ -88,6 +61,33 @@ aside
 										else
 											li(class=use.slug)
 												a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+						li.styles
+							.title(data-slug='styles' class=(loadedType.p == 'styles' ? 'toggled' : '')) Style
+							ul.styles(class=(loadedType.p == 'styles' ? 'open' : ''))
+								li.add
+									a(href='/admin/style/new')= 'Add Style'
+								-var styles = models['style']
+								for style in styles
+									li(class=style.slug)
+										a(href='/admin/style/edit/'+style.slug, class=(loadedSlug == style.slug ? 'selected' : ''))= style.name
+						li.neighborhoods
+							.title(data-slug='neighborhoods' class=(loadedType.p == 'neighborhoods' ? 'toggled' : '')) Neighborhood
+							ul.neighborhoods(class=(loadedType.p == 'neighborhoods' ? 'open' : ''))
+								li.add
+									a(href='/admin/neighborhood/new')= 'Add Neighborhood'
+								-var neighborhoods = models['neighborhood']
+								for neighborhood in neighborhoods
+									li(class=neighborhood.slug)
+										a(href='/admin/neighborhood/edit/'+neighborhood.slug, class=(loadedSlug == neighborhood.slug ? 'selected' : ''))= neighborhood.name
+						li.tours
+							.title(data-slug='tours' class=(loadedType.p == 'tours' ? 'toggled' : '')) Tour
+							ul.tours(class=(loadedType.p == 'tours' ? 'open' : ''))
+								li.add
+									a(href='/admin/tour/new')= 'Add Tour'
+								-var tours = models['tour']
+								for tour in tours
+									li(class=tour.slug)
+										a(href='/admin/tour/edit/'+tour.slug, class=(loadedSlug == tour.slug ? 'selected' : ''))= tour.name
 		else
 			.inner
 				section#login.show

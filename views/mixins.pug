@@ -94,3 +94,11 @@ mixin coords(parent, title)
 			+input(parent+'.latitude', 'Latitude', 'text', (object ? object[parent].latitude : ''))
 		.cell
 			+input(parent+'.longitude', 'Longitude', 'text', (object ? object[parent].longitude : ''))
+
+mixin filter(slug, name, model)
+	li(class=name)
+		.title(data-slug=name)= name
+		ul(class=name)
+			for item in model
+				li(class=item.type)
+					a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}

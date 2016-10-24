@@ -274,7 +274,7 @@
         arr = urlQuery[key];
         urlQuery[key] = [];
       }
-      $('.filter.selected').removeClass('selected');
+      $('.filters .filter.selected').removeClass('selected');
       filter();
       return filterUrl();
     };
@@ -416,8 +416,9 @@
           path: google.maps.SymbolPath.CIRCLE,
           fillColor: color,
           fillOpacity: 1,
-          strokeWeight: 0,
-          scale: 5
+          strokeColor: 'black',
+          strokeWeight: .25,
+          scale: 10.25
         }
       });
       $mapWrap.addClass('loaded');
@@ -448,8 +449,9 @@
               path: google.maps.SymbolPath.CIRCLE,
               fillColor: color,
               fillOpacity: 1,
-              strokeWeight: 0,
-              scale: 5
+              strokeColor: 'black',
+              strokeWeight: .25,
+              scale: 10.25
             }
           });
           bounds.extend(marker.getPosition());
@@ -487,8 +489,9 @@
                 path: google.maps.SymbolPath.CIRCLE,
                 fillColor: tourColor,
                 fillOpacity: 1,
-                strokeWeight: 0,
-                scale: 5
+                strokeColor: 'black',
+                strokeWeight: .25,
+                scale: 10.25
               }
             });
             bounds.extend(coords);
@@ -547,13 +550,13 @@
         });
         if (orientation === 'landscape') {
           return $image.css({
-            maxWidth: sliderWidth - captionHeight,
-            maxHeight: sliderHeight
+            maxWidth: sliderWidth,
+            maxHeight: sliderHeight - captionHeight
           });
         } else if (orientation === 'portait') {
           return $image.css({
-            maxHeight: sliderHeight - captionHeight,
-            maxWidth: sliderWidth
+            maxWidth: sliderWidth,
+            maxHeight: sliderHeight - captionHeight
           });
         }
       });
@@ -568,8 +571,8 @@
       if ($next.length) {
         $slide.removeClass('show');
         $next.addClass('show');
+        return setUpSlider();
       }
-      return setUpSlider();
     };
     clickToggle = function() {
       var $group, group;
