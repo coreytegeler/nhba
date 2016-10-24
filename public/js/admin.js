@@ -14,7 +14,7 @@
       $body.on('click', 'a.delete', deleteObject);
       $body.on('click', '.button.clear', function() {
         $('.images input:text').val('[]');
-        return $('.images .image:not(.sample)').remove();
+        return $('.images .image:not(.empty)').remove();
       });
       $sortable = $('.sortable');
       sortable = $('.sortable ul').sortable({
@@ -63,7 +63,7 @@
       if (($('form .images').length)) {
         $('form .images .image').each(function(i, imageWrap) {
           var id;
-          if ($(imageWrap).is('.sample')) {
+          if ($(imageWrap).is('.empty')) {
             return addQuicky('image');
           } else {
             id = $(imageWrap).attr('data-id');
@@ -94,7 +94,9 @@
             switch (containerType) {
               case 'checkboxes':
                 $(objects).each(function(i, object) {
-                  return addCheckbox(container, object);
+                  var checked;
+                  checked = $(container).data('checked');
+                  return addCheckbox(container, object, checked);
                 });
             }
             $(container).addClass('loaded');
@@ -104,7 +106,8 @@
     };
     addCheckbox = function(container, object, checked) {
       var $clone, $input, $label, checkedValue, j, len, model, value, valueObject;
-      $clone = $(container).find('.sample').clone().removeClass('sample');
+      $clone = $(container).find('.empty').clone().removeClass('empty');
+      $clone.find('input').attr('checked', false);
       $label = $clone.find('label');
       $input = $clone.find('input');
       if (!object) {
@@ -125,9 +128,6 @@
       model = $(container).data('model');
       $input.attr('value', value).attr('id', model + '-' + object.slug);
       $label.text(object.name).attr('for', model + '-' + object.slug);
-      if (!checked) {
-        checked = $(container).data('checked');
-      }
       if (checked) {
         if ($.isArray(checked)) {
           for (j = 0, len = checked.length; j < len; j++) {
@@ -140,7 +140,7 @@
           $input.attr('checked', true);
         }
       }
-      $clone.attr('data-slug', object.slug).appendTo(container);
+      $clone.attr('data-slug', object.slug).prependTo(container);
       $(container).addClass('loaded');
     };
     addQuicky = function(type, id, label) {
@@ -272,8 +272,8 @@
       }
       $imagesInput.val(JSON.stringify(imagesInputVal));
       if (!$imagesWrapper.find('.image[data-id="' + object._id + '"]').length) {
-        $clone = $imagesWrapper.find('.sample').clone();
-        $clone.removeClass('sample');
+        $clone = $imagesWrapper.find('.empty').clone();
+        $clone.removeClass('empty');
         $clone.attr('data-id', imageObject._id);
         newImg = new Image();
         newImg.onload = function() {

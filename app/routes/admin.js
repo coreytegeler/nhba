@@ -208,6 +208,8 @@ module.exports = function(app) {
     }
     if(data.images) { data.images = JSON.parse(data.images) }
     if(data.tour) { data.tour = JSON.parse(data.tour) }
+    console.log(data)
+    console.log(data.neighborhood)
     if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
     if(data.style) { data.style = JSON.parse(data.style) }
     if(data.use) { data.use = JSON.parse(data.use) }

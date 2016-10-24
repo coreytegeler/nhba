@@ -47,10 +47,10 @@ mixin textarea(name, label, value)
 	label(name=name) #{label}
 	textarea(name=name, rows=10) #{value ? value : ''}
 
-mixin checkboxes(type, name, multiple, addable)
+mixin checkboxes(type, name, multiple, addable, value)
 	label #{name}
-	.module.checkboxes.populate(data-type='checkboxes', data-model=type, class=type, data-checked=(object ? object[type] : ''))
-		+checkbox(type, null, null, multiple, false)
+	.module.checkboxes.populate(data-type='checkboxes', data-model=type, class=type)
+		+checkbox(type, 'N/A', null, multiple, (value == null ? true : false))
 	if(addable)
 		.add.button(data-model=type) New
 
@@ -60,9 +60,9 @@ mixin checkbox(type, name, value, multiple, checked)
 		-var name = ''
 	else
 		-var style = ''
-	.item.checkbox(class=(value || value != null ? value : 'sample'))
-		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : ''), name=type, id=(value ? type+'-'+value : ''), checked=checked)
-		label(class=type, style=style, data-pop='name', for=(value ? type+'-'+value : '')) #{(name ? name : '')}
+	.item.checkbox(class=(value || value != null ? value : 'empty'))
+		input(type=(multiple ? 'checkbox' : 'radio'), value=(value ? value : 'null'), name=type, id=(type+'-'+value), checked=checked)
+		label(class=type, style=style, data-pop='name', for=(type+'-'+value)) #{(name ? name : '')}
 
 mixin dateselect(months, days)
 	.input

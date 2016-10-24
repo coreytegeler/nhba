@@ -27,9 +27,9 @@ include  ./mixins
 										.vert
 											.horz
 												img(src=image.medium)
-									.caption
-										| #{image.caption}
-										a.zoom(href=image.original, target='_blank')
+											.caption
+												| #{image.caption}
+												a.zoom(href=image.original, target='_blank')
 		.mapWrap.togglable(data-group='map', class=(!hasImages ? 'show' : ''))
 			.map
 			.loader
@@ -77,6 +77,8 @@ include  ./mixins
 		if(object.citations && object.citations.length > 1)
 			.citations
 				| Citations
+				br
+				br
 				| !{object.citations}
 
 	.group.contribute

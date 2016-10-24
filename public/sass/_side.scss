@@ -143,20 +143,21 @@ aside {
 				}
 			}
 			.search {
+				display: none;
 				width: auto;
 				form {
 					width: 100%;
 					margin: 0;
 					padding: 0;
 					input {
-						font-size: inherit;
+						font-size: $mediumFont;
 						font-weight: inherit;
 						width: calc(100% - 1em - 2px);
 						padding: 0.2em;
 						-webkit-appearance: none;
 						border: 1px solid black;
 						outline: none;
-						font-family: Arial;
+						font-family: Arial Narrow, Arial;
 						background: transparent;
 						@include placeholder(black);
 						&:focus {

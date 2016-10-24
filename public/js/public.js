@@ -42,10 +42,10 @@
       });
       makeDraggable();
       resizeGrid();
-      centerGrid();
       setUpSlider();
       getParams();
       filter();
+      centerGrid();
       infoMapSetup();
       $buildingTiles.imagesLoaded().progress(function(instance, image) {
         var orientation, status;
@@ -418,7 +418,7 @@
           fillOpacity: 1,
           strokeColor: 'black',
           strokeWeight: .25,
-          scale: 10.25
+          scale: 5
         }
       });
       $mapWrap.addClass('loaded');
@@ -451,7 +451,7 @@
               fillOpacity: 1,
               strokeColor: 'black',
               strokeWeight: .25,
-              scale: 10.25
+              scale: 5
             }
           });
           bounds.extend(marker.getPosition());
@@ -491,7 +491,7 @@
                 fillOpacity: 1,
                 strokeColor: 'black',
                 strokeWeight: .25,
-                scale: 10.25
+                scale: 5
               }
             });
             bounds.extend(coords);
@@ -635,6 +635,7 @@
       centerY = wrapHeight / 2 - gridHeight / 2;
       if (!isNaN(centerX) || !isNaN(centerY)) {
         centerMatrix = [1, 0, 0, 1, centerX, centerY].join(',');
+        console.log('center matrix: ' + centerMatrix);
         return $grid.css({
           transform: 'matrix(' + centerMatrix + ')'
         }).addClass('show');

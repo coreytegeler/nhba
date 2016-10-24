@@ -107,20 +107,21 @@ aside {
         aside header .tabs .button.close {
           background-image: url(/img/x.svg); }
       aside header .tabs .search {
+        display: none;
         width: auto; }
         aside header .tabs .search form {
           width: 100%;
           margin: 0;
           padding: 0; }
           aside header .tabs .search form input {
-            font-size: inherit;
+            font-size: 0.95em;
             font-weight: inherit;
             width: calc(100% - 1em - 2px);
             padding: 0.2em;
             -webkit-appearance: none;
             border: 1px solid black;
             outline: none;
-            font-family: Arial;
+            font-family: Arial Narrow, Arial;
             background: transparent; }
             aside header .tabs .search form input::-webkit-input-placeholder {
               color: black; }
@@ -302,7 +303,8 @@ body.admin {
     display: table; }
     body.admin form label {
       font-size: 1em;
-      line-height: 1.1em;
+      line-height: 1.2em;
+      padding-bottom: .3em;
       display: table; }
       body.admin form label .instruct {
         opacity: .25; }
@@ -346,8 +348,6 @@ body.admin {
       overflow: auto; }
     body.admin form .group {
       padding: 0 0 20px 0; }
-    body.admin form .sample {
-      display: none; }
     body.admin form .row {
       width: 100%;
       display: table;
@@ -679,10 +679,11 @@ aside section#single .sliderWrap .slider .slideWrap {
         opacity: 0;
         vertical-align: bottom; }
     aside section#single .sliderWrap .slider .slideWrap .slide .caption {
-      width: calc(100% - 1.25em);
-      padding: 0.5em 1.25em 0 0;
+      width: calc(100% - 1.5em);
+      margin-top: 0.5em;
+      padding-right: 1.5em;
       font-size: 0.8em;
-      line-height: 0.5em;
+      line-height: 1.3em;
       opacity: 0;
       position: relative; }
       aside section#single .sliderWrap .slider .slideWrap .slide .caption .zoom {
@@ -780,7 +781,7 @@ aside section#single .buildings .building {
     margin-right: 0.5em; }
     aside section#single .buildings .building .image img, aside section#single .buildings .building .image .img {
       max-width: 100%;
-      max-height: 100%;
+      max-height: 160px;
       display: table;
       margin: auto; }
     aside section#single .buildings .building .image .img {

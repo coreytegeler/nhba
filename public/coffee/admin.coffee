@@ -14,7 +14,7 @@ $ ->
 		# $body.on 'change', '.updateTemplate input', updateTemplate
 		$body.on 'click',  '.button.clear', () ->
 			$('.images input:text').val('[]')
-			$('.images .image:not(.sample)').remove()
+			$('.images .image:not(.empty)').remove()
 		
 		$sortable = $('.sortable')
 		sortable = $( '.sortable ul' ).sortable
@@ -53,7 +53,7 @@ $ ->
 	getData = () ->
 		if($('form .images').length)
 			$('form .images .image').each (i, imageWrap) ->
-				if($(imageWrap).is('.sample'))
+				if($(imageWrap).is('.empty'))
 					addQuicky('image')	
 				else
 					id = $(imageWrap).attr('data-id')
@@ -78,14 +78,16 @@ $ ->
 					switch containerType
 						when 'checkboxes'
 							$(objects).each (i, object) ->
-								addCheckbox(container, object)
+								checked = $(container).data('checked')
+								addCheckbox(container, object, checked)
 					$(container).addClass('loaded')
 					return
 			return
 		return
 
 	addCheckbox = (container, object, checked) ->
-		$clone = $(container).find('.sample').clone().removeClass('sample')
+		$clone = $(container).find('.empty').clone().removeClass('empty')
+		$clone.find('input').attr('checked', false)
 		$label = $clone.find('label')
 		$input = $clone.find('input')
 		if !object
@@ -99,8 +101,6 @@ $ ->
 		model = $(container).data('model')
 		$input.attr('value', value).attr('id', model+'-'+object.slug)
 		$label.text(object.name).attr('for', model+'-'+object.slug)
-		if !checked
-			checked = $(container).data('checked')
 		if checked
 			if $.isArray(checked)
 				for checkedValue in checked
@@ -110,7 +110,7 @@ $ ->
 				$input.attr('checked', true)
 		$clone
 			.attr('data-slug', object.slug)
-			.appendTo(container)
+			.prependTo(container)
 		$(container).addClass('loaded')
 		return
 
@@ -245,8 +245,8 @@ $ ->
 		$imagesInput.val(JSON.stringify(imagesInputVal))
 
 		if(!$imagesWrapper.find('.image[data-id="'+object._id+'"]').length)
-			$clone = $imagesWrapper.find('.sample').clone()
-			$clone.removeClass('sample')
+			$clone = $imagesWrapper.find('.empty').clone()
+			$clone.removeClass('empty')
 			$clone.attr('data-id', imageObject._id)
 			newImg = new Image()
 			newImg.onload = () ->

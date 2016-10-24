@@ -17,7 +17,8 @@ body.admin {
 		display: table;
 		label {
 			font-size: 1em;
-			line-height: 1.1em;
+			line-height: 1.2em;
+			padding-bottom: .3em;
 			display: table;
 			.instruct {
 				opacity: .25;
@@ -73,9 +74,6 @@ body.admin {
 		}
 		.group {
 			padding: 0 0 20px 0;
-		}
-		.sample {
-			display: none;
 		}
 		.row {
 			width: 100%;
