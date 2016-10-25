@@ -47,7 +47,9 @@ var buildingSchema = mongoose.Schema({
 	citations: String,
 	threat: String,
 	type: String,
-	number: String
+	number: String,
+	sortNum: String,
+	sortAlpha: String
 }, { 
 	timestamps: true
 })

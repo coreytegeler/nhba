@@ -20,7 +20,7 @@ var moment = require('moment')
 var async = function(func, req, res) {
   Async.parallel([
     function(callback) {
-      Building.find({'$query':{},'$orderby':{ 'address': -1 }}, function(err, data) {
+      Building.find({}).sort({sortAlpha:1, sortNum:1}).exec(function(err, data) {
         if(err)
           callback(err)
         callback(null, data)

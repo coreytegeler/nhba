@@ -289,7 +289,7 @@ aside {
 			}
 		}
 	}
-	#archive {
+	#archive ul {
 		font-size: 1.5em;
 		line-height: 1.25em;
 	}
@@ -297,9 +297,12 @@ aside {
 		.add, .alpha, .term {
 			margin-bottom: 1em;
 		}
+		.term {
+			display: table;
+		}
 		.alpha {
 			padding-top: 1em;
-			&:first-child {
+			&:first-of-type {
 				padding-top: 0;
 			}
 		}

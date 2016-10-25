@@ -134,6 +134,8 @@ module.exports = function(app) {
       res.redirect('/admin/'+type+'/new/')
     }
     if(type == 'building') {
+      data.sortNum = parseInt(data.address.split('-')[0])
+      data.sortAlpha = data.address.replace(/-/g, '').replace(/[0-9]/g, '').trim()
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
           console.log('Failed:')
@@ -208,23 +210,22 @@ module.exports = function(app) {
     }
     if(data.images) { data.images = JSON.parse(data.images) }
     if(data.tour) { data.tour = JSON.parse(data.tour) }
-    console.log(data)
-    console.log(data.neighborhood)
     if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
     if(data.style) { data.style = JSON.parse(data.style) }
     if(data.use) { data.use = JSON.parse(data.use) }
     if(type == 'building') {
+      data.sortNum = parseInt(data.address.split('-')[0])
+      data.sortAlpha = data.address.replace(/-/g, '').replace(/[0-9]/g, '').trim()
       geocoder.geocode(data.address+', New Haven, CT 06510', function(err, location) {
         if(err) {
           console.log('Failed:')
           console.log(err)
         } else {
-          console.log('Geocoded address:')
           data.coords = {
             lat : location[0].latitude,
             lng : location[0].longitude
           }
-          console.log(data.coords)
+          console.log('Geocoded address: ' + data.coords)
           updateObject(model, data, type, id, res)
         }
       })

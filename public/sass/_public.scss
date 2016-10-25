@@ -325,7 +325,7 @@ aside {
 		.building {
 			width: calc(#{$gridCell} + 4em);
 			height: calc(#{$gridCell} + 4em);
-			padding: 2em;
+			padding: .5em;
 			display: table;
 			float: left;
 			a {

@@ -234,14 +234,16 @@ aside {
         cursor: pointer; }
       aside #filter .clear.show, aside #index .clear.show {
         display: block; }
-  aside #archive {
+  aside #archive ul {
     font-size: 1.5em;
     line-height: 1.25em; }
   aside #glossary .add, aside #glossary .alpha, aside #glossary .term {
     margin-bottom: 1em; }
+  aside #glossary .term {
+    display: table; }
   aside #glossary .alpha {
     padding-top: 1em; }
-    aside #glossary .alpha:first-child {
+    aside #glossary .alpha:first-of-type {
       padding-top: 0; }
   aside #glossary .definition {
     margin-bottom: 2em; }
@@ -892,7 +894,7 @@ aside .mapWrap {
     .gridWrap .grid .building {
       width: calc(160px + 4em);
       height: calc(160px + 4em);
-      padding: 2em;
+      padding: .5em;
       display: table;
       float: left; }
       .gridWrap .grid .building a {
