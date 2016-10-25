@@ -8,6 +8,9 @@ body.admin {
 		a.new {
 			text-transform: capitalize;
 		}
+		li.type {
+			opacity: .25;
+		}
 	}
 	form {
 		width: calc(100% - 2em);

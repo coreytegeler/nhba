@@ -297,6 +297,8 @@ body.admin {
     padding-left: calc(15em + 20vw); }
   body.admin ul.list a.new {
     text-transform: capitalize; }
+  body.admin ul.list li.type {
+    opacity: .25; }
   body.admin form {
     width: calc(100% - 2em);
     max-width: 600px;
