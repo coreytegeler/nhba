@@ -9,10 +9,9 @@ block body
 		if objects
 			ul.list
 				for object in objects
-					li.type= object.name
 					if(loadedType.s == 'use')
+						li.type= object.name
 						-var uses = models['use']
-						-console.log(object)
 						for use in object.uses
 							li.item
 								a(href='/admin/use/edit/'+use.slug) #{use.name}

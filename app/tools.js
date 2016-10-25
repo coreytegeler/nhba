@@ -44,7 +44,8 @@ var async = function(func, req, res) {
             uses['z'+i] = data[i] 
           }
         }
-        uses = alphaSortObject(uses)
+        if(uses.length)
+          uses = alphaSortObject(uses)
         callback(null, uses)
       }).sort({'name':1})
     },
