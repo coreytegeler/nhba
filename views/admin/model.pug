@@ -12,10 +12,11 @@ block body
 					if(loadedType.s == 'use')
 						li.type= object.name
 						-var uses = models['use']
-						for use in object.uses
-							li.item
-								a(href='/admin/use/edit/'+use.slug) #{use.name}
-								a(href='/admin/use/remove/'+use._id).square.remove
+						if(uses)
+							for use in object.uses
+								li.item
+									a(href='/admin/use/edit/'+use.slug) #{use.name}
+									a(href='/admin/use/remove/'+use._id).square.remove
 					else
 						li.item
 							a(href='/admin/'+loadedType.s+'/edit/'+object.slug) #{object.name}
