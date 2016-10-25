@@ -42,7 +42,7 @@ module.exports = function(app) {
     }, req, res)
   })
 
-  app.get('/admin/:type', tools.isLoggedIn, function(req, res) {
+  app.get('/admin/:type', tools.isAdmin, function(req, res) {
     tools.async(function(results, err, models) {
       var type = req.params.type
       var model = tools.getModel(type)
