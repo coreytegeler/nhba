@@ -190,7 +190,8 @@ aside {
 			top: 0;
 			background: $tan;
 			pointer-events: none;
-			overflow: auto;
+			overflow-y: auto;
+			overflow-x: hidden;
 			opacity: 0;
 			&.show {
 				z-index: 100;

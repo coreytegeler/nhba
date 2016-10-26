@@ -60,6 +60,9 @@ main {
 	&.noscroll {
 		overflow: hidden;
 	}
+	@include mobile {
+		overflow: hidden;
+	}
 	.inner {
 		padding: 20px;
 	}

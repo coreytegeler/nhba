@@ -160,7 +160,8 @@ aside {
       top: 0;
       background: #ffcc86;
       pointer-events: none;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       opacity: 0; }
       aside .inner section.show {
         z-index: 100;
@@ -626,6 +627,9 @@ main {
   height: 100%; }
   main.noscroll {
     overflow: hidden; }
+  @media (max-width: 600px) {
+    main {
+      overflow: hidden; } }
   main .inner {
     padding: 20px; }
 
