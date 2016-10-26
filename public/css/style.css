@@ -896,7 +896,6 @@ aside .mapWrap {
     .gridWrap .grid .building {
       width: calc(160px + 4em);
       height: calc(160px + 4em);
-      padding: .5em;
       display: table;
       float: left; }
       .gridWrap .grid .building a {
