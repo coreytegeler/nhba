@@ -63,7 +63,7 @@
       if (($('form .images').length)) {
         $('form .images .image').each(function(i, imageWrap) {
           var id;
-          if ($(imageWrap).is('.empty')) {
+          if ($(imageWrap).is('.sample')) {
             return addQuicky('image');
           } else {
             id = $(imageWrap).attr('data-id');
@@ -272,8 +272,8 @@
       }
       $imagesInput.val(JSON.stringify(imagesInputVal));
       if (!$imagesWrapper.find('.image[data-id="' + object._id + '"]').length) {
-        $clone = $imagesWrapper.find('.empty').clone();
-        $clone.removeClass('empty');
+        $clone = $imagesWrapper.find('.sample').clone();
+        $clone.removeClass('sample');
         $clone.attr('data-id', imageObject._id);
         newImg = new Image();
         newImg.onload = function() {

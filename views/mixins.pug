@@ -49,7 +49,7 @@ mixin textarea(name, label, value)
 
 mixin checkboxes(type, name, multiple, addable, value)
 	label #{name}
-	.module.checkboxes.populate(data-type='checkboxes', data-model=type, class=type)
+	.module.checkboxes.populate(data-type='checkboxes', data-model=type, class=type, data-checked=value)
 		+checkbox(type, 'N/A', null, multiple, (value == null ? true : false))
 	if(addable)
 		.add.button(data-model=type) New

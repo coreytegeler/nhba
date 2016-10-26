@@ -53,8 +53,8 @@ $ ->
 	getData = () ->
 		if($('form .images').length)
 			$('form .images .image').each (i, imageWrap) ->
-				if($(imageWrap).is('.empty'))
-					addQuicky('image')	
+				if($(imageWrap).is('.sample'))
+					addQuicky('image')
 				else
 					id = $(imageWrap).attr('data-id')
 					if(id)
@@ -245,8 +245,8 @@ $ ->
 		$imagesInput.val(JSON.stringify(imagesInputVal))
 
 		if(!$imagesWrapper.find('.image[data-id="'+object._id+'"]').length)
-			$clone = $imagesWrapper.find('.empty').clone()
-			$clone.removeClass('empty')
+			$clone = $imagesWrapper.find('.sample').clone()
+			$clone.removeClass('sample')
 			$clone.attr('data-id', imageObject._id)
 			newImg = new Image()
 			newImg.onload = () ->

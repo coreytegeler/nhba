@@ -11,9 +11,9 @@
 	.cell
 		+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
 .row
-	+checkboxes('style', 'Style', false, true, (object ? object.style : ''))
+	+checkboxes('style', 'Style', false, true, (object  && object.style ? object.style.id : ''))
 .row
-	+checkboxes('neighborhood', 'Neighborhood', false, true, (object ? object.neighborhood : ''))
+	+checkboxes('neighborhood', 'Neighborhood', false, true, (object && object.neighborhood ? object.neighborhood.id : ''))
 .row
 	+images('images', (object ? object.images : ''), false)
 .row.two
@@ -30,7 +30,7 @@
 			+checkbox('owner', 'N/A', null, false, (object && object.owner == null ? true : false))
 .row.two
 	.cell
-		+checkboxes('use', 'Present Use', false, true, (object ? object.use : ''))
+		+checkboxes('use', 'Present Use', false, true, (object && object.use ? object.use.id : ''))
 	.cell
 		+checkboxes('historicUse', 'Historic Use', false, true, (object ? object.historicUse : ''))
 .row.two
