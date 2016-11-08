@@ -890,8 +890,7 @@ aside .mapWrap {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    padding-left: calc(15em + 20vw); }
+    align-items: center; }
     @media (max-width: 600px) {
       .gridWrap .grid {
         padding-left: 0; } }

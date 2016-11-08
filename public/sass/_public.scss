@@ -302,7 +302,7 @@ aside {
 		flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    padding-left: $sideWidth;
+    // padding-left: $sideWidth;
     @include mobile {
     	padding-left: 0;
     }

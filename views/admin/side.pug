@@ -33,7 +33,6 @@ aside
 									.alpha= termAlpha
 								a.term(href='/admin/term/edit/'+term.slug, class=(loadedSlug == term.slug ? 'selected' : ''))
 									.name= term.name
-									//- .definition= term.definition
 				section#archive(class=(sideSection == 'archive' ? 'show' : ''))
 					ul.buildings
 						li.add
@@ -46,15 +45,15 @@ aside
 					ul.group.edit.nested
 						li.uses
 							.title(data-slug='uses' class=(loadedType.p == 'uses' ? 'toggled' : '')) Use
-							ul.uses(class=(loadedType.p == 'uses' ? 'open' : ''))
+							ul.uses(data-slug='uses', class=(loadedType.p == 'uses' ? 'open' : ''))
 								li.add
 									a(href='/admin/use/new')= 'Add Use'
 								-var uses = models['use']
 								for use, useType in uses
 									li.useType.withSub
 										if(useType.length && uses[useType].uses)
-											.title(data-slug=useType)= uses[useType].name
-											ul.sub(class=useType+' '+(uses[useType].uses[loadedSlug] ? 'open' : ''))
+											.title(data-slug=useType, class=(uses[useType].uses[loadedSlug] ? 'toggled' : ''))= uses[useType].name
+											ul.sub(class=(uses[useType].uses[loadedSlug] ? 'open' : ''), data-slug=useType)
 												for use in uses[useType].uses
 													li(class=use.slug)
 														a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
@@ -63,7 +62,7 @@ aside
 												a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
 						li.styles
 							.title(data-slug='styles' class=(loadedType.p == 'styles' ? 'toggled' : '')) Style
-							ul.styles(class=(loadedType.p == 'styles' ? 'open' : ''))
+							ul.styles(data-slug='styles', class=(loadedType.p == 'styles' ? 'open' : ''))
 								li.add
 									a(href='/admin/style/new')= 'Add Style'
 								-var styles = models['style']
@@ -72,7 +71,7 @@ aside
 										a(href='/admin/style/edit/'+style.slug, class=(loadedSlug == style.slug ? 'selected' : ''))= style.name
 						li.neighborhoods
 							.title(data-slug='neighborhoods' class=(loadedType.p == 'neighborhoods' ? 'toggled' : '')) Neighborhood
-							ul.neighborhoods(class=(loadedType.p == 'neighborhoods' ? 'open' : ''))
+							ul.neighborhoods(data-slug='neighborhoods', class=(loadedType.p == 'neighborhoods' ? 'open' : ''))
 								li.add
 									a(href='/admin/neighborhood/new')= 'Add Neighborhood'
 								-var neighborhoods = models['neighborhood']
@@ -81,7 +80,7 @@ aside
 										a(href='/admin/neighborhood/edit/'+neighborhood.slug, class=(loadedSlug == neighborhood.slug ? 'selected' : ''))= neighborhood.name
 						li.tours
 							.title(data-slug='tours' class=(loadedType.p == 'tours' ? 'toggled' : '')) Tour
-							ul.tours(class=(loadedType.p == 'tours' ? 'open' : ''))
+							ul.tours(data-slug='tours', class=(loadedType.p == 'tours' ? 'open' : ''))
 								li.add
 									a(href='/admin/tour/new')= 'Add Tour'
 								-var tours = models['tour']
