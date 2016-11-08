@@ -47,11 +47,14 @@
           buttons: ['italic', 'underline', 'anchor', 'superscript'],
           placeholder: false,
           imageDragging: false,
-          disableDoubleReturn: true,
           targetBlank: true,
           paste: {
+            forcePlainText: true,
             cleanPastedHTML: true,
-            cleanAttrs: ['style']
+            cleanReplacements: [],
+            cleanAttrs: ['class', 'style', 'dir'],
+            cleanTags: ['meta'],
+            unwrapTags: ['span', 'div', 'h1', 'h2', 'h3', 'h4', 'label']
           }
         });
         return $(editor.elements).each(function() {
@@ -145,6 +148,9 @@
     };
     addQuicky = function(type, id, label) {
       var url;
+      if (($('.quicky[data-id="' + id + '"]').length)) {
+        return;
+      }
       url = '/admin/' + type + '/quicky/';
       if (id) {
         url += id;
@@ -163,11 +169,10 @@
       });
     };
     openQuicky = function() {
-      var $button, $module, $quicky, id, type;
+      var $button, $quicky, id, type;
       $button = $(this);
       id = $button.data('id');
       type = $button.data('model');
-      $module = $button.parents('.module');
       if (!id) {
         $quicky = $('.quicky.create[data-model="' + type + '"]');
       } else {
@@ -183,9 +188,11 @@
       } else {
         $quicky = $(this).parents('.quicky');
       }
-      $quicky.find('input:not([type="submit"])').each(function(i, input) {
-        return $(input).val('');
-      });
+      if (!$quicky.is('[data-model="image"]')) {
+        $quicky.find('input:not([type="submit"])').each(function(i, input) {
+          return $(input).val('');
+        });
+      }
       $quicky.removeClass('open');
       $quicky.removeClass('saving');
     };
@@ -243,6 +250,7 @@
       var $clone, $imagesInput, $imagesWrapper, i, imageObject, imagesInputVal, newImg, thisObject, updating;
       $imagesWrapper = $('.images');
       $imagesInput = $imagesWrapper.find('input:text');
+      addQuicky('image', object._id, '');
       imageObject = {
         id: object._id,
         original: object.original,
@@ -274,7 +282,7 @@
       if (!$imagesWrapper.find('.image[data-id="' + object._id + '"]').length) {
         $clone = $imagesWrapper.find('.sample').clone();
         $clone.removeClass('sample');
-        $clone.attr('data-id', imageObject._id);
+        $clone.attr('data-id', imageObject.id);
         newImg = new Image();
         newImg.onload = function() {
           $clone.find('img').remove();

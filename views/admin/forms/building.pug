@@ -1,102 +1,117 @@
-.row.two
-	.cell
-		+input('name', 'Building Name (Common)', 'text', (object ? object.name : ''), true)
-	.cell
-		+input('historicName', 'Building Name (Historic)', 'text', (object ? object.historicName : ''), true)
-.row
-	+input('address', 'Address', 'text', (object ? object.address : ''), true)
-.row.two
-	.cell
+.group
+	.row.two
+		.cell
+			+input('name', 'Building Name (Common)', 'text', (object ? object.name : ''), true)
+		.cell
+			+input('historicName', 'Building Name (Historic)', 'text', (object ? object.historicName : ''), true)
+	.row
+		+input('address', 'Address', 'text', (object ? object.address : ''), true)
+	.row
 		+input('dateConstructed', 'Year Built', 'text', (object ? object.dateConstructed : ''), true)
-	.cell
-		+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
+	.row
+		label= 'Era'
+		.module.checkboxes(data-type='checkboxes', data-model='era', class='era', data-checked=(object ? object.era : ''))
+			+checkbox('era', '1638-1860', '1638-1860', false, (object && object.era == '1638-1860' ? true : false))
+			+checkbox('era', '1860-1910', '1860-1910', false, (object && object.era == '1860-1910' ? true : false))
+			+checkbox('era', '1910-1950', '1910-1950', false, (object && object.era == '1910-1950' ? true : false))
+			+checkbox('era', '1950-1980', '1950-1980', false, (object && object.era == '1950-1980' ? true : false))
+			+checkbox('era', '1980-Today', '1980-Today', false, (object && object.era == '1980-Today' ? true : false))
+			+checkbox('era', 'N/A', 'N/A', false, (object && object.era == null ? true : false))
+	.row.two
+		.cell
+			.row
+				+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
+			.row
+				+input('client', 'Client', 'text', (object ? object.client : ''), true)
+		.cell
+			+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
+	.row
+		+checkboxes('style', 'Style', false, true, (object  && object.style ? object.style.id : ''))
+	.row
+		+checkboxes('neighborhood', 'Neighborhood', false, true, (object && object.neighborhood ? object.neighborhood.id : ''))
+	.row
+		+checkboxes('tour', 'Tour', false, true, (object ? object.tour : ''))
+	.row.two
+		.cell
+			+input('researchBy', 'Researched By', 'text', (object ? object.researchBy : ''), true)
+		.cell
+			+input('researchYear', 'Research Year', 'text', (object ? object.researchYear : ''), true)
+	.row
+		+images('images', (object ? object.images : ''), false)
+	.row.two
+		.cell
+			+input('owner', 'Owner', 'text', (object ? object.owner : ''), true)
+		.cell
+			label= 'Ownership Status'
+			.module.checkboxes(data-type='checkboxes', data-model='ownerStatus', class='ownerStatus', data-checked=(object ? object.ownerStatus : ''))
+				+checkbox('ownerStatus', 'Public', 'Public', false, (object && object.ownerStatus == 'Public' ? true : false))
+				+checkbox('ownerStatus', 'Private', 'Private', false, (object && object.ownerStatus == 'Private' ? true : false))
+				+checkbox('ownerStatus', 'N/A', null, false, (object && object.ownerStatus == null ? true : false))
+	.row.two
+		.cell
+			label= 'Exterior Visible from the Public Road?'
+			.module.checkboxes(data-type='checkboxes', data-model='visibleExterior', class='visibleExterior', data-checked=(object ? object.visibleExterior : ''))
+				+checkbox('visibleExterior', 'Yes', 'Yes', false, (object && object.visibleExterior == 'Yes' ? true : false))
+				+checkbox('visibleExterior', 'No', 'No', false, (object && object.visibleExterior == 'No' ? true : false))
+		.cell
+			label= 'Interior Accessible?'
+			.module.checkboxes(data-type='checkboxes', data-model='accessibleInterior', class='accessibleInterior', data-checked=(object ? object.accessibleInterior : ''))
+				+checkbox('accessibleInterior', 'Yes', 'Yes', false, (object && object.accessibleInterior == 'Yes' ? true : false))
+				+checkbox('accessibleInterior', 'No', 'No', false, (object && object.accessibleInterior == 'No' ? true : false))
+	.row
+		+textarea('explanation', 'If yes, explain', (object ? object.explanation : ''))
+	.row.two
+		.cell
+			+checkboxes('use', 'Present Use', false, true, (object && object.use ? object.use.id : ''))
+		.cell
+			+checkboxes('historicUse', 'Historic Use', false, true, (object ? object.historicUse : ''))
+	.row.two
+		.cell
+			+input('stories', 'Number of Stories', 'text', (object ? object.stories : ''), true)
+		.cell
+			+input('dimensions', 'Approximate Dimensions', 'text', (object ? object.dimensions : ''), true)
+	.row.two
+		.cell
+			+checkboxes('material', 'Material', false, true, (object ? object.material : ''))
+		.cell
+			+checkboxes('structure', 'Structure', false, true, (object ? object.structure : ''))
+	.row.two
+		.cell
+			+checkboxes('roofType', 'Roof Type', true, true, (object ? object.roofType : ''))
+		.cell
+			+checkboxes('roofMaterial', 'Roof Material', true, true, (object ? object.roofMaterial : ''))
+	-var conditions = ['Excellent', 'Good', 'Fair', 'Deteriorated']
+	.row.two
+		.cell
+			label= 'Structural Condition'
+			.module.checkboxes(data-type='checkboxes', data-model='structuralCondition', class='structuralCondition', data-checked=(object ? object.structuralCondition : ''))
+				for condition in conditions
+					+checkbox('structuralCondition', condition, condition, false, (object && object.structuralCondition == condition ? true : false))
+				+checkbox('structuralCondition', 'N/A', null, false, (object && object.structuralCondition == null ? true : false))
+		.cell
+			label= 'Exterior Condition'
+			.module.checkboxes(data-type='checkboxes', data-model='exteriorCondition', class='exteriorCondition', data-checked=(object ? object.exteriorCondition : ''))
+				for condition in conditions
+					+checkbox('exteriorCondition', condition, condition, false, (object && object.exteriorCondition == condition ? true : false))
+				+checkbox('exteriorCondition', 'N/A', null, false, (object && object.exteriorCondition == null ? true : false))
+	.row.two
+		.cell
+			+checkboxes('environment', 'Surrounding Environment', true, true, (object ? object.environment : ''))
+		.cell
+			+checkboxes('threat', 'Threats to the Building or Site', true, true, (object ? object.threat : ''))
 .row
-	+checkboxes('style', 'Style', false, true, (object  && object.style ? object.style.id : ''))
-.row
-	+checkboxes('neighborhood', 'Neighborhood', false, true, (object && object.neighborhood ? object.neighborhood.id : ''))
-.row
-	+images('images', (object ? object.images : ''), false)
-.row.two
-	.cell
-		+input('researchBy', 'Researched By', 'text', (object ? object.researchBy : ''), true)
-	.cell
-		+input('researchYear', 'Research Year', 'text', (object ? object.researchYear : ''), true)
-.row.two
-	.cell
-		label= 'Owner'
-		.module.checkboxes(data-type='checkboxes', data-model='owner', class='owner', data-checked=(object ? object.owner : ''))
-			+checkbox('owner', 'Public', 'Public', false, (object && object.owner == 'Public' ? true : false))
-			+checkbox('owner', 'Private', 'Private', false, (object && object.owner == 'Private' ? true : false))
-			+checkbox('owner', 'N/A', null, false, (object && object.owner == null ? true : false))
-.row.two
-	.cell
-		+checkboxes('use', 'Present Use', false, true, (object && object.use ? object.use.id : ''))
-	.cell
-		+checkboxes('historicUse', 'Historic Use', false, true, (object ? object.historicUse : ''))
-.row.two
-	.cell
-		+input('stories', 'Number of Stories', 'text', (object ? object.stories : ''), true)
-	.cell
-		+input('dimensions', 'Approximate Dimensions', 'text', (object ? object.dimensions : ''), true)
-.row.two
-	.cell
-		label= 'Exterior Visible from the Public Road?'
-		.module.checkboxes(data-type='checkboxes', data-model='visibleExterior', class='visibleExterior', data-checked=(object ? object.visibleExterior : ''))
-			+checkbox('visibleExterior', 'Yes', 'Yes', false, (object && object.visibleExterior == 'Yes' ? true : false))
-			+checkbox('visibleExterior', 'No', 'No', false, (object && object.visibleExterior == 'No' ? true : false))
-	.cell
-		label= 'Interior Accessible?'
-		.module.checkboxes(data-type='checkboxes', data-model='accessibleInterior', class='accessibleInterior', data-checked=(object ? object.accessibleInterior : ''))
-			+checkbox('accessibleInterior', 'Yes', 'Yes', false, (object && object.accessibleInterior == 'Yes' ? true : false))
-			+checkbox('accessibleInterior', 'No', 'No', false, (object && object.accessibleInterior == 'No' ? true : false))
-.row
-	+textarea('explanation', 'If yes, explain', (object ? object.explanation : ''))
-.row.two
-	.cell
-		+checkboxes('material', 'Material', false, true, (object ? object.material : ''))
-	.cell
-		+checkboxes('structure', 'Structure', false, true, (object ? object.structure : ''))
-
--var conditions = ['Excellent', 'Good', 'Fair', 'Deteriorated']
-.row.two
-	.cell
-		label= 'Structural Condition'
-		.module.checkboxes(data-type='checkboxes', data-model='structuralCondition', class='structuralCondition', data-checked=(object ? object.structuralCondition : ''))
-			for condition in conditions
-				+checkbox('structuralCondition', condition, condition, false, (object && object.structuralCondition == condition ? true : false))
-			+checkbox('structuralCondition', 'N/A', null, false, (object && object.structuralCondition == null ? true : false))
-	.cell
-		label= 'Exterior Condition'
-		.module.checkboxes(data-type='checkboxes', data-model='exteriorCondition', class='exteriorCondition', data-checked=(object ? object.exteriorCondition : ''))
-			for condition in conditions
-				+checkbox('exteriorCondition', condition, condition, false, (object && object.exteriorCondition == condition ? true : false))
-			+checkbox('exteriorCondition', 'N/A', null, false, (object && object.exteriorCondition == null ? true : false))
-.row.two
-	.cell
-		+checkboxes('roofType', 'Roof Type', true, true, (object ? object.roofType : ''))
-	.cell
-		+checkboxes('roofMaterial', 'Roof Material', true, true, (object ? object.roofMaterial : ''))
-.row.two
-	.cell
-		+checkboxes('environment', 'Surrounding Environment', true, true, (object ? object.environment : ''))
-	.cell
-		+checkboxes('threat', 'Threats to the Building or Site', true, true, (object ? object.threat : ''))
-.row
-	+input('client', 'Client', 'text', (object ? object.client : ''), true)
-.row
-	+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
-.row
-	label= 'Era'
-	.module.checkboxes(data-type='checkboxes', data-model='era', class='era', data-checked=(object ? object.era : ''))
-		+checkbox('era', '1638-1860', '1638-1860', false, (object && object.era == '1638-1860' ? true : false))
-		+checkbox('era', '1860-1910', '1860-1910', false, (object && object.era == '1860-1910' ? true : false))
-		+checkbox('era', '1910-1950', '1910-1950', false, (object && object.era == '1910-1950' ? true : false))
-		+checkbox('era', '1950-1980', '1950-1980', false, (object && object.era == '1950-1980' ? true : false))
-		+checkbox('era', '1980-Today', '1980-Today', false, (object && object.era == '1980-Today' ? true : false))
-		+checkbox('era', 'N/A', 'N/A', false, (object && object.era == null ? true : false))
-.row
-	+checkboxes('tour', 'Tour', false, true, (object ? object.tour : ''))
-.row.research
-	+textarea('research', 'Research', (object ? object.research : ''), true)
+	label
+		| Building Narrative 
+		span.instruct= 'These paragraphs will appear as an essay'
+.row.physical
+	+textarea('physical', 'Physical Description <span class="instruct">Form, style, notable features, change over time</span>', (object ? object.physical : ''), true)
+.row.streetscape
+	+textarea('streetscape', 'Streetscape and Interrelationship with other buildings', (object ? object.streetscape : ''), true)
+.row.social
+	+textarea('social', 'Social History and Significance', (object ? object.social : ''), true)
+.row.addlInfo
+	+textarea('addlInfo', 'Additional Information', (object ? object.addlInfo : ''), true)
 .row.citations
 	+textarea('citations', 'Citations', (object ? object.citations : ''), true)
+.row.links
+	+textarea('links', 'Related Links', (object ? object.links : ''), true)

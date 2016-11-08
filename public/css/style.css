@@ -291,281 +291,283 @@ aside {
 
   .full aside {
     left: -90vw; } }
-body {
+body main {
+  width: calc(100% - calc(15em + 20vw));
+  padding-left: calc(15em + 20vw);
   overflow-y: auto; }
-  body main {
-    width: calc(100% - calc(15em + 20vw));
-    padding-left: calc(15em + 20vw); }
-  body ul.list a.new {
+body ul.list a.new {
+  opacity: .25;
+  text-transform: capitalize; }
+body ul.list li.type {
+  opacity: .25; }
+body form {
+  width: calc(100% - 2em);
+  max-width: 600px;
+  padding: 0 1em 1em 1em;
+  margin: auto;
+  display: table; }
+  body form label {
+    font-size: 1em;
+    line-height: 1.2em;
+    padding-bottom: .3em;
+    display: table; }
+    body form label .instruct {
+      opacity: .25; }
+  body form input, body form textarea, body form select {
+    font-size: 0.95em;
+    line-height: 1.1em;
+    font-weight: 700; }
+    body form input:-webkit-autofill, body form textarea:-webkit-autofill, body form select:-webkit-autofill {
+      background: none; }
+  body form input {
+    -webkit-appearance: none;
+    border: 1px solid black;
+    outline: none;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 1.2em;
+    background: transparent; }
+    body form input[type="text"], body form input[type="email"], body form input[type="password"], body form input[type="file"] {
+      font-family: Arial;
+      background: white;
+      width: calc(100% - 1em - 2px);
+      padding: 0.5em; }
+  body form textarea, body form .editable {
+    max-width: calc(100% - 1em - 2px);
+    padding: 0.5em;
+    line-height: 1.5em;
+    border: 1px solid black;
+    resize: none;
+    outline: none;
+    background: white;
+    vertical-align: bottom;
+    min-height: 3.4em;
+    font-size: 0.95em;
+    font-weight: 400; }
+    body form textarea p, body form .editable p {
+      margin-top: 0;
+      margin-bottom: 0.1em; }
+  body form .research .editable {
+    min-height: 11em;
+    max-height: 25em;
+    overflow: auto; }
+  body form .group {
+    padding-bottom: 3em; }
+    body form .group:last-of-type {
+      padding-bottom: 0; }
+  body form .row {
+    width: 100%;
+    display: table;
+    margin: 0 0 1em 0;
+    clear: both;
+    position: relative; }
+    body form .row .cell {
+      float: left; }
+      body form .row .cell:first-child {
+        margin-right: 1em; }
+    body form .row.two .cell {
+      width: calc(50% - .5em); }
+    body form .row .button {
+      margin-top: 0.5em; }
+  body form [data-template] {
+    display: none; }
+  body form .buttons {
+    display: table;
+    margin-top: 3em; }
+  body form .button {
+    display: block;
+    padding: 0.3em 0.35em;
+    margin: 0 1em 0 0;
+    float: left;
+    vertical-align: middle;
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 1em;
+    color: black;
+    text-decoration: none;
+    border: 0;
+    border: 1px solid black;
+    background: transparent;
     text-transform: capitalize; }
-  body ul.list li.type {
-    opacity: .25; }
-  body form {
-    width: calc(100% - 2em);
+    body form .button:hover {
+      cursor: pointer;
+      background: black;
+      color: white; }
+    body form .button:last-child {
+      margin-right: 0; }
+body .sortable {
+  padding-top: .5em;
+  display: table; }
+  body .sortable ul {
+    padding: 0;
+    margin: 0; }
+    body .sortable ul li {
+      list-style: decimal;
+      padding: .5em 0;
+      margin: 0 0 0 1.1em;
+      cursor: move;
+      line-height: 1.1em; }
+  body .sortable input {
+    display: none; }
+body .checkboxes, body .options {
+  overflow: auto;
+  font-size: 1em;
+  line-height: 1em;
+  border: 1px solid black;
+  background: white; }
+  body .checkboxes.populate .item, body .options.populate .item {
+    opacity: 0; }
+  body .checkboxes.populate.loaded .item, body .options.populate.loaded .item {
+    opacity: 1; }
+  body .checkboxes .checkbox label, body .options .checkbox label {
+    width: calc(100% - 1em);
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.1em;
+    display: table;
+    padding: 0.5em 0.5em 0 0.5em; }
+    body .checkboxes .checkbox label:active, body .checkboxes .checkbox label:hover, body .options .checkbox label:active, body .options .checkbox label:hover {
+      cursor: pointer; }
+  body .checkboxes .checkbox:last-child label, body .options .checkbox:last-child label {
+    padding: 0.5em; }
+  body .checkboxes .checkbox input[type="checkbox"], body .checkboxes .checkbox input[type="radio"], body .options .checkbox input[type="checkbox"], body .options .checkbox input[type="radio"] {
+    display: none; }
+    body .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body .options .checkbox input[type="checkbox"]:checked ~ label::before, body .options .checkbox input[type="radio"]:checked ~ label::before {
+      background: black; }
+  body .checkboxes.color, body .options.color {
+    min-height: 0;
+    border: none;
+    padding: 0;
+    display: table; }
+    body .checkboxes.color .checkbox, body .options.color .checkbox {
+      width: 1em;
+      height: 1em;
+      margin-right: .5em;
+      float: left; }
+      body .checkboxes.color .checkbox label, body .options.color .checkbox label {
+        width: calc(100% + .2em);
+        height: calc(100% + .2em);
+        border-radius: 50%;
+        padding: 0;
+        position: relative; }
+        body .checkboxes.color .checkbox label::before, body .options.color .checkbox label::before {
+          width: calc(100% - .1em);
+          height: calc(100% - .1em);
+          position: absolute;
+          left: 0;
+          top: 0;
+          padding: 0;
+          border-radius: 50%;
+          border-color: transparent; }
+      body .checkboxes.color .checkbox input:checked ~ label::before, body .options.color .checkbox input:checked ~ label::before {
+        border-color: black;
+        background-color: inherit; }
+body .checkboxes {
+  min-height: 4em;
+  max-height: 8em; }
+  body .checkboxes .checkbox label::before {
+    width: 0.55em;
+    height: 0.55em;
+    margin-right: 0.5em;
+    border-radius: 50%;
+    border: solid black 0.1em;
+    font-size: inherit;
+    display: inline-block;
+    content: ''; }
+body .selects {
+  display: flex;
+  border-bottom: solid black 0.1em;
+  padding: 0.15em 0; }
+  body .selects .select {
+    background: transparent;
+    position: relative; }
+    body .selects .select .display {
+      display: inline-block;
+      padding: 0 1.1em 0 0.6em;
+      cursor: pointer; }
+    body .selects .select .options {
+      max-height: calc(1.8em * 10);
+      position: absolute;
+      left: 0;
+      top: calc(100% + 0.15em);
+      padding: 0 0.5em;
+      display: none; }
+      body .selects .select .options.open {
+        display: block; }
+body .selects.date .select {
+  position: relative; }
+  body .selects.date .select.month .display {
+    width: 6em; }
+  body .selects.date .select.day .display {
+    width: 1.5em; }
+  body .selects.date .select.year .display {
+    width: 2.5em; }
+  body .selects.date .select:not(:last-child) .display:after {
+    content: '/';
+    position: absolute;
+    right: 0;
+    top: 0; }
+body form .images {
+  display: block;
+  clear: both; }
+  body form .images input[type="text"] {
+    display: none; }
+  body form .images .image {
+    height: 100px;
+    display: inline-block;
+    margin: 0 .5em .5em 0;
+    padding: 0;
+    cursor: pointer;
+    vertical-align: bottom; }
+    body form .images .image.sample {
+      display: none !important; }
+    body form .images .image img {
+      height: 100%; }
+body .quicky {
+  width: calc(100% - calc(15em + 20vw));
+  height: 100%;
+  padding: 0;
+  position: fixed;
+  left: calc(15em + 20vw);
+  top: 0;
+  overflow: auto;
+  display: none;
+  background: rgba(255, 255, 255, 0.95); }
+  body .quicky.saving .inner {
+    pointer-events: none;
+    opacity: 0.5; }
+  body .quicky .inner {
+    width: 100%;
     max-width: 600px;
-    padding: 0 1em 1em 1em;
+    height: 100%;
     margin: auto;
     display: table; }
-    body form label {
-      font-size: 1em;
-      line-height: 1.2em;
-      padding-bottom: .3em;
-      display: table; }
-      body form label .instruct {
-        opacity: .25; }
-    body form input, body form textarea, body form select {
-      font-size: 0.95em;
-      line-height: 1.1em;
-      font-weight: 700; }
-      body form input:-webkit-autofill, body form textarea:-webkit-autofill, body form select:-webkit-autofill {
-        background: none; }
-    body form input {
-      -webkit-appearance: none;
-      border: 1px solid black;
-      outline: none;
-      font-family: inherit;
-      font-weight: 400;
-      line-height: 1.2em;
-      background: transparent; }
-      body form input[type="text"], body form input[type="email"], body form input[type="password"], body form input[type="file"] {
-        font-family: Arial;
-        background: white;
-        width: calc(100% - 1em - 2px);
-        padding: 0.5em; }
-    body form textarea, body form .editable {
-      width: calc(100% - 1em - 2px);
-      padding: 0.5em;
-      line-height: 1.5em;
-      border: 1px solid black;
-      resize: none;
-      outline: none;
-      background: white;
-      vertical-align: bottom;
-      min-height: 3.4em;
-      font-size: 0.95em;
-      font-weight: 400; }
-      body form textarea p, body form .editable p {
-        margin-top: 0;
-        margin-bottom: 0.1em; }
-    body form .research .editable {
-      min-height: 11em;
-      max-height: 25em;
-      overflow: auto; }
-    body form .group {
-      padding: 0 0 20px 0; }
-    body form .row {
+    body .quicky .inner form {
       width: 100%;
-      display: table;
-      margin: 0 0 1em 0;
-      clear: both;
-      position: relative; }
-      body form .row .cell {
-        float: left; }
-        body form .row .cell:first-child {
-          margin-right: 1em; }
-      body form .row.two .cell {
-        width: calc(50% - .5em); }
-      body form .row .button {
-        margin-top: 0.5em; }
-    body form [data-template] {
-      display: none; }
-    body form .buttons {
-      display: table;
-      margin-top: 3em; }
-    body form .button {
-      display: block;
-      padding: 0.3em 0.35em;
-      margin: 0 1em 0 0;
-      float: left;
-      vertical-align: middle;
-      font-size: 0.8em;
-      font-weight: bold;
-      line-height: 1em;
-      color: black;
-      text-decoration: none;
-      border: 0;
-      border: 1px solid black;
-      background: transparent;
-      text-transform: capitalize; }
-      body form .button:hover {
-        cursor: pointer;
-        background: black;
-        color: white; }
-      body form .button:last-child {
-        margin-right: 0; }
-  body .sortable {
-    padding-top: .5em;
-    display: table; }
-    body .sortable ul {
       padding: 0;
       margin: 0; }
-      body .sortable ul li {
-        list-style: decimal;
-        padding: .5em 0;
-        margin: 0 0 0 1.1em;
-        cursor: move;
-        line-height: 1.1em; }
-    body .sortable input {
-      display: none; }
-  body .checkboxes, body .options {
-    overflow: auto;
-    font-size: 1em;
-    line-height: 1em;
-    border: 1px solid black;
-    background: white; }
-    body .checkboxes.populate .item, body .options.populate .item {
-      opacity: 0; }
-    body .checkboxes.populate.loaded .item, body .options.populate.loaded .item {
-      opacity: 1; }
-    body .checkboxes .checkbox label, body .options .checkbox label {
-      width: calc(100% - 1em);
-      font-family: inherit;
-      font-size: inherit;
-      line-height: 1.1em;
-      display: table;
-      padding: 0.5em 0.5em 0 0.5em; }
-      body .checkboxes .checkbox label:active, body .checkboxes .checkbox label:hover, body .options .checkbox label:active, body .options .checkbox label:hover {
-        cursor: pointer; }
-    body .checkboxes .checkbox:last-child label, body .options .checkbox:last-child label {
-      padding: 0.5em; }
-    body .checkboxes .checkbox input[type="checkbox"], body .checkboxes .checkbox input[type="radio"], body .options .checkbox input[type="checkbox"], body .options .checkbox input[type="radio"] {
-      display: none; }
-      body .checkboxes .checkbox input[type="checkbox"]:checked ~ label::before, body .checkboxes .checkbox input[type="radio"]:checked ~ label::before, body .options .checkbox input[type="checkbox"]:checked ~ label::before, body .options .checkbox input[type="radio"]:checked ~ label::before {
-        background: black; }
-    body .checkboxes.color, body .options.color {
-      min-height: 0;
-      border: none;
-      padding: 0;
-      display: table; }
-      body .checkboxes.color .checkbox, body .options.color .checkbox {
-        width: 1em;
-        height: 1em;
-        margin-right: .5em;
-        float: left; }
-        body .checkboxes.color .checkbox label, body .options.color .checkbox label {
-          width: calc(100% + .2em);
-          height: calc(100% + .2em);
-          border-radius: 50%;
-          padding: 0;
-          position: relative; }
-          body .checkboxes.color .checkbox label::before, body .options.color .checkbox label::before {
-            width: calc(100% - .1em);
-            height: calc(100% - .1em);
-            position: absolute;
-            left: 0;
-            top: 0;
-            padding: 0;
-            border-radius: 50%;
-            border-color: transparent; }
-        body .checkboxes.color .checkbox input:checked ~ label::before, body .options.color .checkbox input:checked ~ label::before {
-          border-color: black;
-          background-color: inherit; }
-  body .checkboxes {
-    min-height: 4em;
-    max-height: 8em; }
-    body .checkboxes .checkbox label::before {
-      width: 0.55em;
-      height: 0.55em;
-      margin-right: 0.5em;
-      border-radius: 50%;
-      border: solid black 0.1em;
-      font-size: inherit;
-      display: inline-block;
-      content: ''; }
-  body .selects {
-    display: flex;
-    border-bottom: solid black 0.1em;
-    padding: 0.15em 0; }
-    body .selects .select {
-      background: transparent;
-      position: relative; }
-      body .selects .select .display {
-        display: inline-block;
-        padding: 0 1.1em 0 0.6em;
-        cursor: pointer; }
-      body .selects .select .options {
-        max-height: calc(1.8em * 10);
-        position: absolute;
-        left: 0;
-        top: calc(100% + 0.15em);
-        padding: 0 0.5em;
-        display: none; }
-        body .selects .select .options.open {
-          display: block; }
-  body .selects.date .select {
-    position: relative; }
-    body .selects.date .select.month .display {
-      width: 6em; }
-    body .selects.date .select.day .display {
-      width: 1.5em; }
-    body .selects.date .select.year .display {
-      width: 2.5em; }
-    body .selects.date .select:not(:last-child) .display:after {
-      content: '/';
-      position: absolute;
-      right: 0;
-      top: 0; }
-  body form .images {
-    display: block;
-    clear: both; }
-    body form .images input[type="text"] {
-      display: none; }
-    body form .images .image {
-      height: 100px;
-      display: inline-block;
-      margin: 0 .5em .5em 0;
-      padding: 0;
-      cursor: pointer;
-      vertical-align: bottom; }
-      body form .images .image.sample {
-        display: none; }
-      body form .images .image img {
-        height: 100%; }
-  body .quicky {
-    width: calc(100% - calc(15em + 20vw));
-    height: 100%;
-    padding: 0;
-    position: fixed;
-    left: calc(15em + 20vw);
-    top: 0;
-    overflow: auto;
-    display: none;
-    background: rgba(255, 255, 255, 0.95); }
-    body .quicky.saving .inner {
-      pointer-events: none;
-      opacity: 0.5; }
-    body .quicky .inner {
-      width: 100%;
-      max-width: 600px;
-      height: 100%;
-      margin: auto;
-      display: table; }
-      body .quicky .inner form {
-        width: 100%;
-        padding: 0;
-        margin: 0; }
-        body .quicky .inner form label {
-          text-transform: capitalize; }
-        body .quicky .inner form img {
-          max-width: 100%;
-          display: table;
-          margin: auto; }
-    body .quicky.open {
-      display: block; }
-    body .quicky .close {
-      width: 1.5em;
-      height: 1.5em;
-      padding: 1px;
-      position: absolute;
-      right: 1em;
-      top: 1em;
-      z-index: 100;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-image: url(/img/x.svg); }
-      body .quicky .close:hover {
-        cursor: pointer; }
+      body .quicky .inner form label {
+        text-transform: capitalize; }
+      body .quicky .inner form img {
+        max-width: 100%;
+        display: table;
+        margin: auto; }
+  body .quicky.open {
+    display: block; }
+  body .quicky .close {
+    width: 1.5em;
+    height: 1.5em;
+    padding: 1px;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    z-index: 100;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(/img/x.svg); }
+    body .quicky .close:hover {
+      cursor: pointer; }
 
 .medium-editor-toolbar, .medium-editor-anchor-preview {
   border: 1px solid rgba(0, 0, 0, 0.25);

@@ -5,6 +5,7 @@ var Tour = require('../models/tour')
 var Neighborhood = require('../models/neighborhood')
 var tools = require('../tools')
 var slugify = require('slug')
+// var elastic = require('../search');
 
 module.exports = function(app) {
 
@@ -37,6 +38,15 @@ module.exports = function(app) {
         user: req.user
       })
     }, req, res)
+  })
+
+  app.get('/suggest/:input', function (req, res, next) {  
+    elastic.getSuggestions(req.params.input).then(function (result) { res.json(result) });
+  })
+
+  /* POST document to be indexed */
+  app.post('/', function (req, res, next) {  
+    elastic.addDocument(req.body).then(function (result) { res.json(result) });
   })
 
 }

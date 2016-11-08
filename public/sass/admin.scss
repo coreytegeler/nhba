@@ -1,11 +1,13 @@
 body {
-	overflow-y: auto;
+	// overflow-y: auto;
 	main {
 		width: calc(100% - #{$sideWidth});
 		padding-left: $sideWidth;
+		overflow-y: auto;
 	}
 	ul.list {
 		a.new {
+			opacity: .25;
 			text-transform: capitalize;
 		}
 		li.type {
@@ -54,7 +56,7 @@ body {
 			}
 		}
 		textarea, .editable {
-			width: calc(100% - 1em - 2px);
+			max-width: calc(100% - 1em - 2px);
 			padding: 0.5em;
 			line-height: 1.5em;
 			border: 1px solid black;
@@ -76,7 +78,10 @@ body {
 	    overflow: auto;
 		}
 		.group {
-			padding: 0 0 20px 0;
+			padding-bottom: 3em;
+			&:last-of-type {
+				padding-bottom: 0;
+			}
 		}
 		.row {
 			width: 100%;
@@ -324,7 +329,7 @@ body {
 			cursor: pointer;
 			vertical-align: bottom;
 			&.sample {
-				display: none;
+				display: none !important;
 			}
 			img {
 				height: 100%;

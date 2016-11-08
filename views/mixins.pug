@@ -29,12 +29,12 @@ mixin images(name, images, required)
 		span.instruct Drag to reorder
 	.images.sortable
 		input(name='images', type='text', value=images)
-		.image.edit.sample
+		li.image.edit.sample(data-type='image')
 			img
 		ul
 			if(images)
 				each image, index in images
-					li.image.edit(data-id=image.id)
+					li.image.edit(data-id=image.id, data-type='image')
 						img(src='http://ec2-54-208-156-193.compute-1.amazonaws.com'+image.small)
 	.add.button(data-model='image') Add Image
 	.clear.button Clear All
@@ -44,7 +44,7 @@ mixin image(name)
 	input(name=name, class=name, type='file', required=true)
 
 mixin textarea(name, label, value)
-	label(name=name) #{label}
+	label(name=name) !{label}
 	textarea(name=name, rows=10) #{value ? value : ''}
 
 mixin checkboxes(type, name, multiple, addable, value)
