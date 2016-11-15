@@ -8,6 +8,7 @@ aside {
   line-height: 1.2em;
 	clear: both;
 	background: $tan;
+	overflow-x: hidden;
 	&.noBG, &.noBG header {
 		background: transparent;
 	}
@@ -27,7 +28,7 @@ aside {
 		}
 	}
 	p {
-		margin-top: 0;
+		margin: 0;
 	}
 	a.selected {
 		display: inline;
@@ -295,24 +296,17 @@ aside {
 		line-height: 1.25em;
 	}
 	#glossary {
-		.add, .alpha, .term {
+		.add, .alpha, .name, .definition {
 			margin-bottom: 1em;
 		}
 		.term {
 			display: table;
 		}
-		.alpha {
-			padding-top: 1em;
-			&:first-of-type {
-				padding-top: 0;
-			}
-		}
-		.definition {
-			margin-bottom: 2em;
-		}
 		.alpha, .add {
-			font-size: 1.5em;
-			line-height: 1.25em;
+			span {
+				font-size: 1.5em;
+				line-height: 1.25em;
+			}
 		}
 	}
 	#login {
@@ -362,13 +356,4 @@ aside {
   &:hover {
   	cursor: pointer;
   }
-}
-
-@include mobile {
-	aside {
-		width: 90vw;
-	}
-	.full aside {
-		left: -90vw;
-	}
 }

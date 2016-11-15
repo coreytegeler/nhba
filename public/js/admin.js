@@ -108,7 +108,7 @@
       });
     };
     addCheckbox = function(container, object, checked) {
-      var $clone, $input, $label, checkedValue, j, len, model, value, valueObject;
+      var $clone, $input, $label, checkedObj, checkedValue, error1, j, len, model, value, valueObject;
       $clone = $(container).find('.empty').clone().removeClass('empty');
       $clone.find('input').attr('checked', false);
       $label = $clone.find('label');
@@ -135,7 +135,12 @@
         if ($.isArray(checked)) {
           for (j = 0, len = checked.length; j < len; j++) {
             checkedValue = checked[j];
-            if (valueObject.id === JSON.parse(checkedValue).id) {
+            try {
+              checkedObj = JSON.parse(checkedValue);
+            } catch (error1) {
+              checkedObj = checkedValue;
+            }
+            if (valueObject.id === checkedObj.id) {
               $input.attr('checked', true);
             }
           }

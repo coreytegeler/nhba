@@ -354,8 +354,9 @@ body {
 		.inner {
 			width: 100%;
 			max-width: 600px;
-			height: 100%;
+			height: calc(100% - 2em - 20px);
 	    margin: auto;
+	    padding-top: 2em !important;
 	    display: table;
 	    form {
 	    	width: 100%;

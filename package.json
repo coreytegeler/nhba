@@ -5,9 +5,10 @@
   "repository": "https://github.com/coreytegeler/nhba",
   "main": "server.js",
   "scripts": {
-    "watch-sass": "sass --watch public/sass/style.scss:public/css/style.css",
-    "watch-coffee": "coffee -o public/js/ -cw public/coffee/",
-    "go": "npm run watch-sass & npm run watch-coffee & nodemon server.js",
+    "sass": "sass --watch public/sass/style.scss:public/css/prestyle.css",
+    "prefix" : "postcss -w -u autoprefixer public/css/prestyle.css -o public/css/style.css",
+    "coffee": "coffee -o public/js/ -cw public/coffee/",
+    "go": "npm run sass & npm run prefix & npm run coffee & nodemon server.js",
     "ssh": "ssh -i new-haven-building-archive.pem ubuntu@ec2-54-208-156-193.compute-1.amazonaws.com"
   },
   "author": "Corey Tegeler",
@@ -34,6 +35,8 @@
     "multer": "1.2.0",
     "node-geocoder": "3.15.0",
     "node-sass": "3.8.0",
+    "autoprefixer": "^6.5.1",
+    "cssnano": "^3.8.0",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "passport-local-mongoose": "^1.0.0",

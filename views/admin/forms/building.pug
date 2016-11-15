@@ -26,11 +26,11 @@
 		.cell
 			+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
 	.row
-		+checkboxes('style', 'Style', false, true, (object  && object.style ? object.style.id : ''))
+		+checkboxes('style', 'Style', true, true, (object  && object.style ? object.style.id : ''))
 	.row
-		+checkboxes('neighborhood', 'Neighborhood', false, true, (object && object.neighborhood ? object.neighborhood.id : ''))
+		+checkboxes('neighborhood', 'Neighborhood', true, true, (object ? object.neighborhood : ''))
 	.row
-		+checkboxes('tour', 'Tour', false, true, (object ? object.tour : ''))
+		+checkboxes('tour', 'Tour', true, true, (object ? object.tour : ''))
 	.row.two
 		.cell
 			+input('researchBy', 'Researched By', 'text', (object ? object.researchBy : ''), true)
@@ -62,9 +62,9 @@
 		+textarea('explanation', 'If yes, explain', (object ? object.explanation : ''))
 	.row.two
 		.cell
-			+checkboxes('use', 'Present Use', false, true, (object && object.use ? object.use.id : ''))
+			+checkboxes('use', 'Present Use', true, true, (object && object.use ? object.use.id : ''))
 		.cell
-			+checkboxes('historicUse', 'Historic Use', false, true, (object ? object.historicUse : ''))
+			+checkboxes('historicUse', 'Historic Use', true, true, (object ? object.historicUse : ''))
 	.row.two
 		.cell
 			+input('stories', 'Number of Stories', 'text', (object ? object.stories : ''), true)
@@ -72,9 +72,9 @@
 			+input('dimensions', 'Approximate Dimensions', 'text', (object ? object.dimensions : ''), true)
 	.row.two
 		.cell
-			+checkboxes('material', 'Material', false, true, (object ? object.material : ''))
+			+checkboxes('material', 'Material', true, true, (object ? object.material : ''))
 		.cell
-			+checkboxes('structure', 'Structure', false, true, (object ? object.structure : ''))
+			+checkboxes('structure', 'Structure', true, true, (object ? object.structure : ''))
 	.row.two
 		.cell
 			+checkboxes('roofType', 'Roof Type', true, true, (object ? object.roofType : ''))

@@ -4,6 +4,7 @@ window.initPublic = ->
 	$side = $('aside')
 	$gridWrap = $('.gridWrap')
 	$grid = $('.grid')
+	$rotate = $('.rotate')
 	$buildingTiles = $grid.find('.building')
 	$buildings = $('.building')
 	$infoSect = $('section#info')
@@ -26,9 +27,10 @@ window.initPublic = ->
 		$body.on 'click', '#filter .clear', clearFilter
 		$body.on 'click', '.button.open', openSide
 		$body.on 'click', '.close.tab', closeSide
-		$body.on 'click', '.slide', nextSlide
+		$body.on 'click', '.sliderWrap .arrow', nextSlide
 		$body.on 'click', '.toggler', clickToggle
 		$body.on 'click', '.header .arrow', paginate
+		$body.on 'mousewheel', '.grid', rotate
 		$body.on 'submit', 'form.search', (event) ->
 			search(this, event)
 		$(window).on 'popstate', popState
@@ -476,12 +478,19 @@ window.initPublic = ->
 				})
 
 	nextSlide = () ->
-		$slide = $(this)
-		$next = $slide.next('.slide')
-		if(!$next.length)
-			$next = $slide.siblings('.slide').eq(0)
+		$arrow = $(this)
+		$current = $arrow.parents('.sliderWrap').find('.slide.show')
+		$siblings = $current.siblings('.slide')
+		if($arrow.is('.left'))
+			$next = $current.prev('.slide')
+			if(!$next.length)
+				$next = $siblings.last()
+		else
+			$next = $current.next('.slide')		
+			if(!$next.length)
+				$next = $siblings.first()
 		if($next.length)
-			$slide.removeClass('show')
+			$current.removeClass('show')
 			$next.addClass('show')
 			setUpSlider()
 
@@ -577,5 +586,14 @@ window.initPublic = ->
 			return
 		if (type == 'building')
 			selectBuilding('slug', slug)
+
+	rotate = (e) ->
+		return
+		x = parseInt($rotate.css('rotateX')) - e.deltaX
+		y = parseInt($rotate.css('rotateY')) - e.deltaY
+		rotate3d = x+','+y+','+'0, 45deg'
+		console.log rotate3d
+		$rotate.css
+		  rotate3d: rotate3d
 
 	setUp()

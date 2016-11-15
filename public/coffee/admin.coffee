@@ -107,7 +107,11 @@ $ ->
 		if checked
 			if $.isArray(checked)
 				for checkedValue in checked
-					if valueObject.id == JSON.parse(checkedValue).id
+					try
+						checkedObj = JSON.parse(checkedValue)
+					catch
+			    	checkedObj = checkedValue
+					if valueObject.id == checkedObj.id
 						$input.attr('checked', true)
 			else if (valueObject.id == checked || valueObject.id == checked.id) 
 				$input.attr('checked', true)

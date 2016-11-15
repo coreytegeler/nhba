@@ -102,14 +102,14 @@ var async = function(func, req, res) {
 }
 
 var isLoggedIn = function(req, res, next) {
-  // return next()
+  return next()
   if(req.isAuthenticated())
     return next();
   res.redirect('/admin/login');
 }
 
 var isAdmin = function(req, res, next) {
-  // return next()
+  return next()
   if(req.isAuthenticated())
     if(req.user && req.user.admin) {
       return next()
@@ -208,6 +208,28 @@ var getSideSection = function(type) {
   }
 }
 
+var parse = function(data) {
+  if(!data)
+    return
+  var parsed = []
+  if(Array.isArray(data)) {
+    for(var i = 0; i < data.length; i++) {
+      try {
+        parsed[i] = JSON.parse(data[i])
+      } catch (e) {
+        parsed[i] = data[i]
+      }
+    }
+  } else {
+    try {
+      parsed[0] = JSON.parse(data)
+    } catch (e) {
+      parsed[0] = data;
+    }
+  }
+  return parsed
+}
+
 var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']
 
 var preSave = function(item) {
@@ -216,6 +238,7 @@ var preSave = function(item) {
 }
 
 exports.slugify = slugify;
+exports.parse = parse;
 exports.isLoggedIn = isLoggedIn;
 exports.isAdmin = isAdmin;
 exports.alphaSort = alphaSort;

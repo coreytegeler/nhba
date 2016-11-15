@@ -208,11 +208,11 @@ module.exports = function(app) {
       var slug = slugify(data.name, {lower: true})
       data.slug = slug
     }
-    if(data.images) { data.images = JSON.parse(data.images) }
-    if(data.tour) { data.tour = JSON.parse(data.tour) }
-    if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
-    if(data.style) { data.style = JSON.parse(data.style) }
-    if(data.use) { data.use = JSON.parse(data.use) }
+    if(data.images) { data.images = tools.parse(data.images) }
+    if(data.tour) { data.tour = tools.parse(data.tour) }
+    if(data.neighborhood) { data.neighborhood = tools.parse(data.neighborhood) }
+    if(data.style) { data.style = tools.parse(data.style) }
+    if(data.use) { data.use = tools.parse(data.use) }
     if(type == 'building') {
       data.sortNum = parseInt(data.address.split('-')[0])
       data.sortAlpha = data.address.replace(/-/g, '').replace(/[0-9]/g, '').trim()

@@ -36,16 +36,9 @@ aside {
     padding: 1em;
     background: #ffcc86; }
     aside header .tabs {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: row;
-              flex-direction: row;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center; }
+      flex-direction: row;
+      align-items: center; }
       aside header .tabs .tab, aside header .tabs .tabDown {
         float: left;
         margin-right: 1em;
@@ -98,8 +91,6 @@ aside {
       aside header .tabs .buttons {
         float: right;
         margin-right: 0;
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
         margin-left: auto; }
       aside header .tabs .button {
@@ -473,8 +464,6 @@ body .checkboxes {
     display: inline-block;
     content: ''; }
 body .selects {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border-bottom: solid black 0.1em;
   padding: 0.15em 0; }
@@ -747,15 +736,11 @@ aside section#single .header {
         aside section#single .header h1 .arrows .arrow[data-direction='right'] {
           background-image: url(/img/longArrowRight.svg); }
 aside section#single .contribute {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex; }
   aside section#single .contribute .index {
     display: table;
     margin-right: 0.5em;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center; }
+    align-self: center; }
     aside section#single .contribute .index .circle {
       width: 1.3em;
       height: 1.3em;
@@ -777,15 +762,11 @@ aside section#single .buildings .building {
   width: 100%;
   margin-bottom: 1em; }
   aside section#single .buildings .building a {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex; }
   aside section#single .buildings .building .index {
     display: table;
     margin-right: 0.5em;
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center; }
+    align-self: center; }
     aside section#single .buildings .building .index .circle {
       width: 1.3em;
       height: 1.3em;
@@ -876,7 +857,6 @@ aside .mapWrap {
   left: 0;
   top: 0;
   opacity: 1;
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   pointer-events: none;
   z-index: 100;
@@ -909,8 +889,7 @@ aside .mapWrap {
   left: 0;
   display: inline-block;
   overflow: hidden;
-  -webkit-perspective: 1000;
-          perspective: 1000; }
+  perspective: 1000; }
   .gridWrap .rotate {
     display: table; }
   .gridWrap .grid {
@@ -918,18 +897,10 @@ aside .mapWrap {
     min-height: 100%;
     z-index: 9;
     margin: auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; }
     @media (max-width: 600px) {
       .gridWrap .grid {
         padding-left: 0; } }
@@ -982,4 +953,4 @@ body:not(.full) .button.open {
   body:not(.admin) .full aside {
     left: -90vw; } }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=prestyle.css.map */

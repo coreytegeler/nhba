@@ -15,13 +15,13 @@ include  ./mixins
 
 	.group.togglables
 		-var hasImages = false
-		if(object.images)
-			if(object.images.length)
-				-var hasImages = true
-				.sliderWrap.togglable(data-group='photos', class='show')
-					.slider
-						.slideWrap
-							each image, i in object.images
+		if(object.images && object.images.length)
+			-var hasImages = true
+			.sliderWrap.togglable(data-group='photos', class='show')
+				.slider
+					.slideWrap
+						each image, i in object.images
+							if(image.medium)
 								.slide(data-index=i, data-id=image.id, class=(i == 0 ? 'show' : ''))
 									.imageWrap
 										.vert
@@ -30,6 +30,9 @@ include  ./mixins
 											.caption
 												| #{image.caption}
 												a.zoom(href=image.original, target='_blank')
+				if(object.images.length > 1)
+					.arrow.left
+					.arrow.right
 		.mapWrap.togglable(data-group='map', class=(!hasImages ? 'show' : ''))
 			.map
 			.loader
@@ -99,29 +102,7 @@ include  ./mixins
 			a(href='mailto:email@email.com')= 'email@email.com'
 			|  with any photos or audio you'd like to add to this building entry.
 
-	if(object.tour && tourBuildings)
-		if(tourBuildings.length)
-			.group.tour
-				h4
-					span= 'Other Buildings on '
-					a.tour(href='/tour/'+object.tour.slug, data-slug=object.tour.slug, data-id=object.tour.id, data-type='tour')= object.tour.name + ' Tour'
-				ul.buildings
-					-var i = 0
-					for building in tourBuildings
-						-i++
-						li.building(data-slug=building.slug, data-id=building.id)
-							a(href='/building/'+building.slug)
-								.image
-									+thumb(building)
-								.meta
-									if(building.name != building.address)
-										.name= building.name
-									.address= 'Address: ' + building.address
-									if(building.dateConstructed)
-										.dateConstructed= 'Year Built: ' + building.dateConstructed
-									if(building.style)
-										.style= 'Style: ' + building.style.name
-									if(building.currentUse && building.currentUse.name)
-										.currentUse= 'Use (current): ' + building.currentUse.name
-									if(building.neighborhood && building.neighborhood.name)
-										.style= 'Neighborhood: ' + building.neighborhood.name
+	//- for tour in object.tour
+	if(object.tour)
+		-var tour = object.tour[0]
+		include  ./buildingTour

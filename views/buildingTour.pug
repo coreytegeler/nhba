@@ -1,0 +1,26 @@
+if(tour && tourBuildings)
+	if(tourBuildings.length)
+		.group.tour
+			h4
+				span= 'Other Buildings on '
+				a.tour(href='/tour/'+tour.slug, data-slug=tour.slug, data-id=tour.id, data-type='tour')= tour.name + ' Tour'
+			ul.buildings
+				-var i = 0
+				for building in tourBuildings
+					-i++
+					li.building(data-slug=building.slug, data-id=building.id)
+						a(href='/building/'+building.slug)
+							.image
+								+thumb(building)
+							.meta
+								if(building.name != building.address)
+									.name= building.name
+								.address= 'Address: ' + building.address
+								if(building.dateConstructed)
+									.dateConstructed= 'Year Built: ' + building.dateConstructed
+								if(building.style)
+									.style= 'Style: ' + building.style.name
+								if(building.currentUse && building.currentUse.name)
+									.currentUse= 'Use (current): ' + building.currentUse.name
+								if(building.neighborhood && building.neighborhood.name)
+									.style= 'Neighborhood: ' + building.neighborhood.name
