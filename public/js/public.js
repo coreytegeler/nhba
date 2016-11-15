@@ -626,7 +626,7 @@
         minHeight: $window.innerHeight()
       });
       if (grid) {
-        content = $body.css('content').replace(/['"]+/g, '');
+        content = $body.css('content');
         if (content && content.replace(/['"]+/g, '') === 'mobile') {
           return mobile = true;
         } else {
@@ -658,14 +658,14 @@
       direction = $(this).data('direction');
       $building = $('.grid .building[data-id="' + id + '"]');
       if (direction === 'left') {
-        $nextBuilding = $building.prev('.building');
+        $nextBuilding = $building.prev('.building:not(.hidden)');
         if (!$nextBuilding.length) {
-          $nextBuilding = $('.grid .building').last();
+          $nextBuilding = $('.grid .building:not(.hidden)').last();
         }
       } else if (direction === 'right') {
-        $nextBuilding = $building.next('.building');
+        $nextBuilding = $building.next('.building:not(.hidden)');
         if (!$nextBuilding.length) {
-          $nextBuilding = $('.grid .building').first();
+          $nextBuilding = $('.grid .building:not(.hidden)').first();
         }
       }
       id = $nextBuilding[0].dataset.id;

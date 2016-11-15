@@ -668,8 +668,6 @@ aside section#single .togglables {
   width: 100%;
   height: 20em;
   position: relative; }
-aside section#single .sliderWrap .slider.slippery .slide img, aside section#single .sliderWrap .slider.slippery .slide img:hover {
-  cursor: pointer; }
 aside section#single .sliderWrap .slider .slideWrap {
   width: 100%;
   height: 100%;
