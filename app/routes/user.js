@@ -165,13 +165,17 @@ module.exports = function(app, passport) {
 	            	console.log('Error on user session save', err)
 	              return next(err);
 	            } else {
-	            	console.log('Updated user and password', object)
-	            	return res.redirect('/admin/user/edit/'+object.slug)
+	            	object.save(function() {
+		            	console.log('Updated user and password', object)
+		            	return res.redirect('/admin/user/edit/'+object.slug)
+		            })
 	            }
 	          })
           } else {
-          	console.log('Updated user', object)
-		        return res.redirect('/admin/user/edit/'+object.slug)
+          	object.save(function() {
+	          	console.log('Updated user', object)
+			        return res.redirect('/admin/user/edit/'+object.slug)
+			      })
 		       }
         })
       }
