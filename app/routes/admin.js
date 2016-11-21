@@ -281,7 +281,7 @@ module.exports = function(app) {
       if(type == 'image' && object.path)
         fs.unlinkSync(appRoot+'/public'+object.path);
       else
-        res.redirect('/admin/'+type)
+        res.redirect('/admin/'+tools.pluralize(type))
     })
   })
 

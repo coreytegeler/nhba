@@ -302,7 +302,7 @@ body form {
   width: calc(100% - 2em);
   max-width: 600px;
   padding: 0 1em 1em 1em;
-  margin: auto;
+  margin: 0;
   display: table; }
   body form label {
     font-size: 1em;
