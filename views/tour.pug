@@ -4,7 +4,7 @@ if(tour)
 		buildingsInTour = !{JSON.stringify(buildings)}
 		tourColor = '!{tour.color}'
 	h1= tour.name
-	.group.brief= tour.brief
+	.group.brief= !{tour.brief}
 	.group.mapGroup
 		.mapWrap.show(data-color=tour.color)
 			.map
