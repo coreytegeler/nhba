@@ -103,6 +103,12 @@
 	label
 		| Building Narrative 
 		span.instruct= 'These paragraphs will appear as an essay'
+if(object && object.research)
+	.row.temp
+		label(name='research')
+			| Full Text 
+			span.instruct= 'Separate text into appropriate sections below. Clear this text when finished.'
+		textarea(name='research', rows=10) #{object.research}
 .row.physical
 	+textarea('physical', 'Physical Description <span class="instruct">Form, style, notable features, change over time</span>', (object ? object.physical : ''), true)
 .row.streetscape

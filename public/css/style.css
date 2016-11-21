@@ -332,6 +332,8 @@ body form {
       padding: 0.5em; }
   body form textarea, body form .editable {
     max-width: calc(100% - 1em - 2px);
+    max-height: 20em;
+    overflow-y: auto;
     padding: 0.5em;
     line-height: 1.5em;
     border: 1px solid black;
