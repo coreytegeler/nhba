@@ -10,7 +10,7 @@ mixin thumb(building)
 		-var images = undefined
 
 	if(imageUrl)
-		img(src='http://ec2-54-208-156-193.compute-1.amazonaws.com'+imageUrl)
+		img(src=imageUrl)
 	else
 		.img
 
@@ -35,7 +35,7 @@ mixin images(name, images, required)
 			if(images)
 				each image, index in images
 					li.image.edit(data-id=image.id, data-type='image')
-						img(src='http://ec2-54-208-156-193.compute-1.amazonaws.com'+image.small)
+						img(src=image.small)
 	.add.button(data-model='image') Add Image
 	.clear.button Clear All
 

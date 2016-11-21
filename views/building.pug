@@ -26,7 +26,7 @@ include  ./mixins
 									.imageWrap
 										.vert
 											.horz
-												img(src='http://ec2-54-208-156-193.compute-1.amazonaws.com'+image.medium)
+												img(src=image.medium)
 											.caption
 												| #{image.caption}
 												a.zoom(href=image.original, target='_blank')

@@ -135,12 +135,14 @@
         if ($.isArray(checked)) {
           for (j = 0, len = checked.length; j < len; j++) {
             checkedValue = checked[j];
+            console.log(checkedValue);
             try {
               checkedObj = JSON.parse(checkedValue);
             } catch (error1) {
               checkedObj = checkedValue;
             }
-            if (valueObject.id === checkedObj.id) {
+            console.log(valueObject, checkedObj);
+            if (checkedObj && valueObject.id === checkedObj.id) {
               $input.attr('checked', true);
             }
           }
