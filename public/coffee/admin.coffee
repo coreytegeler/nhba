@@ -13,7 +13,7 @@ $ ->
 		# $body.on 'change', '.select .options input', updateSelectValue
 		# $body.on 'change', '.updateTemplate input', updateTemplate
 		$body.on 'click',  '.button.clear', () ->
-			$('.images input:text').val('[]')
+			$('.images input:text').val('')
 			$('.images .image:not(.empty)').remove()
 		
 		$sortable = $('.sortable')

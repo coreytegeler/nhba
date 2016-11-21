@@ -528,11 +528,11 @@ body .quicky {
     pointer-events: none;
     opacity: 0.5; }
   body .quicky .inner {
-    width: 100%;
+    width: calc(100% - 40px);
     max-width: 600px;
     height: calc(100% - 2em - 20px);
     margin: auto;
-    padding-top: 2em !important;
+    padding-top: 3.5em !important;
     display: table; }
     body .quicky .inner form {
       width: 100%;

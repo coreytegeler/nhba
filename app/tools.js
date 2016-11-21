@@ -208,10 +208,14 @@ var getSideSection = function(type) {
   }
 }
 
-var parse = function(data) {
+var parse = function(data, images) {
   if(!data)
     return
   var parsed = []
+  if(images) {
+    console.log('Image parse', Array.isArray(data))
+    console.log(data)
+  }
   if(Array.isArray(data)) {
     for(var i = 0; i < data.length; i++) {
       try {

@@ -94,11 +94,8 @@
 				for condition in conditions
 					+checkbox('exteriorCondition', condition, condition, false, (object && object.exteriorCondition == condition ? true : false))
 				+checkbox('exteriorCondition', 'N/A', null, false, (object && object.exteriorCondition == null ? true : false))
-	.row.two
-		.cell
-			+checkboxes('environment', 'Surrounding Environment', true, true, (object ? object.environment : ''))
-		.cell
-			+checkboxes('threat', 'Threats to the Building or Site', true, true, (object ? object.threat : ''))
+	.row
+		+checkboxes('threat', 'Threats to the Building or Site', true, true, (object ? object.threat : ''))
 .row
 	label
 		| Building Narrative 
@@ -115,6 +112,8 @@ if(object && object.research)
 	+textarea('streetscape', 'Streetscape and Interrelationship with other buildings', (object ? object.streetscape : ''), true)
 .row.social
 	+textarea('social', 'Social History and Significance', (object ? object.social : ''), true)
+.row.history
+	+textarea('history', 'Site History', (object ? object.history : ''), true)
 .row.addlInfo
 	+textarea('addlInfo', 'Additional Information', (object ? object.addlInfo : ''), true)
 .row.citations

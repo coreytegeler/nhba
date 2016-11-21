@@ -208,7 +208,7 @@ module.exports = function(app) {
       var slug = slugify(data.name, {lower: true})
       data.slug = slug
     }
-    if(data.images) { data.images = tools.parse(data.images) }
+    if(data.images) { data.images = JSON.parse(data.images) }
     if(data.tour) { data.tour = tools.parse(data.tour) }
     if(data.neighborhood) { data.neighborhood = tools.parse(data.neighborhood) }
     if(data.style) { data.style = tools.parse(data.style) }
@@ -288,7 +288,6 @@ module.exports = function(app) {
   app.get('/admin/image/quicky/:id', tools.isLoggedIn, function(req, res) {
     var id = req.params.id
     Image.findById(id, function(err, image) {
-      console.log(image)
       res.render('admin/image.pug', {
         object: image,
         type: 'image'

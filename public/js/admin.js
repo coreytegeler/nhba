@@ -13,7 +13,7 @@
       $body.on('submit', '.quicky form', quickySave);
       $body.on('click', 'a.delete', deleteObject);
       $body.on('click', '.button.clear', function() {
-        $('.images input:text').val('[]');
+        $('.images input:text').val('');
         return $('.images .image:not(.empty)').remove();
       });
       $sortable = $('.sortable');
