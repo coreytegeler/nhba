@@ -19,9 +19,6 @@ if(tour && buildings)
 								.address= 'Address: ' + building.address
 								if(building.dateConstructed)
 									.dateConstructed= 'Year Built: ' + building.dateConstructed
-								if(building.style)
-									.style= 'Style: ' + building.style.name
-								if(building.currentUse && building.currentUse.name)
-									.currentUse= 'Use (current): ' + building.currentUse.name
-								if(building.neighborhood && building.neighborhood.name)
-									.style= 'Neighborhood: ' + building.neighborhood.name
+								+list('Style', building.style)
+								+list('Use', building.use)
+								+list('Neighborhood', building.neighborhood)

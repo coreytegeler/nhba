@@ -102,3 +102,14 @@ mixin filter(slug, name, model)
 			for item in model
 				li(class=item.type)
 					a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
+
+mixin list(label, object)
+	if(object)
+		div
+			| #{label}: 
+			if(object && object.length)
+				for item, i in object
+					| #{(item && item.name ? item.name : '')}
+					| #{(object.length && i != object.length - 1 ? ', ' : '')}
+			else if(object && object.name)
+				| #{object.name}

@@ -124,10 +124,15 @@ window.initPublic = ->
 
 	getBuildingTours = (building) ->
 		$building = $(building)
-		tours = JSON.parse($building.attr('data-tour'))
-		$.each tours, (i, tour) ->
-			if(tour && tour.id)
-				getContent(tour.id, 'buildingTour', 'html')
+		tours = $building.attr('data-tour')
+		if(tours && tours.length)
+			tours = JSON.parse(tours)
+			if $.isArray(tours)
+				$.each tours, (i, tour) ->
+					if(tour && tour.id)
+						getContent(tour.id, 'buildingTour', 'html')
+			else if tours
+				getContent(tours.id, 'buildingTour', 'html')
 
 	clickTour = (event) ->
 		event.preventDefault()

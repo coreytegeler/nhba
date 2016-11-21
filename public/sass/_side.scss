@@ -178,7 +178,7 @@ aside {
 	}
 	.inner {
 		width: 100%;
-		height: calc(100% - (#{$sidePad}*2 + 2.1em));
+		height: calc(100% - (#{$sidePad}*2 + 2em));
 		margin: $sidePad*4 0;
 		overflow: hidden;
 		position: relative;

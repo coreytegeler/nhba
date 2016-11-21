@@ -144,12 +144,19 @@
     getBuildingTours = function(building) {
       var $building, tours;
       $building = $(building);
-      tours = JSON.parse($building.attr('data-tour'));
-      return $.each(tours, function(i, tour) {
-        if (tour && tour.id) {
-          return getContent(tour.id, 'buildingTour', 'html');
+      tours = $building.attr('data-tour');
+      if (tours && tours.length) {
+        tours = JSON.parse(tours);
+        if ($.isArray(tours)) {
+          return $.each(tours, function(i, tour) {
+            if (tour && tour.id) {
+              return getContent(tour.id, 'buildingTour', 'html');
+            }
+          });
+        } else if (tours) {
+          return getContent(tours.id, 'buildingTour', 'html');
         }
-      });
+      }
     };
     clickTour = function(event) {
       var id, tour, url;

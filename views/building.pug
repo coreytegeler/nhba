@@ -51,26 +51,13 @@ include  ./mixins
 				li.architect
 					span.label= 'Architect: '
 					span.value= object.architect
-			if(object.style)
-				li.style
-						span.label= 'Style: '
-						span.style= object.style.name
+			+list('Style', object.style)
 			if(object.client)	
 				li.client
 					span.label= 'Client: '
 					span.value= object.client
-			if(object.use && object.use.name)	
-				li.use
-					span.label= 'Use (present): '
-					span.value= object.use.name
-			//- if(object.historicUse)	
-			//- 	li.use
-			//- 		span.label= 'Original Use: '
-			//- 		span.value= object.historicUse
-			if(object.neighborhood && object.neighborhood.name)	
-				li.neighborhood
-					span.label= 'Neighborhood: '
-					span.value= object.neighborhood.name
+			+list('Use', object.use)
+			+list('Neighborhood', object.neighborhood)
 			if(object.researchBy)
 				li.researchBy
 					span.label= 'Researcher: '
