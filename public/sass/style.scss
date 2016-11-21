@@ -63,9 +63,6 @@ main {
 	@include mobile {
 		overflow: hidden;
 	}
-	.inner {
-		padding: 20px;
-	}
 }
 .square {
 	width: .65em;

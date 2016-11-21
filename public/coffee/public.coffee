@@ -117,9 +117,17 @@ window.initPublic = ->
 		$building.addClass('selected')
 		$singleSect.addClass('loading')
 		getContent(id, 'building', 'html')
+		getBuildingTours($building)
 		if(url)
 			window.history.pushState('', document.title, url)
 		openSide()
+
+	getBuildingTours = (building) ->
+		$building = $(building)
+		tours = JSON.parse($building.attr('data-tour'))
+		$.each tours, (i, tour) ->
+			if(tour && tour.id)
+				getContent(tour.id, 'buildingTour', 'html')
 
 	clickTour = (event) ->
 		event.preventDefault()
@@ -294,7 +302,8 @@ window.initPublic = ->
 					updateSingleSect(response, id, 'building')
 				else if(type=='tour' && format=='html')
 					updateSingleSect(response, id, 'tour')
-					# $singleSect.find('.group.tour').html(response)
+				else if(type=='buildingTour' && format=='html')
+					$singleSect.find('.buildingWrap').append(response)
 		return
 
 	search = (form, event) ->

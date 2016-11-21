@@ -13,10 +13,12 @@ module.exports = function(app) {
     var format = req.query.format
     var model = tools.getModel(type)
     var query = {}
-    if(type == 'tour' && format == 'html')
-      getTourSection(id, format, res) 
-    else if(type == 'building' && format == 'html')
-      getBuildingSection(id, format, res)  
+    if(type == 'building' && format == 'html')
+      getBuildingSection(id, format, type, res)  
+    else if(type == 'tour' && format == 'html')
+      getTourSection(id, format, type, res) 
+    else if(type == 'buildingTour' && format == 'html')
+      getTourSection(id, format, type, res)  
     else if(model)
       model.find(query, function(err, response) {
         if(err)
@@ -25,39 +27,14 @@ module.exports = function(app) {
     })
   })
 
-  var getBuildingSection = function(id, format, res)  {
-    Async.waterfall([
-      function(callback) {
-        Building.findOne({_id:id}, function(err, building) {
-          if(err) {
-            console.log(err)
-            return callback(err)
-          } else {
-            return callback(null, building)
-          }
-        })
-      },
-      function(building, callback) {
-        if(!building || !building.tour)
-          return callback(null, building, null)
-        Building.find({'tour.id': building.tour.id}, function(err, tourBuildings) {
-          for(var i = 0; i < tourBuildings.length; i++) {
-            if(tourBuildings[i]._id == building.id) {
-              tourBuildings.splice(i, 1)
-              break
-            }
-          }
-          return callback(null, building, tourBuildings)
-        })
-      }
-    ], function (err, building, tourBuildings) {
+  var getBuildingSection = function(id, format, type, res)  {
+    Building.findOne({_id:id}, function(err, building) {
       if(err) {
-        console.log(err)
-        return err
+        console.log('Failed to get building')
+        return console.log(err)
       }
       data = {
         object: building,
-        tourBuildings: tourBuildings
       }
       if(format == 'json') {
         return res.json(data)
@@ -67,7 +44,7 @@ module.exports = function(app) {
     })
   }
 
-  var getTourSection = function(id, format, res)  {
+  var getTourSection = function(id, format, type, res)  {
     Async.parallel([
       function(callback) {
         Tour.findOne({_id: id}, function(err, tour) {
@@ -95,7 +72,7 @@ module.exports = function(app) {
       if(format == 'json') {
         return res.json(data)
       } else if(format == 'html') {
-        return res.render('tour.pug', data)
+        return res.render(type+'.pug', data)
       }
     })
   }

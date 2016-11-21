@@ -15,11 +15,11 @@ body {
 		}
 	}
 	form {
-		width: calc(100% - 2em);
+		width: calc(100% - 1em);
 		max-width: 600px;
-		padding: 0 1em 1em 1em;
+		padding: 1em;
 		margin: 0;
-		display: table;
+		display: block;
 		label {
 			font-size: 1em;
 			line-height: 1.2em;

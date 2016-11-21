@@ -290,11 +290,11 @@ body ul.list a.new {
 body ul.list li.type {
   opacity: .25; }
 body form {
-  width: calc(100% - 2em);
+  width: calc(100% - 1em);
   max-width: 600px;
-  padding: 0 1em 1em 1em;
+  padding: 1em;
   margin: 0;
-  display: table; }
+  display: block; }
   body form label {
     font-size: 1em;
     line-height: 1.2em;
@@ -624,8 +624,6 @@ main {
   @media (max-width: 600px) {
     main {
       overflow: hidden; } }
-  main .inner {
-    padding: 20px; }
 
 .square {
   width: .65em;
