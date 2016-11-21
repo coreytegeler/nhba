@@ -691,8 +691,8 @@
     };
     rotate = function(e) {
       var max, x, y;
-      x = parseInt($rotate.css('rotateX')) - e.deltaY;
-      y = parseInt($rotate.css('rotateY')) - e.deltaX;
+      x = parseInt($rotate.css('rotateX')) - e.deltaY / 20;
+      y = parseInt($rotate.css('rotateY')) - e.deltaX / 20;
       max = 30;
       if (x > max) {
         x = max;
