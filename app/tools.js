@@ -41,7 +41,8 @@ var async = function(func, req, res) {
               }
             uses[useType].uses[data[i].slug] = data[i]
           } else {
-            uses['z'+i] = data[i] 
+            //put unnested at bottom
+            uses['zzz'+i] = data[i] 
           }
         }
         if(uses.length)

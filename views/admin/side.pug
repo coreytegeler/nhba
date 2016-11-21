@@ -50,16 +50,17 @@ aside
 									a(href='/admin/use/new')= 'Add Use'
 								-var uses = models['use']
 								for use, useType in uses
-									li.useType.withSub
-										if(useType.length && uses[useType].uses)
+									if(useType.length && uses[useType].uses)
+										li.useType.withSub
 											.title(data-slug=useType, class=(uses[useType].uses[loadedSlug] ? 'toggled' : ''))= uses[useType].name
 											ul.sub(class=(uses[useType].uses[loadedSlug] ? 'open' : ''), data-slug=useType)
 												for use in uses[useType].uses
 													li(class=use.slug)
 														a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
-										else
-											li(class=use.slug)
-												a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
+								for use, useType in uses
+									if(!useType.length)
+										li(class=use.slug)
+											a(href='/admin/use/edit/'+use.slug, class=(loadedSlug == use.slug ? 'selected' : ''))= use.name
 						li.styles
 							.title(data-slug='styles' class=(loadedType.p == 'styles' ? 'toggled' : '')) Style
 							ul.styles(data-slug='styles', class=(loadedType.p == 'styles' ? 'open' : ''))

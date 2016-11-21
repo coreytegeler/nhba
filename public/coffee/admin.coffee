@@ -174,7 +174,7 @@ $ ->
 			$quicky = $(quicky)
 		else
 			$quicky = $(this).parents('.quicky')
-		if(!$quicky.is('[data-model="image"]'))
+		if(!$quicky.is('[data-model="image"]') && $quicky.attr('data-id'))
 			$quicky.find('input:not([type="submit"])').each (i, input) ->
 				$(input).val('')
 		$quicky.removeClass('open')

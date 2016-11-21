@@ -19,12 +19,11 @@
 			+checkbox('era', 'N/A', 'N/A', false, (object && object.era == null ? true : false))
 	.row.two
 		.cell
-			.row
-				+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
-			.row
-				+input('client', 'Client', 'text', (object ? object.client : ''), true)
+			+input('architect', 'Architect', 'text', (object ? object.architect : ''), true)
 		.cell
-			+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
+			+input('client', 'Client', 'text', (object ? object.client : ''), true)
+	.row
+		+textarea('currentTenant', 'Current Tenant', (object ? object.currentTenant : ''))
 	.row
 		+checkboxes('style', 'Style', true, true, (object  && object.style ? object.style : ''))
 	.row
@@ -62,7 +61,7 @@
 		+textarea('explanation', 'If yes, explain', (object ? object.explanation : ''))
 	.row.two
 		.cell
-			+checkboxes('use', 'Present Use', true, true, (object && object.use ? object.use.id : ''))
+			+checkboxes('use', 'Present Use', true, true, (object && object.use ? object.use : ''))
 		.cell
 			+checkboxes('historicUse', 'Historic Use', true, true, (object ? object.historicUse : ''))
 	.row.two

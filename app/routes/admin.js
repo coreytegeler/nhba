@@ -93,10 +93,11 @@ module.exports = function(app) {
     var errors
     console.log(data)
     if(data.images) { data.images = JSON.parse(data.images) }
-    if(data.tour) { data.tour = JSON.parse(data.tour) }
-    if(data.neighborhood) { data.neighborhood = JSON.parse(data.neighborhood) }
-    if(data.style) { data.style = JSON.parse(data.style) }
-    if(data.use) { data.use = JSON.parse(data.use) }
+    if(data.tour) { data.tour = tools.parse(data.tour) }
+    if(data.neighborhood) { data.neighborhood = tools.parse(data.neighborhood) }
+    if(data.style) { data.style = tools.parse(data.style) }
+    if(data.use) { data.use = tools.parse(data.use) }
+    if(data.historicUse) { data.historicUse = tools.parse(data.historicUse) }
     switch(type) {
       case 'info':
         var object = new Info(data)
@@ -213,6 +214,7 @@ module.exports = function(app) {
     if(data.neighborhood) { data.neighborhood = tools.parse(data.neighborhood) }
     if(data.style) { data.style = tools.parse(data.style) }
     if(data.use) { data.use = tools.parse(data.use) }
+    if(data.historicUse) { data.historicUse = tools.parse(data.historicUse) }
     if(type == 'building') {
       data.sortNum = parseInt(data.address.split('-')[0])
       data.sortAlpha = data.address.replace(/-/g, '').replace(/[0-9]/g, '').trim()

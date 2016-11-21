@@ -24,7 +24,6 @@ $ ->
 	openNestedNav = (event) ->
 		$title = $(this)
 		slug = $title.attr('data-slug')
-		console.log slug
 		$parentList = $title.parent()
 		$childList = $parentList.find('ul[data-slug="'+slug+'"]')
 		$title.toggleClass('toggled')
