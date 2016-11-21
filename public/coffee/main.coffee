@@ -6,8 +6,8 @@ $ ->
 	init = () ->
 		resize()
 		$(window).resize resize
-		$body.on 'click', 'aside li .title', openNestedNav
-		$body.on 'click', 'aside .tab', switchSection
+		$body.on 'click touch', 'aside li .title', openNestedNav
+		$body.on 'click touch', 'aside .tab', switchSection
 		
 	resize = () -> 
 		$window = $(window)

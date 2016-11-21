@@ -24,15 +24,15 @@
       var id;
       $body.on('mouseenter', '.building a', hoverBuilding);
       $body.on('mouseleave', '.building a', unhoverBuilding);
-      $body.on('click', '.building a', clickBuilding);
-      $body.on('click', '.group.tour a.tour', clickTour);
-      $body.on('click', 'a.filter', clickFilter);
-      $body.on('click', '#filter .clear', clearFilter);
-      $body.on('click', '.button.open', openSide);
-      $body.on('click', '.close.tab', closeSide);
-      $body.on('click', '.sliderWrap .arrow', nextSlide);
-      $body.on('click', '.toggler', clickToggle);
-      $body.on('click', '.header .arrow', paginate);
+      $body.on('click touch', '.building a', clickBuilding);
+      $body.on('click touch', '.group.tour a.tour', clickTour);
+      $body.on('click touch', 'a.filter', clickFilter);
+      $body.on('click touch', '#filter .clear', clearFilter);
+      $body.on('click touch', '.button.open', openSide);
+      $body.on('click touch', '.close.tab', closeSide);
+      $body.on('click touch', '.sliderWrap .arrow', nextSlide);
+      $body.on('click touch', '.toggler', clickToggle);
+      $body.on('click touch', '.header .arrow', paginate);
       $body.on('mousewheel', '.grid', rotate);
       $body.on('submit', 'form.search', function(event) {
         return search(this, event);

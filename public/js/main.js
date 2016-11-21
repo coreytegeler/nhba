@@ -8,8 +8,8 @@
     init = function() {
       resize();
       $(window).resize(resize);
-      $body.on('click', 'aside li .title', openNestedNav);
-      return $body.on('click', 'aside .tab', switchSection);
+      $body.on('click touch', 'aside li .title', openNestedNav);
+      return $body.on('click touch', 'aside .tab', switchSection);
     };
     resize = function() {
       var $window, sideWidth, windowWidth;
