@@ -31,6 +31,7 @@ window.initPublic = ->
 		$body.on 'click touch', '.toggler', clickToggle
 		$body.on 'click touch', '.header .arrow', paginate
 		$body.on 'mousewheel', '.grid', rotate
+		$body.on 'click', '.gridWrap', clearRotate
 		$body.on 'submit', 'form.search', (event) ->
 			search(this, event)
 		$(window).on 'popstate', popState
@@ -588,12 +589,27 @@ window.initPublic = ->
 			selectBuilding('slug', slug)
 
 	rotate = (e) ->
-		return
-		x = parseInt($rotate.css('rotateX')) - e.deltaX
-		y = parseInt($rotate.css('rotateY')) - e.deltaY
-		rotate3d = x+','+y+','+'0, 45deg'
-		console.log rotate3d
+		x = parseInt($rotate.css('rotateX')) - e.deltaY
+		y = parseInt($rotate.css('rotateY')) - e.deltaX
+		max = 30
+		if(x > max)
+			x = max
+		else if(x < -max)
+			x = -max
+		if(y > max)
+			y = max
+		else if(y < -max)
+			y = -max
+
+		console.log x
+		# rotate3d = x+','+y+',0,1deg'
 		$rotate.css
-		  rotate3d: rotate3d
+		  rotateY: y
+		  rotateX: x
+
+	clearRotate = () ->
+		$rotate.transition
+		  rotateY: 0
+		  rotateX: 0
 
 	setUp()

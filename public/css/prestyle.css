@@ -900,7 +900,9 @@ aside .mapWrap {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center; }
+    align-items: center;
+    padding: 2em;
+    overflow: hidden; }
     @media (max-width: 600px) {
       .gridWrap .grid {
         padding-left: 0; } }

@@ -8,7 +8,7 @@
     "sass": "sass --watch public/sass/style.scss:public/css/prestyle.css",
     "prefix" : "postcss -w -u autoprefixer public/css/prestyle.css -o public/css/style.css",
     "coffee": "coffee -o public/js/ -cw public/coffee/",
-    "go": "npm run sass & npm run prefix & npm run coffee & nodemon server.js && sublime /",
+    "go": "npm run sass & npm run prefix & npm run coffee & nodemon server.js",
     "ssh": "ssh -i new-haven-building-archive.pem ubuntu@ec2-54-208-156-193.compute-1.amazonaws.com"
   },
   "author": "Corey Tegeler",

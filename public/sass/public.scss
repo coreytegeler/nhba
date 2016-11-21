@@ -328,7 +328,8 @@ aside {
 		flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    // padding-left: $sideWidth;
+    padding: 2em;
+    overflow: hidden;
     @include mobile {
     	padding-left: 0;
     }
