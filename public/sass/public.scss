@@ -83,7 +83,10 @@ aside {
 			}
 			.paragraphs {
 				white-space: pre-line;
-				.citations {
+				.text {
+					margin-bottom: 1em;
+				}
+				.citations, .links {
 					font-size: $smallFont;
 					line-height: 1.5em;
 				}

@@ -92,7 +92,7 @@ body {
 		}
 		.row {
 			width: 100%;
-			display: table;
+			display: block;
 			margin: 0 0 1em 0;
 			clear: both;
 			position: relative;
@@ -103,6 +103,7 @@ body {
 				}
 			}
 			&.two {
+				display: table;
 				.cell {
 					width: calc(50% - .5em)
 				}

@@ -68,17 +68,13 @@ include  ./mixins
 		.text !{object.social}
 		.text !{object.history}
 		.text !{object.addlInfo}
-			.citations
+			.citations.text
 				if(object.citations && object.citations.length > 1)
-					| Citations
-					br
-					br
+					span Citations
 					| !{object.citations}
-			.citations
+			.links.text
 				if(object.links && object.links.length > 1)
-					| Related Links
-					br
-					br
+					span Related Links
 					| !{object.links}
 
 	.group.contribute

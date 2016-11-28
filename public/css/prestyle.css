@@ -354,7 +354,7 @@ body form {
       padding-bottom: 0; }
   body form .row {
     width: 100%;
-    display: table;
+    display: block;
     margin: 0 0 1em 0;
     clear: both;
     position: relative; }
@@ -362,8 +362,10 @@ body form {
       float: left; }
       body form .row .cell:first-child {
         margin-right: 1em; }
-    body form .row.two .cell {
-      width: calc(50% - .5em); }
+    body form .row.two {
+      display: table; }
+      body form .row.two .cell {
+        width: calc(50% - .5em); }
     body form .row .button {
       margin-top: 0.5em; }
   body form [data-template] {
@@ -714,7 +716,9 @@ aside section#single .sliderWrap .slider .slideWrap {
       left: 0; }
 aside section#single .paragraphs {
   white-space: pre-line; }
-  aside section#single .paragraphs .citations {
+  aside section#single .paragraphs .text {
+    margin-bottom: 1em; }
+  aside section#single .paragraphs .citations, aside section#single .paragraphs .links {
     font-size: 0.7em;
     line-height: 1.5em; }
 aside section#single .header {
