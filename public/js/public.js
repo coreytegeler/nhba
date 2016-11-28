@@ -504,12 +504,17 @@
       });
       bounds = new google.maps.LatLngBounds();
       $(allBuildings).each(function(i, building) {
-        var color, coords, marker;
+        var color, coords, marker, tours;
         coords = building.coords;
-        if (building.tour && building.tour.color) {
-          color = building.tour.color;
-        } else {
-          color = '#C0C0AD';
+        tours = building.tour;
+        color = '#C0C0AD';
+        if (tours) {
+          if (!$.isArray(tours)) {
+            tours = [tours];
+          }
+          if (tours.length) {
+            color = tours[0].color;
+          }
         }
         if (typeof coords === 'object') {
           marker = new google.maps.Marker({

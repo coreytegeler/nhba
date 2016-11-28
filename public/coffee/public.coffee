@@ -417,10 +417,13 @@ window.initPublic = ->
 		# DONT DO IT THIS WAY, LOAD DATA DYNAMICALLY
 		$(allBuildings).each (i, building) ->
 			coords = building.coords
-			if(building.tour && building.tour.color)
-				color = building.tour.color
-			else
-				color = '#C0C0AD'
+			tours = building.tour
+			color = '#C0C0AD'
+			if(tours)
+				if(!$.isArray(tours))
+					tours = [tours]
+				if tours.length
+					color = tours[0].color
 			if(typeof coords == 'object')
 				marker = new google.maps.Marker
 					map: mapObj,
