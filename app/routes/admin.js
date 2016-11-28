@@ -37,7 +37,7 @@ module.exports = function(app) {
         loadedType: {s: 'home', p: 'home'},
         models: models,
         user: req.user,
-        sideSection: 'filter'
+        sideSection: 'archive'
       })
     }, req, res)
   })
@@ -313,7 +313,6 @@ module.exports = function(app) {
 
   app.post('/admin/image/quicky/', tools.isLoggedIn, function(req, res) {
     var data = req.body
-
     upload(req, res, function(err) {
       if(err) {
         console.log('Failed image upload:', err)
@@ -326,7 +325,6 @@ module.exports = function(app) {
       data.original = '/uploads/'+filename
       data.medium = '/uploads/medium/'+filename
       data.small = '/uploads/small/'+filename
-
       gm(appRoot+'/public'+data.original).resize(800, 800).quality(100).autoOrient().write(appRoot+'/public/'+data.medium, function (err) {
         if(err) {
           console.log('Failed medium resize:', err)
@@ -344,7 +342,6 @@ module.exports = function(app) {
           console.log('Small resize:', this)
         }
       })
-
       var image = new Image(data)
       image.save(function(err) {
         if(!err) {

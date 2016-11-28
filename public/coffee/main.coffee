@@ -29,6 +29,9 @@ $ ->
 		$title.toggleClass('toggled')
 		$childList.toggleClass('open')
 
+	baseUrl = () ->
+		window.history.pushState('', document.title, window.location.origin)
+
 	switchSection = (event) ->
 		$tab = $(this)
 		sectionId = $tab.attr('data-section')
@@ -42,6 +45,8 @@ $ ->
 				$('.building.selected').removeClass('selected')
 				$section.addClass('show')
 				event.preventDefault()
+				# if(!$body.is('.admin'))
+					# baseUrl()
 			else
 				return
 

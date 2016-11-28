@@ -42,13 +42,15 @@ aside
 									li.useType.withSub
 										.title(data-slug=useType)= uses[useType].name
 										ul.sub(data-slug=useType)
+											li.all(class=useType)
+												a.all.filter.subfilter(href='#', data-slug=useType, data-type='use') Select All
 											for use in uses[useType].uses
 												li(class=use.slug)
-													a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+													a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.id, data-type='use') #{use.name}
 							for use, useType in uses
 								if(!uses[useType].uses)
 									li(class=use.slug)
-										a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.slug, data-type='use') #{use.name}
+										a.filter.subfilter(href='/?use='+use.slug, data-slug=use.slug, data-id=use.id, data-type='use') #{use.name}
 					+filter('style', 'Style', models['style'])
 					li.era
 						-var eras = ['1638-1860', '1860-1910', '1910-1950', '1950-1980', '1980-Today']

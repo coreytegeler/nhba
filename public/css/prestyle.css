@@ -23,7 +23,9 @@ aside {
     aside h3 span::before {
       content: ' '; }
   aside p {
-    margin: 0; }
+    margin: 0 0 1em 0; }
+    aside p:last-child {
+      margin: 0; }
   aside a.selected {
     display: inline;
     border-bottom: 2px dotted black; }
@@ -168,7 +170,7 @@ aside {
         z-index: 100;
         opacity: 1;
         pointer-events: all; }
-  aside ul li.add {
+  aside ul li.add, aside ul li.all {
     opacity: 0.25;
     text-transform: capitalize; }
   aside .group {
@@ -284,13 +286,17 @@ body main {
   width: calc(100% - calc(15em + 20vw));
   padding-left: calc(15em + 20vw);
   overflow-y: auto; }
+  body main .inner {
+    width: calc(100% - 2em);
+    max-width: 600px;
+    padding: 1em; }
 body ul.list a.new {
   opacity: .25;
   text-transform: capitalize; }
 body ul.list li.type {
   opacity: .25; }
 body form {
-  width: calc(100% - 1em);
+  width: calc(100% - 2em);
   max-width: 600px;
   padding: 1em;
   margin: 0;
@@ -515,7 +521,7 @@ body form .images {
     body form .images .image img {
       height: 100%; }
 body .quicky {
-  width: calc(100% - calc(15em + 20vw));
+  width: calc(100% - (15em + 20vw));
   height: 100%;
   padding: 0;
   position: fixed;
@@ -937,6 +943,8 @@ aside .mapWrap {
       .gridWrap .grid .building.hidden {
         display: none; }
 
+body:not(.full) .grid {
+  padding-left: calc(15em + 2em + 20vw); }
 body:not(.full) .building.selected {
   background: transparent; }
   body:not(.full) .building.selected img, body:not(.full) .building.selected .img {

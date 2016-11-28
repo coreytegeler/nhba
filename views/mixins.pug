@@ -101,7 +101,10 @@ mixin filter(slug, name, model)
 		ul(class=name, data-slug=slug)
 			for item in model
 				li(class=item.type)
-					a.filter(href='/?'+item.type+'='+item.slug, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
+					-var url = '/?'+item.type+'='+item.slug
+					//- if(slug == 'tour')
+						//- -var url = '/tour/'+item.slug
+					a.filter(href=url, data-slug=item.slug, data-id=item.id, data-type=item.type) #{item.name}
 
 mixin list(label, object)
 	if(object)

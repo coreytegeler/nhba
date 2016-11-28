@@ -6,7 +6,8 @@ var imageSchema = mongoose.Schema({
 	original: String,
 	medium: String,
 	small: String,
-	caption: String
+	caption: String,
+	type: String
 }, { 
 	timestamps: true
 });

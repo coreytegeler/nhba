@@ -167,7 +167,7 @@
       return getContent(id, 'tour', 'html');
     };
     clickFilter = function() {
-      var $li, id, key, ref, ref1, slug, type, url, value;
+      var $li, $sub, id, key, ref, ref1, slug, type, url, value;
       event.preventDefault();
       id = this.dataset.id;
       type = this.dataset.type;
@@ -191,7 +191,26 @@
             filterQuery[type].splice(key, 1);
           }
         }
+      } else if ($(this).is('.all')) {
+        $sub = $(this).parents('.sub');
+        $sub.find('a:not(.all)').each(function(i, filter) {
+          id = filter.dataset.id;
+          slug = filter.dataset.slug;
+          $(filter).addClass('selected');
+          if (filterQuery[type].indexOf(id) < 0) {
+            filterQuery[type].push(id);
+          }
+          if (urlQuery[type].indexOf(slug) < 0) {
+            return urlQuery[type].push(slug);
+          }
+        });
       } else {
+        if (type === 'tour') {
+          filterQuery['tour'] = [];
+          urlQuery['tour'] = [];
+          $('#filter li.tour a.selected').removeClass('selected');
+          getContent(id, 'tour', 'html');
+        }
         $(this).addClass('selected');
         filterQuery[type].push(id);
         urlQuery[type].push(slug);
@@ -200,34 +219,63 @@
       return filter();
     };
     filter = function() {
-      var hiddenBuildings;
+      var arr, hiddenBuildings, noParams, paramsLength, type;
       $buildings = $('.grid.buildings .building');
       hiddenBuildings = 0;
+      paramsLength = 0;
+      for (type in filterQuery) {
+        arr = filterQuery[type];
+        if (arr.length) {
+          paramsLength++;
+        }
+      }
+      if (paramsLength === 0) {
+        noParams = true;
+      } else {
+        noParams = false;
+      }
       $('.grid.buildings .building').each(function(i, building) {
-        var arr, buildingValue, emptyParams, index, jndex, key, show, value, walue;
-        show = true;
-        emptyParams = 0;
-        for (key in filterQuery) {
-          arr = filterQuery[key];
+        var buildingSet, buildingValue, buildingValues, ii, iii, resolved, show, showing, value;
+        showing = false;
+        for (type in filterQuery) {
+          arr = filterQuery[type];
           if (arr.length) {
+            show = true;
             $('#filter .clear').addClass('show');
-            buildingValue = building.dataset[key];
-            if (buildingValue) {
+            buildingSet = building.dataset[type];
+            if (buildingSet) {
               try {
-                buildingValue = JSON.parse(buildingValue).id;
+                buildingSet = JSON.parse(buildingSet);
               } catch (undefined) {}
-              for (index in arr) {
-                value = arr[index];
+              if (!$.isArray(buildingSet)) {
+                buildingSet = [buildingSet];
+              }
+              buildingValues = [];
+              for (i in buildingSet) {
+                buildingValue = buildingSet[i];
+                if (buildingValue && buildingValue.id) {
+                  buildingValues[i] = buildingValue.id;
+                }
+              }
+              for (ii in arr) {
+                value = arr[ii];
+                resolved = false;
                 if (arr.length === 1) {
-                  if (value !== buildingValue) {
+                  if ($.inArray(value, buildingValues) >= 0) {
+                    show = true;
+                    resolved = true;
+                  } else if (!resolved) {
                     show = false;
                   }
                 } else {
                   show = false;
-                  for (jndex in arr) {
-                    walue = arr[jndex];
-                    if (walue === buildingValue) {
+                  for (iii in arr) {
+                    value = arr[iii];
+                    if ($.inArray(value, buildingValues) >= 0) {
                       show = true;
+                      resolved = true;
+                    } else if (!resolved) {
+                      show = false;
                     }
                   }
                 }
@@ -235,9 +283,13 @@
             } else {
               show = false;
             }
-          } else {
-            emptyParams++;
           }
+        }
+        if (noParams) {
+          $('#filter .clear').removeClass('show');
+          show = true;
+        } else {
+          filterIsOn = true;
         }
         if (show === true) {
           $(building).removeClass('hidden');
@@ -245,17 +297,15 @@
           hiddenBuildings++;
           $(building).addClass('hidden');
         }
-        if (emptyParams === Object.keys(filterQuery).length) {
-          $('#filter .clear').removeClass('show');
-        } else {
-          filterIsOn = true;
-        }
         if (hiddenBuildings === $buildings.length) {
           $body.removeClass('full');
-          return $body.addClass('empty');
+          $body.addClass('empty');
         } else {
-          return $body.removeClass('empty');
+          $body.removeClass('empty');
         }
+        return TweenLite.set('.grid', {
+          x: 0
+        });
       });
       makeDraggable();
       return resizeGrid();
@@ -305,16 +355,14 @@
         'neighborhood': getParam('neighborhood', false),
         'era': getParam('era', false),
         'style': getParam('style', false),
-        'use': getParam('use', false),
-        'material': getParam('material', false)
+        'use': getParam('use', false)
       };
       filterQuery = {
         'tour': [],
         'neighborhood': [],
         'era': [],
         'style': [],
-        'use': [],
-        'material': []
+        'use': []
       };
       return $.each(urlQuery, function(key, param) {
         var $filter, $filterList, $filterTitle, i, j, len, results, value;
@@ -322,7 +370,7 @@
         for (i = j = 0, len = param.length; j < len; i = ++j) {
           value = param[i];
           $filter = $('.' + key + ' .filter[data-slug="' + value + '"]');
-          $filterList = $('.filters ul.' + key);
+          $filterList = $('.filters ul[data-slug="' + key + '"]');
           value = $filter.data('id');
           $filterTitle = $('.filters .title[data-slug="' + key + '"]');
           $filter.addClass('selected');
@@ -621,7 +669,18 @@
       return $body.removeClass('full');
     };
     closeSide = function() {
-      return $body.addClass('full');
+      var gridWidth, right, transform, windowWidth, x;
+      $body.addClass('full');
+      windowWidth = $(window).innerWidth();
+      gridWidth = $grid.innerWidth();
+      right = windowWidth - (gridWidth + $grid.offset().left);
+      if (right > 0) {
+        transform = $grid.css('transform');
+        x = windowWidth - gridWidth;
+        return TweenLite.set('.grid', {
+          x: x
+        });
+      }
     };
     resizeGrid = function() {
       var $visibleTiles, $window, content, edge, gridHeight, gridWidth, larger, length, sideWidth, smaller;
@@ -724,9 +783,7 @@
       } else if (y < -max) {
         y = -max;
       }
-      console.log(x);
       return $rotate.css({
-        rotateY: y,
         rotateX: x
       });
     };

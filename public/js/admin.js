@@ -193,9 +193,10 @@
       } else {
         $quicky = $(this).parents('.quicky');
       }
-      if (!$quicky.is('[data-model="image"]') && $quicky.attr('data-id')) {
+      if (!$quicky.attr('data-id')) {
         $quicky.find('input:not([type="submit"])').each(function(i, input) {
-          return $(input).val('');
+          $(input).val('');
+          return $(input).prop('checked', false);
         });
       }
       $quicky.removeClass('open');
@@ -213,8 +214,9 @@
       if (type === 'image' && !id.length) {
         image = $form.find('input:file')[0].files[0];
         caption = $form.find('input.caption').val();
-        data.append('image', image, image.name);
-        data.append('caption', caption);
+        console.log(caption);
+        data.set('image', image, image.name);
+        data.set('caption', caption);
         contentType = false;
         processData = false;
       } else {
@@ -227,6 +229,7 @@
         return;
       }
       $quicky.addClass('saving');
+      console.log(data);
       $.ajax({
         type: 'POST',
         data: data,

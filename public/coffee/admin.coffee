@@ -174,9 +174,10 @@ $ ->
 			$quicky = $(quicky)
 		else
 			$quicky = $(this).parents('.quicky')
-		if(!$quicky.is('[data-model="image"]') && $quicky.attr('data-id'))
+		if(!$quicky.attr('data-id'))
 			$quicky.find('input:not([type="submit"])').each (i, input) ->
 				$(input).val('')
+				$(input).prop('checked', false)
 		$quicky.removeClass('open')
 		$quicky.removeClass('saving')
 		return
@@ -192,8 +193,9 @@ $ ->
 		if(type == 'image' && !id.length)
 			image = $form.find('input:file')[0].files[0]
 			caption = $form.find('input.caption').val()
-			data.append('image', image, image.name)
-			data.append('caption', caption)
+			console.log caption
+			data.set('image', image, image.name)
+			data.set('caption', caption)
 			contentType = false
 			processData = false
 		else
@@ -205,6 +207,7 @@ $ ->
 		if(!data)
 			return
 		$quicky.addClass('saving')
+		console.log data
 		$.ajax
 			type: 'POST',
 			data: data,

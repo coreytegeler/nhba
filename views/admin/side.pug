@@ -3,9 +3,9 @@ aside
 		if(user)
 			header
 				.tabs
+					.tab.archive(data-section='archive', class=(sideSection == 'archive' ? 'selected' : ''))= 'Archive'
 					.tab.filter(data-section='filter', class=(sideSection == 'filter' ? 'selected' : ''))= 'Filters'
 					.tab.glossary(data-section='glossary', class=(sideSection == 'glossary' ? 'selected' : ''))= 'Glossary'
-					.tab.archive(data-section='archive', class=(sideSection == 'archive' ? 'selected' : ''))= 'Archive'
 
 					.tabDown(class=(sideSection == 'profile' ? 'selected' : ''))
 						.dropDown

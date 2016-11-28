@@ -1,24 +1,25 @@
 extends layout.pug
 block body
-	if(loadedType.s && loadedType.p)
-		h1 #{uppercase(loadedType.p)}
-		if(loadedType.s == 'user' || loadedType.s == 'building')
-			-var objects = models[loadedType.p]
-		else
-			-var objects = models[loadedType.s]
-		if objects
-			ul.list
-				for object in objects
-					if(loadedType.s == 'use')
-						li.type= object.name
-						if(object.uses)
-							for use in object.uses
-								li.item
-									a(href='/admin/use/edit/'+use.slug) #{use.name}
-									a(href='/admin/use/remove/'+use._id).square.remove
-					else
-						li.item
-							a(href='/admin/'+loadedType.s+'/edit/'+object.slug) #{object.name}
-							a(href='/admin/'+loadedType.s+'/remove/'+object._id).square.remove
-				li.item
-					a.new(href='/admin/'+loadedType.s+'/new') Add #{loadedType.s}
+	.inner
+		if(loadedType.s && loadedType.p)
+			h1 #{uppercase(loadedType.p)}
+			if(loadedType.s == 'user' || loadedType.s == 'building')
+				-var objects = models[loadedType.p]
+			else
+				-var objects = models[loadedType.s]
+			if objects
+				ul.list
+					for object in objects
+						if(loadedType.s == 'use')
+							li.type= object.name
+							if(object.uses)
+								for use in object.uses
+									li.item
+										a(href='/admin/use/edit/'+use.slug) #{use.name}
+										a(href='/admin/use/remove/'+use._id).square.remove
+						else
+							li.item
+								a(href='/admin/'+loadedType.s+'/edit/'+object.slug) #{object.name}
+								a(href='/admin/'+loadedType.s+'/remove/'+object._id).square.remove
+					li.item
+						a.new(href='/admin/'+loadedType.s+'/new') Add #{loadedType.s}

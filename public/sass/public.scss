@@ -328,8 +328,9 @@ aside {
 		flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    padding: 2em;
+    padding: $gridPad;
     overflow: hidden;
+    
     @include mobile {
     	padding-left: 0;
     }
@@ -394,6 +395,9 @@ aside {
 	}
 }
 body:not(.full) {
+	.grid {
+		padding-left: $sideWidthPad;
+	}
 	.building.selected {
 		background: transparent;
 		img, .img {

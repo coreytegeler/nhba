@@ -6,7 +6,9 @@ $mediumFont: .95em;
 $largeFont: 1.3em;
 $xlargeFont: 1.5em;
 
+$gridPad: 2em;
 $sideWidth: calc(15em + 20vw);
+$sideWidthPad: calc(15em + #{$gridPad} + 20vw);
 $sidePad: 1em;
 
 @mixin noSelect {

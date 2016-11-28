@@ -157,7 +157,22 @@ window.initPublic = ->
 			for key, value of filterQuery[type]
 				if(id == value)
 					filterQuery[type].splice(key, 1)
+		else if($(this).is('.all'))
+			$sub = $(this).parents('.sub')
+			$sub.find('a:not(.all)').each (i, filter) ->
+				id = filter.dataset.id
+				slug = filter.dataset.slug
+				$(filter).addClass('selected')
+				if(filterQuery[type].indexOf(id) < 0)
+					filterQuery[type].push(id)
+				if(urlQuery[type].indexOf(slug) < 0)
+					urlQuery[type].push(slug)
 		else
+			if(type == 'tour')
+				filterQuery['tour'] = []
+				urlQuery['tour'] = []
+				$('#filter li.tour a.selected').removeClass('selected')
+				getContent(id, 'tour', 'html')
 			$(this).addClass('selected')
 			filterQuery[type].push(id)
 			urlQuery[type].push(slug)
@@ -167,29 +182,55 @@ window.initPublic = ->
 	filter = () ->
 		$buildings = $('.grid.buildings .building')
 		hiddenBuildings = 0
+		paramsLength = 0
+		for type, arr of filterQuery
+			if arr.length
+				paramsLength++
+		if(paramsLength == 0)
+			noParams = true
+		else
+			noParams = false
+
 		$('.grid.buildings .building').each (i, building) ->
-			show = true
-			emptyParams = 0
-			for key, arr of filterQuery
+			showing = false
+			for type, arr of filterQuery
 				if(arr.length)
+					show = true
 					$('#filter .clear').addClass('show')
-					buildingValue = building.dataset[key]
-					if(buildingValue)
+					buildingSet = building.dataset[type]
+					if(buildingSet)
 						try
-							buildingValue = JSON.parse(buildingValue).id
-						for index, value of arr
+							buildingSet = JSON.parse(buildingSet)
+						if(!$.isArray(buildingSet))
+							buildingSet = [buildingSet]
+						buildingValues = []
+						for i, buildingValue of buildingSet
+							if buildingValue && buildingValue.id
+								buildingValues[i] = buildingValue.id
+						for ii, value of arr
+							resolved = false
 							if(arr.length == 1)
-								if(value != buildingValue)
+								if($.inArray(value, buildingValues) >= 0)
+									show = true
+									resolved = true
+								else if(!resolved)
 									show = false
 							else
-								show = false
-								for jndex, walue of arr
-									if(walue == buildingValue)
+								show  = false
+								for iii, value of arr
+									if($.inArray(value, buildingValues) >= 0)
 										show = true
+										resolved = true
+									else if(!resolved)
+										show = false
 					else
 						show = false
-				else
-					emptyParams++
+
+			if(noParams)
+				$('#filter .clear').removeClass('show')
+				show = true
+			else
+				filterIsOn = true
 
 			if(show == true)
 				$(building).removeClass('hidden')
@@ -197,16 +238,13 @@ window.initPublic = ->
 				hiddenBuildings++
 				$(building).addClass('hidden')
 
-			if(emptyParams == Object.keys(filterQuery).length)
-				$('#filter .clear').removeClass('show')
-			else
-				filterIsOn = true
-
 			if(hiddenBuildings == $buildings.length)
 				$body.removeClass('full')
 				$body.addClass('empty')
 			else
 				$body.removeClass('empty')
+			TweenLite.set '.grid',
+				x: 0
 		makeDraggable()
 		resizeGrid()
 
@@ -246,22 +284,20 @@ window.initPublic = ->
 			'neighborhood': getParam('neighborhood', false),
 			'era': getParam('era', false),
 			'style': getParam('style', false),
-			'use': getParam('use', false),
-			'material': getParam('material', false)
+			'use': getParam('use', false)
 		}
 		filterQuery = {
 			'tour': [],
 			'neighborhood': [],
 			'era': [],
 			'style': [],
-			'use': [],
-			'material': []
+			'use': []
 		}
 
 		$.each urlQuery, (key, param) -> 
 			for value, i in param
 				$filter = $('.'+key+' .filter[data-slug="'+value+'"]')
-				$filterList = $('.filters ul.'+key)
+				$filterList = $('.filters ul[data-slug="'+key+'"]')
 				value = $filter.data('id')
 				$filterTitle = $('.filters .title[data-slug="'+key+'"]')
 				$filter.addClass('selected')
@@ -523,7 +559,15 @@ window.initPublic = ->
 
 	closeSide = () ->
 		$body.addClass('full')
-		# resizeGrid()
+		windowWidth = $(window).innerWidth()
+		gridWidth = $grid.innerWidth()
+		right = windowWidth - (gridWidth + $grid.offset().left)
+		if right > 0
+			transform = $grid.css('transform')
+			x = windowWidth - gridWidth
+			TweenLite.set '.grid',
+				x: x
+
 
 	resizeGrid = () -> 
 		$window = $(window)
@@ -614,11 +658,8 @@ window.initPublic = ->
 			y = max
 		else if(y < -max)
 			y = -max
-
-		console.log x
 		# rotate3d = x+','+y+',0,1deg'
 		$rotate.css
-		  rotateY: y
 		  rotateX: x
 
 	clearRotate = () ->
