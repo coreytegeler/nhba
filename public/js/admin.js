@@ -214,7 +214,6 @@
       if (type === 'image' && !id.length) {
         image = $form.find('input:file')[0].files[0];
         caption = $form.find('input.caption').val();
-        console.log(caption);
         data.set('image', image, image.name);
         data.set('caption', caption);
         contentType = false;
@@ -229,7 +228,6 @@
         return;
       }
       $quicky.addClass('saving');
-      console.log(data);
       $.ajax({
         type: 'POST',
         data: data,

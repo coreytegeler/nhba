@@ -312,13 +312,12 @@ module.exports = function(app) {
   }).single('image')
 
   app.post('/admin/image/quicky/', tools.isLoggedIn, function(req, res) {
-    var data = req.body
     upload(req, res, function(err) {
       if(err) {
         console.log('Failed image upload:', err)
         return res.json(err)
       }
-
+      var data = req.body
       var imageData = req.file
       var filename = imageData.filename
       data.filename = filename
