@@ -512,7 +512,7 @@
           if (!$.isArray(tours)) {
             tours = [tours];
           }
-          if (tours.length) {
+          if (tours.length && tours[0].color) {
             color = tours[0].color;
           }
         }
