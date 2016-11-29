@@ -422,7 +422,7 @@ window.initPublic = ->
 			if(tours)
 				if(!$.isArray(tours))
 					tours = [tours]
-				if tours.length && tours[0].color
+				if tours.length && tours[0]
 					color = tours[0].color
 			if(typeof coords == 'object')
 				marker = new google.maps.Marker
