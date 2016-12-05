@@ -261,6 +261,8 @@ aside {
     width: 100%;
     padding: 0;
     margin: 0; }
+  aside #info .colophon a {
+    border-bottom: 2px dotted black; }
   aside #info .colophon p {
     margin-bottom: 0; }
   .full aside {
@@ -383,7 +385,7 @@ body form {
     display: table;
     margin-top: 3em; }
   body form .button {
-    display: block;
+    display: table;
     padding: 0.3em 0.35em;
     margin: 0 1em 0 0;
     float: left;
@@ -402,7 +404,8 @@ body form {
       background: black;
       color: white; }
     body form .button:last-child {
-      margin-right: 0; }
+      margin-right: 0;
+      float: none; }
 body .sortable {
   padding-top: .5em;
   display: table; }
@@ -422,7 +425,8 @@ body .checkboxes, body .options {
   font-size: 1em;
   line-height: 1em;
   border: 1px solid black;
-  background: white; }
+  background: white;
+  display: block; }
   body .checkboxes.populate .item, body .options.populate .item {
     opacity: 0; }
   body .checkboxes.populate.loaded .item, body .options.populate.loaded .item {
@@ -726,12 +730,17 @@ aside section#single .sliderWrap .slider .slideWrap {
     aside section#single .sliderWrap .slider .slideWrap .slide.show {
       left: 0; }
 aside section#single .paragraphs {
-  white-space: pre-line; }
+  white-space: pre-line;
+  word-break: break-word; }
   aside section#single .paragraphs .text {
     margin-bottom: 1em; }
+    aside section#single .paragraphs .text a {
+      border-bottom: 2px dotted black; }
   aside section#single .paragraphs .citations, aside section#single .paragraphs .links {
-    font-size: 0.7em;
-    line-height: 1.5em; }
+    padding-left: 1.8em; }
+    aside section#single .paragraphs .citations .inner, aside section#single .paragraphs .citations span, aside section#single .paragraphs .links .inner, aside section#single .paragraphs .links span {
+      font-size: 0.7em;
+      line-height: 1.5em; }
 aside section#single .header {
   margin-bottom: 0.3em; }
   aside section#single .header h1 {
@@ -776,7 +785,8 @@ aside section#single .contribute {
   aside section#single .contribute .text {
     width: 100%; }
     aside section#single .contribute .text a {
-      display: inline; }
+      display: inline;
+      border-bottom: 2px dotted black; }
 aside section#single .tour h4 {
   margin-bottom: 1.5em; }
   aside section#single .tour h4 a {

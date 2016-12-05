@@ -1,5 +1,3 @@
-# new-haven-building-archive
+# New Haven Building Archive
 
-ssh -i new-haven-building-archive.pem ubuntu@ec2-54-208-156-193.compute-1.amazonaws.com 
-
-sudo tail -f /var/log/nhba.log 
+sudo tail -f /var/log/nhba.log

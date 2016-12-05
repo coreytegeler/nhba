@@ -449,9 +449,16 @@
       });
     };
     updateSingleSect = function(content, id, type) {
+      var $checkHtml;
       $('section.show').removeClass('show');
       $singleSect.scrollTop(0);
       $singleSect.addClass('show').html(content).attr('data-id', id);
+      $checkHtml = $singleSect.find('.checkHtml');
+      $checkHtml.each(function() {
+        if ($(this).find('.inner').text().length <= 0) {
+          return $(this).remove();
+        }
+      });
       if (type === 'building') {
         buildingMapSetup($singleSect);
         setUpSlider();
@@ -721,7 +728,6 @@
     };
     centerGrid = function() {
       var centerMatrix, centerX, centerY, gridHeight, gridWidth, matrix, wrapHeight, wrapWidth;
-      return;
       wrapWidth = $gridWrap.innerWidth();
       wrapHeight = $gridWrap.innerHeight();
       gridWidth = $grid.innerWidth();
@@ -738,22 +744,28 @@
       }
     };
     paginate = function() {
-      var $building, $nextBuilding, direction, id;
+      var $building, $nextBuilding, $visibleBuildings, direction, id, index, lastIndex, thisIndex;
       id = $(this).parents('section')[0].dataset.id;
       direction = $(this).data('direction');
       $building = $('.grid .building[data-id="' + id + '"]');
+      $visibleBuildings = $('.grid .building:not(.hidden)');
+      thisIndex = $.inArray($building[0], $visibleBuildings);
+      lastIndex = $visibleBuildings.length - 1;
       if (direction === 'left') {
-        $nextBuilding = $building.prev('.building:not(.hidden)');
-        if (!$nextBuilding.length) {
-          $nextBuilding = $('.grid .building:not(.hidden)').last();
+        if (thisIndex === 0) {
+          index = lastIndex;
+        } else {
+          index = thisIndex - 1;
         }
       } else if (direction === 'right') {
-        $nextBuilding = $building.next('.building:not(.hidden)');
-        if (!$nextBuilding.length) {
-          $nextBuilding = $('.grid .building:not(.hidden)').first();
+        if (thisIndex === lastIndex) {
+          index = 0;
+        } else {
+          index = thisIndex + 1;
         }
       }
-      id = $nextBuilding[0].dataset.id;
+      $nextBuilding = $visibleBuildings.eq(index);
+      id = $nextBuilding.attr('data-id');
       return selectBuilding('id', id, '');
     };
     popState = function(e) {

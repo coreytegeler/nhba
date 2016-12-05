@@ -83,12 +83,19 @@ aside {
 			}
 			.paragraphs {
 				white-space: pre-line;
+		    word-break: break-word;
 				.text {
 					margin-bottom: 1em;
+					a {
+						border-bottom: 2px dotted black;
+					}
 				}
 				.citations, .links {
-					font-size: $smallFont;
-					line-height: 1.5em;
+					padding-left: 1.8em;
+					.inner, span {
+						font-size: $smallFont;
+						line-height: 1.5em;
+					}
 				}
 			}
 			.header {
@@ -141,6 +148,7 @@ aside {
 					width: 100%;
 					a {
 						display: inline;
+						border-bottom: 2px dotted black;
 					}
 				}
 			}

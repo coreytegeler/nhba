@@ -31,6 +31,7 @@ $ ->
 						index = newOrder.indexOf(this.id)
 						newOrder[index] = this
 				newOrderJson = JSON.stringify(newOrder)
+				console.log newOrderJson
 				$sortable.find('input').val(newOrderJson)
 		sortable.disableSelection()
 

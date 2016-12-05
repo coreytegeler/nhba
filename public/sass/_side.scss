@@ -321,6 +321,9 @@ aside {
 	}
 	#info {
 		.colophon {
+			a {
+				border-bottom: 2px dotted black;
+			}
 			p {
 				margin-bottom: 0;
 			}

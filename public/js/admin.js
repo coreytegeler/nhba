@@ -37,6 +37,7 @@
             });
           }
           newOrderJson = JSON.stringify(newOrder);
+          console.log(newOrderJson);
           return $sortable.find('input').val(newOrderJson);
         }
       });
