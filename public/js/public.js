@@ -456,7 +456,7 @@
       $singleSect.addClass('show').html(content).attr('data-id', id);
       $checkHtml = $singleSect.find('.checkHtml');
       $checkHtml.each(function() {
-        if ($(this).find('div.inner').text().length <= 0) {
+        if ($(this).find('div.small').text().length <= 0) {
           return $(this).remove();
         }
       });
