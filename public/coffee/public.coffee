@@ -370,7 +370,7 @@ window.initPublic = ->
 			.attr('data-id', id)
 		$checkHtml = $singleSect.find('.checkHtml')
 		$checkHtml.each () ->
-			if($(this).find('.inner').text().length <= 0)
+			if($(this).find('div.inner').text().length <= 0)
 				$(this).remove()
 		if(type == 'building')
 			buildingMapSetup($singleSect)

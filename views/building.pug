@@ -70,13 +70,13 @@ include  ./mixins
 		.text !{object.addlInfo}
 			.citations.text.checkHtml
 				if(object.citations)
-					span Citations
-					.inner
+					span.small Citations
+					.small
 						| !{object.citations}
 			.links.text.checkHtml
 				if(object.links)
-					span Related Links
-					.inner
+					span.small Related Links
+					.small
 						| !{object.links}
 
 	.group.contribute

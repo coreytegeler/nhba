@@ -727,7 +727,7 @@ aside section#single .paragraphs {
       border-bottom: 2px dotted black; }
   aside section#single .paragraphs .citations, aside section#single .paragraphs .links {
     padding-left: 1.8em; }
-    aside section#single .paragraphs .citations .inner, aside section#single .paragraphs .citations span, aside section#single .paragraphs .links .inner, aside section#single .paragraphs .links span {
+    aside section#single .paragraphs .citations .small, aside section#single .paragraphs .links .small {
       font-size: 0.7em;
       line-height: 1.5em; }
 aside section#single .header {
