@@ -4,7 +4,7 @@ if(tour && buildings)
 		.group.tour
 			h4
 				span= 'Other Buildings on '
-				a.tour(href='/tour/'+tour.slug, data-slug=tour.slug, data-id=tour.id, data-type='tour')= tour.name + ' Tour'
+				a.tour(href='/?tour='+tour.slug, data-slug=tour.slug, data-id=tour.id, data-type='tour')= tour.name + ' Tour'
 			ul.buildings
 				-var i = 0
 				for building in buildings

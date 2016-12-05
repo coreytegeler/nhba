@@ -19,9 +19,9 @@ window.initPublic = ->
 	grid = null
 	
 	setUp = () ->
-		$body.on 'mouseenter', '.building a', hoverBuilding
-		$body.on 'mouseleave', '.building a', unhoverBuilding
-		$body.on 'click touch', '.building a', clickBuilding
+		$body.on 'mouseenter', '.grid .building a', hoverBuilding
+		$body.on 'mouseleave', '.grid .building a', unhoverBuilding
+		$body.on 'click touch', '.grid .building a', clickBuilding
 		$body.on 'click touch', '.group.tour a.tour', clickTour
 		$body.on 'click touch', 'a.filter', clickFilter
 		$body.on 'click touch', '#filter .clear', clearFilter
@@ -139,6 +139,7 @@ window.initPublic = ->
 		tour = this
 		id = tour.dataset.id
 		url = tour.href
+		window.history.pushState('', document.title, url)
 		getContent(id, 'tour', 'html')
 
 	clickFilter = () ->
