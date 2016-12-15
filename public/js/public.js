@@ -787,22 +787,16 @@
       }
     };
     rotate = function(e) {
-      var max, x, y;
-      x = parseInt($rotate.css('rotateX')) - e.deltaY / 20;
-      y = parseInt($rotate.css('rotateY')) - e.deltaX / 20;
+      var max, y;
+      y = parseInt($rotate.css('rotateY')) - e.deltaY / 20;
       max = 30;
-      if (x > max) {
-        x = max;
-      } else if (x < -max) {
-        x = -max;
-      }
       if (y > max) {
         y = max;
       } else if (y < -max) {
         y = -max;
       }
       return $rotate.css({
-        rotateX: x
+        rotateY: y
       });
     };
     clearRotate = function() {

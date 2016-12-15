@@ -661,20 +661,20 @@ window.initPublic = ->
 			selectBuilding('slug', slug)
 
 	rotate = (e) ->
-		x = parseInt($rotate.css('rotateX')) - e.deltaY/20
-		y = parseInt($rotate.css('rotateY')) - e.deltaX/20
+		y = parseInt($rotate.css('rotateY')) - e.deltaY/20
+		# y = parseInt($rotate.css('rotateY')) - e.deltaX/20
 		max = 30
-		if(x > max)
-			x = max
-		else if(x < -max)
-			x = -max
 		if(y > max)
 			y = max
 		else if(y < -max)
 			y = -max
+		# if(y > max)
+		# 	y = max
+		# else if(y < -max)
+		# 	y = -max
 		# rotate3d = x+','+y+',0,1deg'
 		$rotate.css
-		  rotateX: x
+		  rotateY: y
 
 	clearRotate = () ->
 		$rotate.transition
