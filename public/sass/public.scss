@@ -147,7 +147,7 @@ aside {
 				.text {
 					width: 100%;
 					a {
-						display: inline;
+						display: inline !important;
 						border-bottom: 2px dotted black;
 					}
 				}
@@ -156,6 +156,7 @@ aside {
 				h4 {
 					margin-bottom: 1.5em;
 					a {
+						display: inline;
 						border-bottom: black 2px dotted;
 					}
 				}

@@ -770,11 +770,12 @@ aside section#single .contribute {
   aside section#single .contribute .text {
     width: 100%; }
     aside section#single .contribute .text a {
-      display: inline;
+      display: inline !important;
       border-bottom: 2px dotted black; }
 aside section#single .tour h4 {
   margin-bottom: 1.5em; }
   aside section#single .tour h4 a {
+    display: inline;
     border-bottom: black 2px dotted; }
 aside section#single .buildings .building {
   width: 100%;
