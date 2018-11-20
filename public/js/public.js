@@ -738,7 +738,6 @@
       centerY = wrapHeight / 2 - gridHeight / 2;
       if (!isNaN(centerX) || !isNaN(centerY)) {
         centerMatrix = [1, 0, 0, 1, centerX, centerY].join(',');
-        console.log('center matrix: ' + centerMatrix);
         return $grid.css({
           transform: 'matrix(' + centerMatrix + ')'
         }).addClass('show');

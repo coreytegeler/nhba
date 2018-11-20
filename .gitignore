@@ -1,6 +1,7 @@
 *.pdf
 node_modules
 .sass-cache
+.sass-cache/*
 new-haven-building-archive.pem
 awscli-bundle
 public/uploads
